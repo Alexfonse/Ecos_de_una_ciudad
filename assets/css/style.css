@@ -446,3 +446,62 @@ p, .texto-tarjeta {
 .footer .redes {
   margin-top: 10px;
 }
+
+.caja-galeria{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.5s;
+  background-color: #2f4a3d;
+}
+
+.caja-galeria .images{
+display: flex;
+flex-direction: row;
+align-items: stretch;
+overflow: hidden;
+min-width: 600px;
+max-height: 900px;
+width: calc(100% - 100);
+height: 400px;
+}
+
+:root{
+  --dark: #333;
+  --light: #fff;
+}
+
+.caja-galeria .images .image{
+  position: relative;
+  overflow: hidden;
+  min-width: 60px;
+  margin: 10px;
+  background-size:auto 100% ;
+  background-position: center;
+  cursor: pointer;
+  transition: 0.5s cubic-bezier(0.1,0.1,0.1,0.1);
+}
+.caja-galeria .images .image.active {
+  flex-grow: 10000;
+  transform: scale(1);
+  max-width: 600px;
+  margin: 0;
+  border-radius: 25px;
+  background-size: auto;
+}
+
+.caja-galeria .images .image.active .label{
+  background-color: wheat;
+  padding: 10px;
+  border-radius: 50px;
+  bottom: 15px;
+  left: 15px;
+  right: 15px;
+}
+
+.caja-galeria .images .image:not(.active){
+  flex-grow: 20px;
+}
