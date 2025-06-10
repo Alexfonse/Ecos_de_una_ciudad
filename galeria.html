@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ecos de una Ciudad</title>
+  <title>Galería Circular - Ecos de una Ciudad</title>
 
   <!-- Tipografías y Grid -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
@@ -16,8 +16,6 @@
 
   <!-- Iconos -->
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Optimización de carga -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -29,26 +27,13 @@
     <p>Cargando ecos...</p>
   </div>
 
-
-  <!-- El resto de tu contenido aquí -->
-  <div id="site-content" style="display: none;">
-    <!-- Tu hero, menús, secciones, etc. -->
-  </div>
-
-
   <!-- HERO -->
   <header class="hero-header">
     <img src="assets/img/prueba.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
     <div class="hero-overlay">
-      <div class="scroll-indicator">
-        <div class="flecha-bajar"></div>
-      </div>
       <h1 class="titulo-hero">Ecos de una<br><span class="frase-impacto">ciudad</span></h1>
       <p class="subtexto-hero">Explora cómo el pasado, el presente y el futuro se entrelazan en cada rincón de Bogotá.
       </p>
-      <a href="#explorar">
-        <button class="boton-principal" onclick="scrollToSeccion()">Explorar ahora</button>
-      </a>
     </div>
     <div class="onda-inferior">
       <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -60,49 +45,17 @@
           <use xlink:href="#wavePath" class="wave-fill-secondary" />
         </g>
       </svg>
-
     </div>
   </header>
-  <!-- SECCIÓN TARJETAS -->
-  <section id="explorar" class="seccion-ondas fade-in-up">
-    <div class="base-galeria">
-      <div class="titulo-galeria">
-        <p>Codegrid</p>
-        <p>Showreel</p>
-      </div>
-      <div>
-        <div class="contenedor-galeria">
-          <div class="galeria-1">
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-            <div class="galeria-item"></div>
-          </div>
-        </div>
-      </div>
+
+  <!-- GALERÍA CIRCULAR -->
+  <section class="seccion-ondas fade-in-up">
+    <div class="container">
+      <div class="gallery" id="gallery"></div>
     </div>
   </section>
-  <!-- NAV FLOTANTE -->
+
+  <!-- MENÚ Y FOOTER -->
   <nav class="floating-navbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span>
@@ -111,9 +64,8 @@
     </button>
   </nav>
 
-  <!-- MENÚ FULLSCREEN -->
   <div class="menu-fullscreen" id="menu-fullscreen">
-    <ul class="menu-galeria-items">
+    <ul class="menu-items">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="galeria.html">Galería</a></li>
       <li><a href="galeria3d.html">Galería 3D</a></li>
@@ -125,7 +77,6 @@
     </ul>
   </div>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
     <div class="redes">
@@ -136,11 +87,120 @@
     <div class="cirgaita">
       <img src="assets/img/prueba_2.png" alt="">
     </div>
-
   </footer>
 
-  <!-- Scripts -->
-  <script src="assets/js/main.js"></script>
+  <!-- SCRIPTS -->
+  <script>
+    // Simulación de carga
+    window.addEventListener('load', () => {
+      document.getElementById('loader').style.display = 'none';
+    });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const gallery = document.getElementById('gallery');
+    const imageList = [
+      'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png',
+      'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png',
+      'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png'
+    ];
+
+    const t1 = gsap.timeline();
+    const items = [];
+    let isGalleryOpen = false;
+
+    const centerX = gallery.offsetWidth / 2;
+    const centerY = gallery.offsetHeight / 2;
+    const radius = Math.min(gallery.offsetWidth, gallery.offsetHeight) / 2.5;
+    const angleIncrement = (2 * Math.PI) / imageList.length;
+
+    imageList.forEach((fileName, index) => {
+      const div = document.createElement('div');
+      div.className = 'item';
+      const img = document.createElement('img');
+      img.src = fileName; // ✅ usar ruta tal como está en el array
+
+      div.appendChild(img);
+      gallery.appendChild(div);
+      items.push(div);
+    });
+
+    items.forEach((item, index) => {
+      const angle = index * angleIncrement;
+      const x = centerX + radius * Math.cos(angle);
+      const y = centerY + radius * Math.sin(angle);
+      const rotation = (angle * 180 / Math.PI) - 90;
+
+      t1.to(item, {
+        left: `${x}px`,
+        top: `${y}px`,
+        rotation,
+        scale: 1,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 1
+      }, index * 0.1);
+
+      item.addEventListener('click', () => {
+        if (!isGalleryOpen) {
+          isGalleryOpen = true;
+          const duplicate = item.cloneNode(true);
+          duplicate.style.position = 'absolute';
+          gallery.appendChild(duplicate);
+
+          gsap.to(items.filter(i => i !== item), {
+            scale: 0,
+            duration: 0.5,
+            ease: "power2.in",
+            stagger: 0.05
+          });
+
+          const endRotation = rotation > 180 ? rotation - 360 : rotation;
+
+          gsap.to([item, duplicate], {
+            rotation: endRotation,
+            duration: 0.0001,
+            onComplete: function () {
+              gsap.to([item, duplicate], {
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%) scale(5)",
+                duration: 1,
+                ease: "power2.out",
+                delay: 1.25
+              });
+            }
+          });
+
+          const closeGallery = () => {
+            if (isGalleryOpen) {
+              gsap.to([item, duplicate], {
+                left: `${x}px`,
+                top: `${y}px`,
+                scale: 1,
+                rotation,
+                duration: 1,
+                ease: "power2.out",
+                onComplete: () => {
+                  duplicate.remove();
+                  gsap.to(items, {
+                    scale: 1,
+                    duration: 1,
+                    stagger: 0.05,
+                    ease: "power2.out"
+                  });
+                  isGalleryOpen = false;
+                }
+              });
+            }
+          };
+
+          item.addEventListener('click', closeGallery);
+          duplicate.addEventListener('click', closeGallery);
+        }
+      });
+    });
+  </script>
 
 </body>
 

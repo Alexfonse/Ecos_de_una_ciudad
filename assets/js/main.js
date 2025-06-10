@@ -187,7 +187,7 @@ document.querySelectorAll('.mascara-radial').forEach(container => {
 
   container.addEventListener('mouseleave', () => {
     hoveredImg.style.opacity = "0";
-    normalImg.style.opacity = "s1";
+    normalImg.style.opacity = "1";
 
     hoveredImg.style.maskImage = "none";
     hoveredImg.style.webkitMaskImage = "none";
