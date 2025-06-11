@@ -96,13 +96,19 @@
       document.getElementById('loader').style.display = 'none';
     });
   </script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
   <script>
     const gallery = document.getElementById('gallery');
     const imageList = [
-      'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png',
-      'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png',
-      'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png', 'assets/img/prueba.png'
+      'assets/img/tinta_1.gif',
+      'assets/img/prueba.png',
+      'assets/img/prueba3.jpeg',
+      'assets/img/prueba_2.png',
+      'assets/img/prueba.png',
+      'assets/img/prueba_2.png',
+      'assets/img/prueba.png'
     ];
 
     const t1 = gsap.timeline();
@@ -111,15 +117,14 @@
 
     const centerX = gallery.offsetWidth / 2;
     const centerY = gallery.offsetHeight / 2;
-    const radius = Math.min(gallery.offsetWidth, gallery.offsetHeight) / 2.5;
+    const radius = Math.min(gallery.offsetWidth, gallery.offsetHeight) / 4;
     const angleIncrement = (2 * Math.PI) / imageList.length;
 
     imageList.forEach((fileName, index) => {
       const div = document.createElement('div');
       div.className = 'item';
       const img = document.createElement('img');
-      img.src = fileName; // ✅ usar ruta tal como está en el array
-
+      img.src = fileName;
       div.appendChild(img);
       gallery.appendChild(div);
       items.push(div);
@@ -146,7 +151,14 @@
           isGalleryOpen = true;
           const duplicate = item.cloneNode(true);
           duplicate.style.position = 'absolute';
+          duplicate.style.zIndex = '10000';
           gallery.appendChild(duplicate);
+
+          const backdrop = document.getElementById('zoomBackdrop');
+          backdrop.style.display = 'block';
+          document.getElementById('closeZoom').style.display = 'block';
+
+          gsap.fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.5 });
 
           gsap.to(items.filter(i => i !== item), {
             scale: 0,
@@ -164,7 +176,7 @@
               gsap.to([item, duplicate], {
                 left: "50%",
                 top: "50%",
-                transform: "translate(-50%, -50%) scale(5)",
+                transform: "translate(-50%, -50%) scale(3)",
                 duration: 1,
                 ease: "power2.out",
                 delay: 1.25
@@ -172,28 +184,38 @@
             }
           });
 
-          const closeGallery = () => {
-            if (isGalleryOpen) {
-              gsap.to([item, duplicate], {
-                left: `${x}px`,
-                top: `${y}px`,
-                scale: 1,
-                rotation,
-                duration: 1,
-                ease: "power2.out",
-                onComplete: () => {
-                  duplicate.remove();
-                  gsap.to(items, {
-                    scale: 1,
-                    duration: 1,
-                    stagger: 0.05,
-                    ease: "power2.out"
-                  });
-                  isGalleryOpen = false;
-                }
-              });
-            }
-          };
+const closeGallery = () => {
+  document.getElementById('closeZoom').style.display = 'none';
+  if (isGalleryOpen) {
+    gsap.to([item, duplicate], {
+      left: `${x}px`,
+      top: `${y}px`,
+      scale: 1,
+      rotation,
+      duration: 1,
+      ease: "power2.out",
+      onComplete: () => {
+        duplicate.remove();
+        gsap.to(items, {
+          scale: 1,
+          duration: 1,
+          stagger: 0.05,
+          ease: "power2.out"
+        });
+        gsap.to(backdrop, {
+          opacity: 0,
+          duration: 0.5,
+          onComplete: () => backdrop.style.display = 'none'
+        });
+        isGalleryOpen = false;
+      }
+    });
+  }
+};
+
+// ✅ fuera de la función
+document.getElementById('closeZoom').addEventListener('click', closeGallery);
+
 
           item.addEventListener('click', closeGallery);
           duplicate.addEventListener('click', closeGallery);
@@ -201,7 +223,18 @@
       });
     });
   </script>
+
   <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/before-after-slider"></script>
+<div id="zoomBackdrop"
+  style="display:none; position:fixed; inset:0; background:#000a; backdrop-filter:blur(6px); z-index:9998;"></div>
+
+<button id="closeZoom"
+  style="position:fixed;top:20px;right:20px;width:44px;height:44px;font-size:28px;background:#e97e1c;border:none;border-radius:50%;color:#fff;cursor:pointer;z-index:10001;display:none;box-shadow:0 2px 10px rgba(0,0,0,0.3);">
+  &times;
+</button>
+
+
 
 </body>
 
