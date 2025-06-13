@@ -49,13 +49,24 @@
   </header>
 
 
-
-  <!-- GALERÍA CIRCULAR -->
-  <section class="seccion-ondas fade-in-up">
-    <div class="container">
-      <div class="gallery" id="gallery"></div>
+<!-- GALERÍA CIRCULAR MEJORADA -->
+<section class="gallery-container-unique">
+  <div class="enhanced-gallery" id="gallery">
+    <!-- Información central -->
+    <div id="centerInfo" class="gallery-center-info visible">
+      <h2 class="center-title">Ecos Visuales</h2>
+      <p class="center-subtitle">Haz clic en una imagen para explorarla</p>
     </div>
-  </section>
+
+    <!-- Controles -->
+    <div class="gallery-controls prev-control">
+      <button class="control-btn" id="prevBtn">‹</button>
+    </div>
+    <div class="gallery-controls next-control">
+      <button class="control-btn" id="nextBtn">›</button>
+    </div>
+  </div>
+</section>
 
   <!-- MENÚ Y FOOTER -->
   <nav class="floating-navbar">
@@ -78,28 +89,6 @@
       <li><a href="testimonios.html">Testimonios</a></li>
     </ul>
   </div>
-    <div class="contenedor_4" id="fotografias">
-        <div class="list">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba_2.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">
-            <img src="assets/img/prueba.png">         
-        </div>
-        <div id="myModal" class="modal">
-            <span class="close">&times;</span>
-            <button class="nav-btn prev-btn">&larr;</button>
-            <button class="nav-btn next-btn">&rarr;</button>
-            <img class="modal-content" id="modalImg">
-        </div>
-    </div>
 
   <footer class="footer">
     <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
@@ -113,6 +102,8 @@
     </div>
   </footer>
 
+<img src="assets/img/prueba.png" alt="">
+  
   <!-- SCRIPTS -->
   <script>
     // Simulación de carga
@@ -122,141 +113,16 @@
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
-  <script>
-    const gallery = document.getElementById('gallery');
-    const imageList = [
-      'assets/img/tinta_1.gif',
-      'assets/img/prueba.png',
-      'assets/img/prueba3.jpeg',
-      'assets/img/prueba_2.png',
-      'assets/img/prueba.png',
-      'assets/img/prueba_2.png',
-      'assets/img/prueba.png'
-    ];
-
-    const t1 = gsap.timeline();
-    const items = [];
-    let isGalleryOpen = false;
-
-    const centerX = gallery.offsetWidth / 2;
-    const centerY = gallery.offsetHeight / 2;
-    const radius = Math.min(gallery.offsetWidth, gallery.offsetHeight) / 4;
-    const angleIncrement = (2 * Math.PI) / imageList.length;
-
-    imageList.forEach((fileName, index) => {
-      const div = document.createElement('div');
-      div.className = 'item';
-      const img = document.createElement('img');
-      img.src = fileName;
-      div.appendChild(img);
-      gallery.appendChild(div);
-      items.push(div);
-    });
-
-    items.forEach((item, index) => {
-      const angle = index * angleIncrement;
-      const x = centerX + radius * Math.cos(angle);
-      const y = centerY + radius * Math.sin(angle);
-      const rotation = (angle * 180 / Math.PI) - 90;
-
-      t1.to(item, {
-        left: `${x}px`,
-        top: `${y}px`,
-        rotation,
-        scale: 1,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 1
-      }, index * 0.1);
-
-      item.addEventListener('click', () => {
-        if (!isGalleryOpen) {
-          isGalleryOpen = true;
-          const duplicate = item.cloneNode(true);
-          duplicate.style.position = 'absolute';
-          duplicate.style.zIndex = '10000';
-          gallery.appendChild(duplicate);
-
-          const backdrop = document.getElementById('zoomBackdrop');
-          backdrop.style.display = 'block';
-          document.getElementById('closeZoom').style.display = 'block';
-
-          gsap.fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.5 });
-
-          gsap.to(items.filter(i => i !== item), {
-            scale: 0,
-            duration: 0.5,
-            ease: "power2.in",
-            stagger: 0.05
-          });
-
-          const endRotation = rotation > 180 ? rotation - 360 : rotation;
-
-          gsap.to([item, duplicate], {
-            rotation: endRotation,
-            duration: 0.0001,
-            onComplete: function () {
-              gsap.to([item, duplicate], {
-                left: "50%",
-                top: "50%",
-                transform: "translate(-50%, -50%) scale(3)",
-                duration: 1,
-                ease: "power2.out",
-                delay: 1.25
-              });
-            }
-          });
-
-const closeGallery = () => {
-  document.getElementById('closeZoom').style.display = 'none';
-  if (isGalleryOpen) {
-    gsap.to([item, duplicate], {
-      left: `${x}px`,
-      top: `${y}px`,
-      scale: 1,
-      rotation,
-      duration: 1,
-      ease: "power2.out",
-      onComplete: () => {
-        duplicate.remove();
-        gsap.to(items, {
-          scale: 1,
-          duration: 1,
-          stagger: 0.05,
-          ease: "power2.out"
-        });
-        gsap.to(backdrop, {
-          opacity: 0,
-          duration: 0.5,
-          onComplete: () => backdrop.style.display = 'none'
-        });
-        isGalleryOpen = false;
-      }
-    });
-  }
-};
-
-// ✅ fuera de la función
-document.getElementById('closeZoom').addEventListener('click', closeGallery);
-
-
-          item.addEventListener('click', closeGallery);
-          duplicate.addEventListener('click', closeGallery);
-        }
-      });
-    });
-  </script>
-
+  <script src="assets/js/galeria.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/before-after-slider"></script>
-<div id="zoomBackdrop"
-  style="display:none; position:fixed; inset:0; background:#000a; backdrop-filter:blur(6px); z-index:9998;"></div>
+  <div id="zoomBackdrop"
+    style="display:none; position:fixed; inset:0; background:#000a; backdrop-filter:blur(6px); z-index:9998;"></div>
 
-<button id="closeZoom"
-  style="position:fixed;top:20px;right:20px;width:44px;height:44px;font-size:28px;background:#e97e1c;border:none;border-radius:50%;color:#fff;cursor:pointer;z-index:10001;display:none;box-shadow:0 2px 10px rgba(0,0,0,0.3);">
-  &times;
-</button>
+  <button id="closeZoom"
+    style="position:fixed;top:20px;right:20px;width:44px;height:44px;font-size:28px;background:#e97e1c;border:none;border-radius:50%;color:#fff;cursor:pointer;z-index:10001;display:none;box-shadow:0 2px 10px rgba(0,0,0,0.3);">
+    &times;
+  </button>
 
 
 

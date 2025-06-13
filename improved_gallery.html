@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería Circular - Ecos de una Ciudad</title>
+
+  <!-- Tipografías y Grid -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet" />
+
+  <!-- Iconos -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    :root {
+      --color-primary: #C3350C;
+      --color-on-primary: #ffffff;
+      --color-primary-container: #ffdad4;
+      --color-on-primary-container: #400100;
+
+      --color-secondary: #D97A05;
+      --color-on-secondary: #ffffff;
+      --color-secondary-container: #ffe2b9;
+      --color-on-secondary-container: #4d2600;
+
+      --color-tertiary: #002A36;
+      --color-on-tertiary: #ffffff;
+      --color-tertiary-container: #b4ebff;
+      --color-on-tertiary-container: #001f29;
+
+      --color-surface: #1e2f2e;
+      --color-on-surface: #ffffff;
+      --color-surface-variant: #324b48;
+
+      --font-titulo: 'Barlow', sans-serif;
+      --font-parrafo: 'Open Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-parrafo);
+      background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 50%, #2d3b4a 100%);
+      color: var(--color-on-surface);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* LOADER */
+    #loader {
+      position: fixed;
+      z-index: 10000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 50%, #2d3b4a 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      border-top-color: var(--color-secondary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* HERO MEJORADO */
+    .hero-header {
+      height: 60vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      object-fit: cover;
+      top: -10%;
+      left: -10%;
+      z-index: 1;
+      filter: brightness(0.3) saturate(1.2);
+    }
+
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .titulo-hero {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    .frase-impacto {
+      color: var(--color-secondary);
+      font-style: italic;
+      display: inline-block;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .subtexto-hero {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CONTENEDOR ÚNICO PARA GALERÍA */
+    .gallery-container-unique {
+      background: linear-gradient(180deg, #0f1419 0%, #1a252f 50%, #243040 100%);
+      min-height: 100vh;
+      padding: 4rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-container-unique::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(217, 122, 5, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* GALERÍA CIRCULAR MEJORADA */
+    .enhanced-gallery {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gallery-item {
+      position: absolute;
+      width: 140px;
+      height: 200px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 2px solid transparent;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(10px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.1);
+      box-shadow: 0 20px 40px rgba(217, 122, 5, 0.3);
+      border-color: var(--color-secondary);
+    }
+
+    .gallery-item.active {
+      width: 300px;
+      height: 400px;
+      z-index: 100;
+      box-shadow: 0 30px 60px rgba(217, 122, 5, 0.4);
+      border-color: var(--color-secondary);
+    }
+
+    .gallery-item.hidden {
+      opacity: 0.3;
+      transform: scale(0.8);
+      filter: blur(2px);
+    }
+
+    /* INFORMACIÓN DE LA IMAGEN */
+    .image-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+      color: white;
+      padding: 2rem 1.5rem 1.5rem;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .gallery-item.active .image-info {
+      transform: translateY(0);
+    }
+
+    .image-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--color-secondary);
+    }
+
+    .image-description {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .image-details {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.8rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    /* CONTROLES */
+    .gallery-controls {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 200;
+    }
+
+    .control-btn {
+      background: rgba(217, 122, 5, 0.8);
+      border: none;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn:hover {
+      background: var(--color-secondary);
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(217, 122, 5, 0.4);
+    }
+
+    .prev-control {
+      left: 2rem;
+    }
+
+    .next-control {
+      right: 2rem;
+    }
+
+    /* INDICADOR CENTRAL */
+    .gallery-center-info {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .gallery-center-info.visible {
+      opacity: 1;
+    }
+
+    .center-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--color-secondary);
+    }
+
+    .center-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+
+    /* MENÚ FLOTANTE */
+    .floating-navbar {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+    }
+
+    .hamburger {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--color-secondary), #b8650a);
+      border: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(217, 122, 5, 0.3);
+    }
+
+    .hamburger:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(217, 122, 5, 0.5);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 4px;
+      transition: all 0.4s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* MENÚ FULLSCREEN */
+    .menu-fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(26, 35, 50, 0.95), rgba(15, 20, 25, 0.95));
+      backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: scaleY(0);
+      transform-origin: top;
+      opacity: 0;
+      z-index: 9998;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-fullscreen.open {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    .menu-items {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    .menu-items li {
+      opacity: 0;
+      transform: translateY(30px);
+      margin: 1.5rem 0;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-fullscreen.open .menu-items li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .menu-items li:nth-child(1) { transition-delay: 0.1s; }
+    .menu-items li:nth-child(2) { transition-delay: 0.2s; }
+    .menu-items li:nth-child(3) { transition-delay: 0.3s; }
+    .menu-items li:nth-child(4) { transition-delay: 0.4s; }
+    .menu-items li:nth-child(5) { transition-delay: 0.5s; }
+    .menu-items li:nth-child(6) { transition-delay: 0.6s; }
+    .menu-items li:nth-child(7) { transition-delay: 0.7s; }
+    .menu-items li:nth-child(8) { transition-delay: 0.8s; }
+
+    .menu-items a {
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: block;
+      padding: 0.5rem 2rem;
+      border-radius: 10px;
+    }
+
+    .menu-items a:hover {
+      color: var(--color-secondary);
+      background: rgba(217, 122, 5, 0.1);
+      transform: scale(1.05);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(135deg, #0f1419, #1a252f);
+      color: white;
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer .redes a {
+      color: var(--color-secondary);
+      text-decoration: none;
+      margin: 0 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer .redes a:hover {
+      color: white;
+    }
+
+    .cirgaita {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin: 1.5rem auto 0;
+      overflow: hidden;
+      border: 3px solid var(--color-secondary);
+    }
+
+    .cirgaita img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .enhanced-gallery {
+        height: 70vh;
+      }
+
+      .gallery-item {
+        width: 120px;
+        height: 160px;
+      }
+
+      .gallery-item.active {
+        width: 250px;
+        height: 320px;
+      }
+
+      .control-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .prev-control { left: 1rem; }
+      .next-control { right: 1rem; }
+
+      .menu-items a {
+        font-size: 1.5rem;
+      }
+
+      .titulo-hero {
+        font-size: 2rem;
+      }
+
+      .subtexto-hero {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="spinner"></div>
+    <p>Cargando galería...</p>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero-header">
+    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&h=1080&fit=crop" alt="Fondo Hero" class="hero-bg" loading="lazy" />
+    <div class="hero-overlay">
+      <h1 class="titulo-hero">Galería de <span class="frase-impacto">Memorias</span></h1>
+      <p class="subtexto-hero">Cada imagen cuenta una historia, cada historia construye nuestra ciudad.</p>
+    </div>
+  </header>
+
+  <!-- GALERÍA ÚNICA -->
+  <section class="gallery-container-unique">
+    <div class="enhanced-gallery" id="gallery">
+      <!-- Información central -->
+      <div class="gallery-center-info visible" id="centerInfo">
+        <h2 class="center-title">Ecos Visuales</h2>
+        <p class="center-subtitle">Haz clic en una imagen para explorar</p>
+      </div>
+      
+      <!-- Controles -->
+      <div class="gallery-controls prev-control">
+        <button class="control-btn" id="prevBtn">‹</button>
+      </div>
+      <div class="gallery-controls next-control">
+        <button class="control-btn" id="nextBtn">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENÚ FLOTANTE -->
+  <nav class="floating-navbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="menu-fullscreen" id="menu-fullscreen">
+    <ul class="menu-items">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="galeria3d.html">Galería 3D</a></li>
+      <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="eventos.html">Eventos</a></li>
+      <li><a href="gaitaloma-chat.html">Chat</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="testimonios.html">Testimonios</a></li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>"Cada imagen guarda la esencia de un momento. Descúbrelo."</p>
+    <div class="redes">
+      <a href="https://instagram.com/Focus_Bogota" target="_blank">Instagram</a> |
+      <a href="mailto:focus@gmail.com">Correo</a> |
+      <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
+    </div>
+    <div class="cirgaita">
+      <img src="https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?w=200&h=200&fit=crop&crop=face" alt="Logo">
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <script>
+    // Datos de las imágenes con información detallada
+    const galleryData = [
+      {
+        src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=1200&fit=crop',
+        title: 'Centro Histórico',
+        description: 'La arquitectura colonial que define el corazón de la ciudad, donde cada piedra cuenta siglos de historia.',
+        location: 'La Candelaria',
+        year: '2023'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=1200&fit=crop',
+        title: 'Modernidad Urbana',
+        description: 'El contraste entre lo tradicional y lo contemporáneo, reflejando la evolución constante de nuestra metrópoli.',
+        location: 'Zona Rosa',
+        year: '2023'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=1200&fit=crop',
+        title: 'Amanecer Capitalino',
+        description: 'Los primeros rayos de sol iluminan la silueta urbana, prometiendo un nuevo día lleno de posibilidades.',
+        location: 'Cerros Orientales',
+        year: '2023'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1f?w=800&h=1200&fit=crop',
+        title: 'Vida Nocturna',
+        description: 'Cuando cae la noche, la ciudad se transforma en un escenario de luces y movimiento constante.',
+        location: 'Zona T',
+        year: '2023'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=800&h=1200&fit=crop',
+        title: 'Reflexiones',
+        description: 'Los edificios modernos crean juegos de espejos que multiplican la realidad urbana.',
+        location: 'Centro Internacional',
+        year: '2023'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=1200&fit=crop',
+        title: 'Perspectivas',
+        description: 'Una vista única de la geometría urbana, donde las líneas arquitectónicas dibujan el futuro.',
+        location: 'Financial District',
+        year: '2023'
+      },
+      {
+        src: 'https://images.unsplash.com/photo-1467581451999-2b09c4369ff6?w=800&h=1200&fit=crop',
+        title: 'Contrastes',
+        description: 'La dualidad urbana capturada en un instante, mostrando la diversidad de nuestra ciudad.',
+        location: 'Chapinero',
+        year: '2023'
+      }
+    ];
+
+    class EnhancedGallery {
+      constructor() {
+        this.gallery = document.getElementById('gallery');
+        this.centerInfo = document.getElementById('centerInfo');
+        this.items = [];
+        this.activeIndex = -1;
+        this.radius = 280;
+        this.init();
+      }
+
+      init() {
+        this.createItems();
+        this.positionItems();
+        this.bindEvents();
+        
+        // Animación inicial
+        setTimeout(() => {
+          this.animateItemsIn();
+        }, 500);
+      }
+
+      createItems() {
+        galleryData.forEach((data, index) => {
+          const item = document.createElement('div');
+          item.className = 'gallery-item';
+          item.innerHTML = `
+            <img src="${data.src}" alt="${data.title}" loading="lazy">
+            <div class="image-info">
+              <h3 class="image-title">${data.title}</h3>
+              <p class="image-description">${data.description}</p>
+              <div class="image-details">
+                <span>📍 ${data.location}</span>
+                <span>📅 ${data.year}</span>
+              </div>
+            </div>
+          `;
+          
+          item.addEventListener('click', () => this.selectItem(index));
+          this.gallery.appendChild(item);
+          this.items.push(item);
+        });
+      }
+
+      positionItems() {
+        const centerX = this.gallery.offsetWidth / 2;
+        const centerY = this.gallery.offsetHeight / 2;
+        const angleStep = (2 * Math.PI) / this.items.length;
+
+        this.items.forEach((item, index) => {
+          const angle = index * angleStep - Math.PI / 2;
+          const x = centerX + this.radius * Math.cos(angle) - 70;
+          const y = centerY + this.radius * Math.sin(angle) - 100;
+          
+          gsap.set(item, {
+            left: x,
+            top: y,
+            rotation: 0,
+            scale: 0,
+            opacity: 0
+          });
+        });
+      }
+
+      animateItemsIn() {
+        this.items.forEach((item, index) => {
+          gsap.to(item, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.6,
+            delay: index * 0.1,
+            ease: "back.out(1.7)"
+          });
+        });
+      }
+
+      selectItem(index) {
+        if (this.activeIndex === index) {
+          this.deselectAll();
+          return;
+        }
+
+        this.activeIndex = index;
+        this.centerInfo.classList.remove('visible');
+
+        // Animar elementos
+        this.items.forEach((item, i) => {
+          if (i === index) {
+            item.classList.add('active');
+            gsap.to(item, {
+              left: this.gallery.offsetWidth / 2 - 150,
+              top: this.gallery.offsetHeight / 2 - 200,
+              scale: 1,
+              duration: 0.8,
+              ease: "power2.out"
+            });
+          } else {
+            item.classList.add('hidden');
+            gsap.to(item, {
+              scale: 0.6,
+              opacity: 0.3,
+              duration: 0.6,
+              ease: "power2.out"
+            });
+          }
+        });
+      }
+
+      deselectAll() {
+        this.activeIndex = -1;
+        this.centerInfo.classList.add('visible');
+
+        this.items.forEach((item, index) => {
+          item.classList.remove('active', 'hidden');
+          
+          const centerX = this.gallery.offsetWidth / 2;
+          const centerY = this.gallery.offsetHeight / 2;
+          const angleStep = (2 * Math.PI) / this.items.length;
+          const angle = index * angleStep - Math.PI / 2;
+          const x = centerX + this.radius * Math.cos(angle) - 70;
+          const y = centerY + this.radius * Math.sin(angle) - 100;
+
+          gsap.to(item, {
+            left: x,
+            top: y,
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out"
+          });
+        });
+      }
+
+      nextItem() {
+        if (this.activeIndex === -1) {
+          this.selectItem(0);
+        } else {
+          const nextIndex = (this.activeIndex + 1) % this.items.length;
+          this.selectItem(nextIndex);
+        }
+      }
+
+      prevItem() {
+        if (this.activeIndex === -1) {
+          this.selectItem(this.items.length - 1);
+        } else {
+          const prevIndex = this.activeIndex === 0 ? this.items.length - 1 : this.activeIndex - 1;
+          this.selectItem(prevIndex);
+        }
+      }
+
+      bindEvents() {
+        document.getElementById('nextBtn').addEventListener('click', () => this.nextItem());
+        document.getElementById('prevBtn').addEventListener('click', () => this.prevItem());
+
+        // Navegación con teclado
+        document.addEventListener('keydown', (e) => {
+          switch(e.key) {
+            case 'ArrowRight':
+              e.preventDefault();
+              this.nextItem();
+              break;
+            case 'ArrowLeft':
+              e.preventDefault();
+              this.prevItem();
+              break;
+            case 'Escape':
+              this.deselectAll();
+              break;
+          }
+        });
+
+        // Redimensionar
+        window.addEventListener('resize', () => {
+          this.positionItems();
+          if (this.activeIndex !== -1) {
+            this.selectItem(this.activeIndex);
+          }
+        });
+      }
+    }
+
+    // Inicializar cuando se carga la página
+    window.addEventListener('load', () => {
+      document.getElementById('loader').style.display = 'none';
+      new EnhancedGallery();
+    });
+
+    // Menú hamburguesa
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('hamburger-btn');
+      const menu = document.getElementById('menu-fullscreen');
+
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        menu.classList.toggle('open');
+      });
+
+      // Cerrar menú al hacer clic en enlaces
+      document.querySelectorAll('.menu-items a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuBtn.classList.remove('active');
+          menu.classList.remove('open');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
