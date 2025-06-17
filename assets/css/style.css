@@ -3,7 +3,7 @@
 /* Título principal */
 @font-face {
   font-family: 'Glimmer of Light';
-  src: url('../assets/fuentes/glimmer_of_light.otf') format('opentype');
+  src: url('../fuentes/glimmer_of_light.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -11,7 +11,7 @@
 /* Fuente secundaria decorativa */
 @font-face {
   font-family: 'Romantically';
-  src: url('../assets/fuentes/Romantically.otf') format('opentype');
+  src: url('../fuentes/Romantically.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,7 +19,7 @@
 /* Fuente para párrafos y cuerpo - Regular */
 @font-face {
   font-family: 'Utendo';
-  src: url('../assets/fuentes/UTENDO-REGULAR.TTF') format('truetype');
+  src: url('../fuentes/UTENDO-REGULAR.TTF') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
@@ -27,7 +27,7 @@
 /* Fuente para negritas - Bold */
 @font-face {
   font-family: 'Utendo';
-  src: url('../assets/fuentes/UTENDO-BOLD.TTF') format('truetype');
+  src: url('../fuentes/UTENDO-BOLD.TTF') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
@@ -834,7 +834,7 @@ p {
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--color-secondary);
-  font-family: var(--font-titulo);
+  font-family: var(- -font-titulo);
   /* YA CORRECTO */
 }
 
