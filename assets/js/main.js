@@ -3,10 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
   lucide.createIcons();
 
   // === Scroll a sección "Explorar ahora" ===
-  function scrollToSeccion() {
-    const destino = document.querySelector(".seccion-ondas");
-    if (destino) destino.scrollIntoView({ behavior: "smooth" });
-  }
+function scrollToSeccion() {
+  const destino = document.querySelector(".seccion-ondas");
+  if (destino) destino.scrollIntoView({ behavior: "smooth" });
+}
+
+const explorarBtn = document.getElementById("explorar-btn");
+if (explorarBtn) {
+  explorarBtn.addEventListener("click", scrollToSeccion);
+}
+
+
 
   // === 1. Animación de entrada de tarjetas ===
   const hoverImages = document.querySelectorAll(".img-hover-wrapper");

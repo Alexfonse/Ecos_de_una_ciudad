@@ -58,7 +58,8 @@
         this.centerInfo = document.getElementById('centerInfo');
         this.items = [];
         this.activeIndex = -1;
-        this.radius = 280;
+this.radius = window.innerWidth < 768 ? 140 : 280;
+
         this.init();
       }
 
@@ -231,12 +232,16 @@ this.items.forEach((item, i) => {
         });
 
         // Redimensionar
-        window.addEventListener('resize', () => {
-          this.positionItems();
-          if (this.activeIndex !== -1) {
-            this.selectItem(this.activeIndex);
-          }
-        });
+window.addEventListener('resize', () => {
+  // 🔁 Recalcular radio dinámicamente
+  this.radius = window.innerWidth < 768 ? 140 : 280;
+
+  this.positionItems();
+  if (this.activeIndex !== -1) {
+    this.selectItem(this.activeIndex);
+  }
+});
+
       }
     }
 
@@ -246,3 +251,22 @@ this.items.forEach((item, i) => {
       new EnhancedGallery();
     });
 
+// Animación de aparición al hacer scroll para la galería adicional
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollItems = document.querySelectorAll('.scroll-reveal');
+  const observerOptions = {
+    threshold: 0.2  // Porcentaje del elemento visible para activar/desactivar la animación
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');    // Mostrar con animación
+      } else {
+        entry.target.classList.remove('is-visible'); // Ocultar cuando sale del viewport
+      }
+    });
+  }, observerOptions);
+
+  // Observar cada elemento con la clase .scroll-reveal
+  scrollItems.forEach(item => observer.observe(item));
+});

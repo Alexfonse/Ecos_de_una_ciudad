@@ -241,6 +241,19 @@ p,
   }
 }
 
+@media (max-width: 768px) {
+  .onda-inferior {
+    height: 80px; /* Más baja en móvil */
+  }
+
+  .wave {
+    height: 100%;
+    transform: scaleY(0.5); /* Aplasta verticalmente */
+    transform-origin: top;
+  }
+}
+
+
 /* SECCIÓN ONDAS */
 .seccion-ondas {
   background-color: var(--color-tertiary);
@@ -595,7 +608,7 @@ p {
 .menu-items a {
   font-family: var(--font-titulo);
   /* AÑADIDO */
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -682,7 +695,7 @@ p {
 .enhanced-gallery {
   position: relative;
   width: 100%;
-  height: 80vh;
+  height: 120vh;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -811,6 +824,37 @@ p {
 .next-control {
   right: 2rem;
 }
+@media (max-width: 768px) {
+  .enhanced-gallery {
+    height: 80vh;
+    padding: 1rem;
+  }
+
+  .gallery-item.active {
+    width: 220px;
+    height: 300px;
+    margin-left: 40px;
+  }
+
+  .gallery-item {
+    width: 50px;
+    height: 70px;
+    margin-left: 50px;
+    margin-top: 75px;
+  }
+
+  .gallery-center-info {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .control-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
 
 /* INDICADOR CENTRAL */
 .gallery-center-info {
@@ -834,7 +878,7 @@ p {
   font-weight: 700;
   margin-bottom: 1rem;
   color: var(--color-secondary);
-  font-family: var(- -font-titulo);
+  font-family: var(--font-titulo);
   /* YA CORRECTO */
 }
 
@@ -843,4 +887,88 @@ p {
   opacity: 0.8;
   font-family: var(--font-parrafo);
   /* AÑADIDO */
+}
+
+/* === Galería Scroll - Estilos de contenedor === */
+.gallery-container-scroll {
+  position: relative;
+  /* Fondo con degradado difuminado similar a .gallery-container-unique */
+  background: linear-gradient(180deg,
+              var(--color-tertiary) 0%,
+              #1a252f 50%,
+              #243040 100%);
+}
+.gallery-container-scroll::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(217, 122, 5, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Contenedor interno centrado y espaciamiento */
+.scroll-gallery {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+/* === Galería Scroll - Estilos de elementos === */
+.scroll-gallery-item {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+.scroll-item-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  /* Opcional: pequeño shadow para resaltar imágenes */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+.scroll-item-text h3 {
+  font-family: var(--font-titulo);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+.scroll-item-text p {
+  font-family: var(--font-parrafo);
+  line-height: 1.6;
+  /* Evitar centrado automático de párrafos global */
+  margin: 0 0 1.2rem 0;
+  max-width: 65ch;
+}
+
+/* Disposición alterna: los bloques pares invierten orden (imagen a la derecha, texto a la izquierda) */
+.scroll-gallery-item:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Responsive: en pantallas pequeñas, apilar columna */
+@media (max-width: 768px) {
+  .scroll-gallery-item, 
+  .scroll-gallery-item:nth-child(even) {
+    flex-direction: column;
+    text-align: center; /* centrar contenido en móvil */
+  }
+  .scroll-gallery-item {
+    margin-bottom: 2.5rem;
+  }
+}
+
+/* === Animaciones de aparición con scroll === */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+  will-change: opacity, transform, visibility;
+}
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
 }

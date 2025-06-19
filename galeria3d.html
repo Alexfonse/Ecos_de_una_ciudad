@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Galería 3D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+    }
+    #info {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      color: white;
+      z-index: 10;
+      font-family: sans-serif;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="info">Explora la galería 3D con WASD o arrastrando con el mouse.</div>
+
+  <a-scene background="color: #1a252f">
+    <!-- Cámara y controles -->
+    <a-entity position="0 1.6 4">
+      <a-camera wasd-controls look-controls></a-camera>
+    </a-entity>
+
+    <!-- Luz -->
+    <a-entity light="type: ambient; color: #fff"></a-entity>
+    <a-entity light="type: directional; intensity: 0.6" position="1 1 0.5"></a-entity>
+
+    <!-- Aquí insertamos el modelo 3D -->
+    <!-- <a-entity gltf-model="url(modelos/tu-modelo.glb)" scale="1 1 1" position="0 0 0"></a-entity> -->
+<a-entity gltf-model="assets/img/Pasillo.glb" scale="1 1 1" position="0 0 0"></a-entity>
+
+  </a-scene>
+</body>
+</html>
