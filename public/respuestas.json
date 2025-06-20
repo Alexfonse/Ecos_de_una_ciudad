@@ -1,0 +1,97 @@
+{
+  "Personajes históricos": {
+    "intro": "Estos son algunos personajes históricos de Bogotá. Escoja uno, sumercé, y con gusto le cuento su historia:",
+    "items": [
+      {
+        "title": "Jorge Eliécer Gaitán",
+        "text": "Jorge Eliécer Gaitán fue un abogado y líder del pueblo, conocido como \"El Caudillo del Pueblo\" por su oratoria apasionada. Criticaba sin miedo a la oligarquía y abogaba por la justicia social. Fue alcalde de Bogotá y Ministro de Educación, fundó bibliotecas, orquestas, todo un visionario. Su trágica muerte el 9 de abril de 1948 desató el Bogotazo, una ola de disturbios en la que ardieron tranvías frente al Capitolio Nacional. Desde entonces, Bogotá no volvió a ser la misma - se dice que ese día la historia cambió de rumbo, carambas. A Gaitán lo honran con teatros, bibliotecas y hasta una localidad con su nombre. \"Yo no soy una paloma, soy un pueblo y el pueblo es mayor que sus dirigentes\", dice Don Gaitaloma inspirado en él, ¡palabras mayores!"
+      },
+      {
+        "title": "Rafael Uribe Uribe",
+        "text": "El general Rafael Uribe Uribe fue un héroe liberal de finales del siglo XIX, defensor de los obreros y apasionado de la justicia social. Participó en la Guerra de los Mil Días y se ganó el respeto de propios y extraños. Lamentablemente, en 1914 fue asesinado a hachazos en pleno centro de Bogotá, ¡una barbaridad que conmocionó a la ciudad! Su muerte llevó a reflexionar sobre los derechos de los trabajadores en Colombia. Hoy su legado vive en parques, colegios y hasta una localidad de Bogotá que lleva su nombre. Incluso hay una estatua suya frente al Congreso, vigilando que los dirigentes no se duerman."
+      },
+      {
+        "title": "Francisco José de Caldas",
+        "text": "Don Francisco José de Caldas, el Sabio Caldas, fue un científico e ingeniero que iluminó la Nueva Granada con sus descubrimientos. Dirigía el Observatorio Astronómico Nacional (el primer observatorio de América, ¡imagínese!) y contribuyó al movimiento independentista. Por apoyar la revolución, los españoles lo fusilaron en 1816. Su sacrificio se volvió símbolo de la lucha por el conocimiento y la libertad. Hoy lo recuerdan con universidades, barrios y bustos en museos. Este palomo cronista se quita el sombrero ante tal inteligencia."
+      },
+      {
+        "title": "La Loca Margarita",
+        "text": "Margarita Villaquirá, más conocida como La Loca Margarita, fue un personaje entrañable del Bogotá de principios del siglo XX. Vestida de blanco, con sombrilla y flores, recorría las calles cantando y repartiendo sonrisas en medio de su dolor. Aunque muchos la tildaban de loca, en verdad era un alma libre y tierna, querida por niños, poetas y músicos. Falleció hacia 1925, sola y envuelta en leyenda. Dicen que solía exclamar: “¡No se ría, que usted también está loco y no se ha dado cuenta!”. ¡Y razon no le faltaba! Su figura aún inspira teatros, murales y libros en Bogotá. Don Gaitaloma la vio pasear por la Plaza de Bolívar y asegura que era la locura más cuerda de la ciudad."
+      },
+      {
+        "title": "Camilo Torres Restrepo",
+        "text": "El padre Camilo Torres fue un sacerdote rebelde y socólogo, precursor de la Teología de la Liberación en Colombia. ¡Un cura guerrillero!, se unió al ELN convencido de que la acción armada podía ayudar a los pobres. Falleció en su primer combate en 1966. Su figura dividió opinión: para muchos, un mártir del pueblo; para otros, un sacerdote que abandonó el altar. Hoy día colegios, barrios y parques llevan su nombre, y su legado vive en canciones y grafitis urbanos. Don Gaitaloma recuerda sus sermones incendiarios en la Universidad Nacional y cómo encendían el corazón de los estudiantes."
+      },
+      {
+        "title": "Pepe Sierra",
+        "text": "José \"Pepe\" Sierra fue el millonario de antaño. Allá por el siglo XIX este antioqueño llegó a Bogotá y amasó una fortuna inmensa. Fue banquero, comerciante y todo un precursor del desarrollo urbano capitalino. A su muerte en 1921, dejó tanto dinero que la mitad de Bogotá lleva su nombre: la Avenida Pepe Sierra (Calle 116), una estación de TransMilenio, barrios y colegios. Era tan próspero que en su tiempo decían \"tan tacaño como Pepe Sierra\" en broma. Eso sí, gracias a él se financiaron obras y donaciones. Don Gaitaloma le guiña el ojo cada vez que sobrevuela la calle 116 - ¡ahí va el legado del tal don Pepe!"
+      },
+      {
+        "title": "Jaime Garzón",
+        "text": "Jaime Garzón fue un periodista y humorista genial de los 90. Con sus personajes en TV como Heriberto de la Calle, hacía reír y pensar al país. También fue un activista de paz y alcalde menor en Sumapaz. Lamentablemente, fue asesinado en 1999 por sicarios, acallando una de las voces más críticas y queridas de Colombia. Su muerte fue un golpe para la libertad de expresión. Se le rinde homenaje con parques, murales y colegios que llevan su nombre. Aún hoy se repite su frase icónica: “Si ustedes los jóvenes no asumen el control de su propio país, nadie va a venir a salvárselos”. Don Gaitaloma, con humor bogotano, dice que Jaime sigue haciendo chistes en el cielo... y que allá se deben estar carcajeando."
+      }
+    ]
+  },
+  "Lugares emblemáticos": {
+    "intro": "¡Bogotá está llena de lugares con historia! Haga clic en algún sitio, sumercé, y le suelto la chiva completa:",
+    "items": [
+      {
+        "title": "La Puerta Falsa",
+        "text": "La Puerta Falsa es el restaurante más antiguo de Bogotá, fundado en 1816 nada menos. Ubicado junto a la Catedral, en la Calle 11 con Carrera 6, lleva más de 200 años sirviendo delicias tradicionales. Aquí, dicen que hasta Simón Bolívar se tomó una buena taza de chocolate con almojábana y tamal. Hoy es famoso por su chocolate santafereño, con queso, pan y tamalito - ¡plan dominguero por excelencia!. Es un sitio chiquito pero lleno de sabor e historia. Don Gaitaloma recomienda llegar con paciencia, porque siempre está lleno de parroquianos y turistas chupando chocolate."
+      },
+      {
+        "title": "Café Pasaje",
+        "text": "El Café Pasaje, fundado en 1936-1937, es uno de los cafés más tradicionales del centro. Queda en la Avenida Jiménez con Carrera 6, al ladito de la Plazoleta del Rosario. En los años 40 y 50 era punto de tertulias políticas y literarias. Cuentan que allí se refugiaban estudiantes del Rosario a discutir de todo, y hasta se jugó a fundar un equipo de fútbol (Independiente Santa Fe nació en un café cercano). El Pasaje ha sobrevivido a los cambios del centro; conserva sus mesas redondas de patas anchas y paredes llenas de fotos antiguas. Todavía se puede pedir un tinto clásico y sentir el ambiente bohemio de antaño. ¡Es como entrar a 1940 por un cafecito! Don Gaitaloma se echa sus plumas de vez en cuando por allí a escuchar chismes del pasado."
+      },
+      {
+        "title": "Pastelería La Florida",
+        "text": "Fundada en 1934, la Pastelería La Florida es la casa del chocolate bogotano. Ubicada en la Carrera 7 con Calle 21, en pleno centro, ha sido refugio de poetas, intelectuales y parejitas románticas desde hace décadas. Su especialidad es el chocolate santafereño con queso, tamal y changua, además de postres típicos deliciosos. Lo más lindo es que conserva su mobiliario art decó original; entrar allí es como viajar en el tiempo, con meseros de corbatín y todo. La Florida demuestra que lo tradicional nunca pasa de moda; sigue llena de vida entre tanto edificio moderno. Don Gaitaloma a veces se toma un merengón allí, recordando los viejos tiempos."
+      },
+      {
+        "title": "El Viejo Bochalema",
+        "text": "El Viejo Bochalema es un restaurante típico bogotano fundado en 1945, ubicado por Chapinero. Aquí se sirve ajiaco, changua y otros platos de antaño como hechos por la abuela. Fue ícono de la cocina capitalina de mitad de siglo. Aunque con el tiempo se ha modernizado un poquito, mantiene sus recetas originales y ese aire de fonda bogotana de barrio. Si quiere probar la Bogotá de 1940 en un plato, este es el lugar indicado. Además, el nombre \"Bochalema\" evoca el antiguo dicho cachaco \"andar bochánima\" (bien vestido). Aquí Don Gaitaloma se pone las botas con un buen ajiaco en día frío."
+      },
+      {
+        "title": "Restaurante Las Margaritas",
+        "text": "Las Margaritas, fundado en 1902, es otro clásico chapineruno. Ocho generaciones de la familia lo han mantenido vivo, sirviendo los mejores tamales y empanadas de Bogotá. Este sitio aguantó de todo: el Bogotazo de 1948 (dicen que escondieron las ollas para que no se las rompieran los disturbios) y hasta la pandemia del 2020. En 2023 casi cierra por falta de heredero, ¡imagínese!, pero la ciudad entera suspiró aliviada cuando lograron mantenerlo. Entrar a Las Margaritas es ver fotos sepia en las paredes y sentir olor a chocolate y masato, como en casa de la abuela. Un verdadero tesoro culinario capitalino."
+      },
+      {
+        "title": "Teatro San Jorge",
+        "text": "El Teatro San Jorge es una joya art decó inaugurada en 1938:contentReference[oaicite:55]{index=55}. Queda en el barrio Los Mártires, cerca al centro. En sus épocas de gloria (años 40-50) fue de los teatros más importantes de Bogotá, con su enorme sala de tres pisos, balcón de herradura y salones elegantes:contentReference[oaicite:56]{index=56}. Luego el tiempo fue cruel y cayó en abandono, al punto que para los 2000 era una ruina polvorienta. Por fortuna, fue declarado Bien de Interés Cultural en 2001 y el Distrito lo compró en 2014 para salvarlo:contentReference[oaicite:57]{index=57}. Hoy está en plena restauración para reabrir sus puertas a las artes escénicas:contentReference[oaicite:58]{index=58}:contentReference[oaicite:59]{index=59}. Pronto volverá a lucir como aquel gigante dormido que despierta. Don Gaitaloma no ve la hora de aplaudir desde el balcón restaurado."
+      },
+      {
+        "title": "Plaza de Bolívar",
+        "text": "La Plaza de Bolívar es el corazón de Bogotá desde su fundación. Ha tenido múltiples nombres: Plaza Mayor en la colonia, Plaza de la Constitución tras la independencia, y desde 1846 Plaza de Bolívar:contentReference[oaicite:60]{index=60}. Aquí se ha visto de todo: mercados coloniales, corridas de toros, ejecuciones de próceres (en la época de la Reconquista):contentReference[oaicite:61]{index=61}, proclamaciones de virreyes y presidentes, y manifestaciones populares de toda índole. En 1880 se instaló en su centro la estatua de Simón Bolívar - primer monumento público de la ciudad - sustituyendo una vieja pila de agua:contentReference[oaicite:62]{index=62}. La Plaza ha sido testigo de funerales de Estado y también de la furia del Bogotazo en 1948, cuando ardieron tranvías a su alrededor:contentReference[oaicite:63]{index=63}. Hoy es escenario de protestas, conciertos, ferias y encuentro diario de bogotanos y palomas. Como dice Don Gaitaloma, esta plaza tiene más historia que palomas:contentReference[oaicite:64]{index=64}."
+      },
+      {
+        "title": "Quinta de Bolívar",
+        "text": "La Quinta de Bolívar es una casona histórica ubicada a los pies de Monserrate. Fue un regalo del pueblo de Bogotá al libertador Simón Bolívar en 1820, para que tuviera donde descansar después de sus campañas. Allí Bolívar pasaba temporadas de paz, entre jardines y huertas, lejos del bullicio de la ciudad colonial. Con los años la casa pasó por varios dueños hasta caer en abandono. Hoy, restaurada, funciona como museo que conserva muebles, espadas y hasta la cama de Bolívar. Curiosamente, muchos bogotanos nunca la han visitado - pasa medio escondida. Sería ideal convertirla en epicentro educativo, ¡es un pedazo de historia nacional!. Don Gaitaloma suele posarse en sus patios, imaginando a Bolívar tomando chocolate y planeando nuevas batallas."
+      },
+      {
+        "title": "Observatorio Astronómico",
+        "text": "El Observatorio Astronómico Nacional, en pleno centro cerca de la Casa de Nariño, fue fundado en 1803 y es nada menos que el primer observatorio de América. Lo diseñó el sabio Mutis y allí trabajó el Sabio Caldas observando las estrellas. Es una torre blanca pequeña, fácil de pasar por alto, pero de enorme valor histórico. Actualmente sigue activo como centro de investigación de la Universidad Nacional, aunque poca gente lo conoce. Sería maravilloso transformarlo también en museo interactivo de ciencia para niños. Don Gaitaloma a veces vuela en círculos sobre su cúpula, saludando a Marte y Júpiter, orgulloso de este legado científico en la Sabana."
+      },
+      {
+        "title": "Estación de la Sabana",
+        "text": "La Estación de la Sabana, inaugurada en 1917, fue la gran estación de trenes de Bogotá. Desde allí partían los ferrocarriles que conectaban la capital con el norte, el sur y el occidente del país. En su época dorada, las locomotoras pitaban y el bullicio de pasajeros y maletas era señal de progreso. La estación tiene una arquitectura republicana hermosa, pero tras el ocaso del ferrocarril en los 1950s cayó en deterioro. Hoy, aunque ya no hay trenes de línea, aún funciona el Tren Turístico de la Sabana los fines de semana, que lleva visitantes hasta Zipaquirá entre música y nostalgia. Se sueña con que en el futuro la Sabana vuelva a recibir trenes de cercanías ecológicos. Don Gaitaloma oye el eco lejano del \"chucu chucu\" cada vez que sobrevuela sus rieles oxidados."
+      }
+    ]
+  },
+  "Transporte antiguo": {
+    "items": [
+      "Bogotá sobre ruedas ha cambiado mucho, sumercé. A finales del siglo XIX llegó el tranvía a la ciudad: primero de tracción animal y luego el tranvía eléctrico desde 1910. ¡Imagínese esos tranvías rechinantes marcando el ritmo de la ciudad! El tranvía conectó barrios y jalonó la urbanización de Chapinero y otros sectores. Era el orgullo bogotano hasta que en 1948, durante El Bogotazo, varios fueron incendiados por la furia de la multitud:contentReference[oaicite:74]{index=74} (Don Gaitaloma recuerda con tristeza cómo ardía un tranvía frente al Capitolio ese 9 de abril). En 1951 el tranvía fue despedido para siempre tras un terrible accidente. Se acabó una era romántica sobre rieles.",
+      "Después vinieron los buses y busetas, y a finales del siglo XX la ciudad pidió a gritos un sistema más organizado. Así nació TransMilenio en el año 2000, con sus buses rojos articulados que hoy recorren Bogotá de norte a sur. Es ruidoso, a veces lleno hasta las banderas, pero mueve millones de bogotanos cada día y se volvió símbolo de la ciudad moderna. Dicen las malas lenguas que en las noches frías se aparece el \"Bus fantasma\" ruta G66, un cuento de trasnochados que a más de uno ha asustado. Aún con sus dolores de cabeza, el TransMi (como le decimos de cariño o de reproche) nos recuerda que Bogotá sigue en movimiento.",
+      "¿Y el futuro? ¡El Metro de Bogotá, por fin! Tras décadas de sueños y promesas, por ahí se ven columnas y tuneladoras dando forma a la primera línea de metro. Será elevado en su mayor parte, con trenes eléctricos que cruzarán la ciudad. Se espera que esté listo a finales de la década de 2020. Será un cambio radical: menos trancón, menos humo, más velocidad (ojalá, ¿no?). Don Gaitaloma ya se imagina volando junto a los vagones futuristas y contándole a los viejos tranvías en el cielo que Bogotá por fin tiene su tren soñado. El pueblo siempre encuentra la manera de seguir su camino, asi sea sobre rieles o sobre ruedas."
+    ]
+  },
+  "Curiosidades graciosas": {
+    "items": [
+      "¿Sabía usté? En la Bogotá colonial, la gente gritaba “¡Aguas va!” antes de vaciar el orinal por la ventana. Era la manera de advertir a los transeúntes que se venía una \"lluvia\" poco santa desde el balcón. ¡Pobres los distraídos que no oyeran el grito a tiempo! De ahí viene el dicho \"no se quede como novia de pueblo: bañado y con el ramillete\" (en este caso, bañado sin ramillete). Por fortuna, con alcantarillado y buenos modales, esta costumbre quedó en el olvido.",
+      "En los velorios de antaño, la casa se llenaba de rezos... ¡y de \"lloronas\" profesionales! Sí, se contrataban señoras para llorar a moco tendido al difunto y hacer bulto. Toda la noche se rezaba el rosario, se tomaba chocolate con almojábanas, y se contaban chismes del muerto hasta el amanecer. Además se cubrían los espejos con sábanas negras para que el alma del difunto no se quedara atrapada en ellos. Eso sí, al día siguiente el chisme quedó atrapado en toda la cuadra. Don Gaitaloma dice que más de una vez se coló a un velorio a picotear pan y escuchar cuentos de ultratumba.",
+      "Cuentan los abuelos que antaño había toque de queda: a las 8 p.m. nadie podía andar en la calle sin linterna y salvoconducto. ¡A esa hora Bogotá quedaba más silenciosa que monasterio! El que se arriesgara a pasear sin luz podía ganarse un buen susto o una noche en el calabozo. Por eso aún se dice \"no me lo vaya a dejar para después de las ocho\" en son de broma. Eran otros tiempos, con serenos cuidando las calles farol en mano y cantando la hora: \"¡Las ocho y todo sereno!\". Qué tal eso, ¿se la imagina sumercé?",
+      "Los vendedores ambulantes de antaño eran pregoneros con voz de opera. Desde temprano se oía por las calles: “¡Leche fresca pa’ la señora!”, “¡Arepas calientitas!”. Cada quien tenía su grito distintivo, casi un canto. El del afilador con su silbato, el del mazamorrero con su canción, y así. Era el noticiero del barrio: todos se enteraban que había mazamorra, tinto o tamales sin necesidad de WhatsApp. Hoy quedan pocos pregoneros, pero si escucha un \"¡El gas!\" sabrá que esa tradición sigue viva (aunque ahora vendan cilindros de gas y no velas).",
+      "El lenguaje cachaco tenía sus dichos y palabras raras. Por ejemplo, en antaño si alguien estaba muy perdido se decía: \"Más perdido que turco en la neblina\". Para rogar se decía \"pedir cacao\", y cuando alguien andaba de capa caída... pues se decía literalmente “estar de capa caída”. También se agradecía con un respetuoso \"Dios le pague\". Y el título de \"sumercé\" viene de \"Vuestra Merced\" de la colonia, por eso Don Gaitaloma así le habla a usté, con todo respeto. ¡El que habla cachaco entiende, sumercé!",
+      "La moda de antaño tenía lo suyo: las damas bogotanas no mostraban ni el tobillo. Llevaban faldas largas, corsé y mantilla, muy recatadas. Eso sí, con el abanico enviaban mensajes de amor sin decir palabra: abanico abierto significaba interés, abanico cerrado era \"ni se le ocurra\". Los caballeros lucían levita, sombrero de copa, bastón y guantes de cabritilla. ¡Y ojo! Usaban pañuelos perfumados para taparse la nariz por los malos olores de la calle. Todo un desfile de elegancia. Don Gaitaloma a veces intenta ponerse guantes, pero con esas alas, ¡qué joda!"
+    ]
+  }
+}

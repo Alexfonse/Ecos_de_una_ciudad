@@ -44,6 +44,7 @@
       <p class="subtexto-hero">Explora cómo el pasado, el presente y el futuro se entrelazan en cada rincón de Bogotá.
       </p>
 
+
     </div>
     <div class="onda-inferior">
       <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -108,9 +109,10 @@
   <div class="scroll-gallery">
     <!-- Bloque 1 -->
     <div class="scroll-gallery-item scroll-reveal">
-      <div class="scroll-item-image">
-        <img src="assets/img/prueba3.jpeg" alt="Descripción de la imagen 1" />
-      </div>
+<div class="scroll-item-image reveal-mask-container">
+  <img src="assets/img/prueba3.jpeg" alt="Imagen Revelada" class="img-revealed" />
+  <img src="assets/img/prueba.png" alt="Imagen Mascara" class="img-mask-overlay" />
+</div>
       <div class="scroll-item-text">
         <h3>Título de la Imagen 1</h3>
         <p>Descripción o texto explicativo de la imagen 1. Aquí puedes brindar información adicional que acompañe a la fotografía, de manera concisa y atractiva.</p>
@@ -118,9 +120,10 @@
     </div>
     <!-- Bloque 2 -->
     <div class="scroll-gallery-item scroll-reveal">
-      <div class="scroll-item-image">
-        <img src="assets/img/prueba.png" alt="Descripción de la imagen 2" />
-      </div>
+<div class="scroll-item-image reveal-mask-container">
+  <img src="assets/img/prueba3.jpeg" alt="Imagen Revelada" class="img-revealed" />
+  <img src="assets/img/prueba.png" alt="Imagen Mascara" class="img-mask-overlay" />
+</div>
       <div class="scroll-item-text">
         <h3>Título de la Imagen 2</h3>
         <p>Descripción o texto explicativo de la imagen 2. Puedes añadir tantas secciones como necesites, manteniendo el mismo formato para consistencia en la galería.</p>
@@ -145,6 +148,18 @@
     </div>
 
   </footer>
+
+  <svg class="hidden-svg-mask">
+    <defs>
+        <filter id="displacementFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="30" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <mask id="paintMask">
+            <circle cx="0" cy="0" r="0" fill="white" id="maskCircle" filter="url(#displacementFilter)" />
+        </mask>
+    </defs>
+</svg>
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

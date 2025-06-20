@@ -920,13 +920,42 @@ p {
   gap: 2rem;
   margin-bottom: 4rem;
 }
-.scroll-item-image img {
+
+/* MODIFICAR: Contenedor para las dos imágenes del efecto de revelado */
+.scroll-item-image.reveal-mask-container {
+  position: relative; /* CRUCIAL: Necesario para posicionar absolutamente las imágenes hijas */
   width: 100%;
-  height: auto;
+  height: 800px; /* IMPORTANTE: Define una altura fija o min-height para el contenedor de la imagen.
+                     El tamaño de la imagen dentro se ajustará a esto.
+                     Puedes ajustar este valor para que se vea bien en tu diseño. */
+  overflow: hidden; /* Oculta cualquier parte de la máscara que se salga de los límites del contenedor */
   border-radius: 15px;
-  /* Opcional: pequeño shadow para resaltar imágenes */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
+/* NUEVO: Estilos para AMBAS imágenes dentro de .reveal-mask-container */
+.scroll-item-image.reveal-mask-container img {
+  position: absolute; /* Permite que las imágenes se superpongan */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+/* NUEVO: La imagen de primer plano a la que se le aplicará la máscara SVG */
+.img-mask-overlay {
+  z-index: 2; /* Asegura que esta imagen esté por encima de la imagen a revelar */
+  opacity: 1; /* Inicialmente visible para ocultar la imagen de fondo */
+  /* Las propiedades de máscara (mask, webkit-mask) se establecerán y animarán con JavaScript */
+}
+
+/* NUEVO: La imagen de fondo que será revelada */
+.img-revealed {
+  z-index: 1; /* Estará debajo de la imagen de máscara */
+}
+
+/* ... (continúa con el resto de tus estilos de la sección scroll y media queries) ... */
 .scroll-item-text h3 {
   font-family: var(--font-titulo);
   font-size: 1.5rem;
@@ -972,3 +1001,32 @@ p {
   transform: translateY(0);
   visibility: visible;
 }
+
+/* ... (tus estilos existentes al inicio de style.css) ... */
+
+/* AÑADIR ESTOS ESTILOS */
+/* Oculta el SVG de la máscara para que no ocupe espacio visual en el diseño */
+.hidden-svg-mask {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/* Estilos para el indicador visual de clic en la Galería Scroll */
+.click-indicator-scroll {
+    position: absolute;
+    background-color: var(--color-secondary); /* Usa tu variable de color institucional */
+    border-radius: 50%; /* Lo convierte en un círculo */
+    opacity: 0; /* Inicialmente invisible */
+    width: 20px; /* Tamaño del indicador */
+    height: 20px;
+    /* Centra el indicador perfectamente en el punto de clic */
+    transform: translate(-50%, -50%) scale(1);
+    /* Transiciones suaves para la aparición y desaparición */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    pointer-events: none; /* Asegura que el indicador no interfiera con los clics */
+    z-index: 10; /* Lo coloca por encima de las imágenes */
+}
+
+/* ... (continúa con tus estilos existentes hasta la sección de Galería Scroll) ... */
