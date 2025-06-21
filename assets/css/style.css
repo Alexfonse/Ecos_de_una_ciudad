@@ -1029,4 +1029,10 @@ p {
     z-index: 10; /* Lo coloca por encima de las imágenes */
 }
 
+/* style.css */
+
+.gallery-item-title, .gallery-item-description {
+    transition: opacity 0.5s ease-in-out;
+}
+
 /* ... (continúa con tus estilos existentes hasta la sección de Galería Scroll) ... */

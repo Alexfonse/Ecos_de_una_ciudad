@@ -104,36 +104,18 @@
     </div>
   </section>
 
-  <!-- GALERÍA SCROLL (Nueva sección) -->
 <section class="gallery-container-scroll">
-  <div class="scroll-gallery">
-    <!-- Bloque 1 -->
-    <div class="scroll-gallery-item scroll-reveal">
-<div class="scroll-item-image reveal-mask-container">
-  <img src="assets/img/prueba3.jpeg" alt="Imagen Revelada" class="img-revealed" />
-  <img src="assets/img/prueba.png" alt="Imagen Mascara" class="img-mask-overlay" />
-</div>
-      <div class="scroll-item-text">
-        <h3>Título de la Imagen 1</h3>
-        <p>Descripción o texto explicativo de la imagen 1. Aquí puedes brindar información adicional que acompañe a la fotografía, de manera concisa y atractiva.</p>
-      </div>
-    </div>
-    <!-- Bloque 2 -->
-    <div class="scroll-gallery-item scroll-reveal">
-<div class="scroll-item-image reveal-mask-container">
-  <img src="assets/img/prueba3.jpeg" alt="Imagen Revelada" class="img-revealed" />
-  <img src="assets/img/prueba.png" alt="Imagen Mascara" class="img-mask-overlay" />
-</div>
-      <div class="scroll-item-text">
-        <h3>Título de la Imagen 2</h3>
-        <p>Descripción o texto explicativo de la imagen 2. Puedes añadir tantas secciones como necesites, manteniendo el mismo formato para consistencia en la galería.</p>
-      </div>
-    </div>
-    <!-- (Puedes duplicar bloques .scroll-gallery-item para añadir más imágenes + texto) -->
-  </div>
+    <div class="scroll-gallery" id="scroll-gallery-container">
+        </div>
 </section>
 
-
+<svg class="hidden-svg-mask">
+    <defs>
+        <mask id="paintMask">
+            <circle cx="0" cy="0" r="0" fill="white" id="maskCircle" filter="url(#displacementFilter)" />
+        </mask>
+    </defs>
+</svg>
 
   <!-- FOOTER -->
   <footer class="footer">
