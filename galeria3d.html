@@ -52,7 +52,7 @@
     </ul>
   </div>
 
-  <section class="seccion-aframe">
+<section class="seccion-aframe">
     <div class="container">
       <div class="section-title-container" style="padding-bottom: 2rem;">
         <h2>Un Vistazo a Otra Dimensión</h2>
@@ -60,9 +60,9 @@
         <div class="immersion-buttons">
           <button id="enter-vr-btn" class="boton-vr">Entrar en VR</button>
           <button id="enter-ar-btn" class="boton-vr">Ver en AR</button>
-            <button id="gyro-btn" class="boton-vr" title="Activar Giroscopio">
-    <i data-lucide="smartphone"></i>
-  </button>
+          <button id="gyro-btn" class="boton-vr" title="Activar Giroscopio">
+            <i data-lucide="smartphone"></i>
+          </button>
         </div>
       </div>
       <div class="aframe-container">
@@ -111,117 +111,62 @@
 
   <script src="assets/js/main.js"></script>
   <script src="assets/js/galeria3d.js"></script>
-<script>
+ <script>
     document.addEventListener('DOMContentLoaded', () => {
         const sceneEl = document.querySelector('a-scene');
-        const vrButton = document.getElementById('enter-vr-btn');
-        const arButton = document.getElementById('enter-ar-btn');
-        const galleryContent = document.getElementById('gallery-content');
-        const environment = document.getElementById('environment');
-        const reticle = document.getElementById('reticle');
+        if (!sceneEl) return;
 
-        // Función para colocar el modelo en el mundo AR
-        let hitTestResults = null;
-        function placeModel() {
-            if (hitTestResults && hitTestResults.length > 0) {
-                const hit = hitTestResults[0];
-                const pose = hit.getPose(sceneEl.renderer.xr.getReferenceSpace());
-                galleryContent.setAttribute('position', pose.transform.position);
-                galleryContent.setAttribute('visible', 'true');
-            }
-        }
-
+        // --- LÓGICA PARA LOS BOTONES DE INMERSIÓN (VR, AR, GIROSCOPIO) ---
         sceneEl.addEventListener('loaded', () => {
-            // 1. Lógica para mostrar botones
-            if (AFRAME.utils.device.isVRDisplay()) {
+            const vrButton = document.getElementById('enter-vr-btn');
+            const arButton = document.getElementById('enter-ar-btn');
+            const gyroButton = document.getElementById('gyro-btn');
+            const cameraEl = document.getElementById('camera');
+
+            // Lógica para el botón de VR
+            if (vrButton && (AFRAME.utils.device.isVRDisplay() || sceneEl.is('vr-mode-available'))) {
                 vrButton.style.display = 'inline-block';
                 vrButton.addEventListener('click', () => sceneEl.enterVR());
             }
 
-            sceneEl.renderer.xr.isSessionSupported('immersive-ar').then((supported) => {
-                if(supported) {
-                    arButton.style.display = 'inline-block';
-                    arButton.addEventListener('click', () => sceneEl.enterAR());
-                }
-            });
-
-            // 2. Lógica para el modo AR
-            sceneEl.addEventListener('enter-vr', () => {
-                if (sceneEl.is('ar-mode')) {
-                    // Estamos en modo AR
-                    environment.setAttribute('visible', 'false'); // Ocultar cielo y luces
-                    galleryContent.setAttribute('visible', 'false'); // Ocultar modelo al principio
-                    reticle.setAttribute('visible', 'true'); // Mostrar el cursor de AR
-
-                    // Detectar superficies
-                    sceneEl.xrSession.requestReferenceSpace('viewer').then(space => {
-                        sceneEl.xrSession.requestHitTestSource({ space: space }).then(source => {
-                            sceneEl.xrHitTestSource = source;
-                        });
-                    });
-                    
-                    sceneEl.addEventListener('ar-hit-test-results', (e) => {
-                        hitTestResults = e.detail.hits;
-                    });
-                    
-                    sceneEl.addEventListener('select', placeModel);
-                }
-            });
-
-            sceneEl.addEventListener('exit-vr', () => {
-                // Al salir de AR o VR, restaurar la vista normal
-                environment.setAttribute('visible', 'true');
-                galleryContent.setAttribute('visible', 'true');
-                reticle.setAttribute('visible', 'false');
-                if(sceneEl.xrHitTestSource) sceneEl.xrHitTestSource = null;
-            });
-
-            // Mover el retículo con la cámara en AR
-            sceneEl.addEventListener('before-render', () => {
-                if (sceneEl.is('ar-mode') && sceneEl.xrHitTestSource && !galleryContent.getAttribute('visible')) {
-                    if (hitTestResults && hitTestResults.length > 0) {
-                        const hit = hitTestResults[0];
-                        const pose = hit.getPose(sceneEl.renderer.xr.getReferenceSpace());
-                        reticle.setAttribute('position', pose.transform.position);
-                        reticle.setAttribute('visible', 'true');
-                    } else {
-                        reticle.setAttribute('visible', 'false');
+            // Lógica para el botón de AR
+            if (arButton) {
+                sceneEl.renderer.xr.isSessionSupported('immersive-ar').then((supported) => {
+                    if (supported) {
+                        arButton.style.display = 'inline-block';
+                        arButton.addEventListener('click', () => sceneEl.enterAR());
                     }
-                }
-            });
+                });
+            }
+
+            // Lógica para el botón de Giroscopio
+            if (gyroButton && cameraEl && AFRAME.utils.device.isMobile()) {
+                gyroButton.style.display = 'inline-block';
+                gyroButton.addEventListener('click', () => {
+                    const lookControls = cameraEl.components['look-controls'];
+                    if (lookControls) {
+                        const isGyroEnabled = lookControls.data.magicWindowTrackingEnabled;
+                        lookControls.data.magicWindowTrackingEnabled = !isGyroEnabled;
+                        gyroButton.classList.toggle('active', !isGyroEnabled);
+                    }
+                });
+            }
         });
+
+        // --- LÓGICA PARA EL MODO AR (Colocar modelo) ---
+        const galleryContent = document.getElementById('gallery-content');
+        const environment = document.getElementById('environment');
+        const reticle = document.getElementById('reticle');
+        let hitTestResults = null;
+
+        function placeModel() { /* ... tu función placeModel ... */ }
+
+        sceneEl.addEventListener('enter-vr', () => {
+            if (sceneEl.is('ar-mode')) { /* ... tu lógica de enter-ar ... */ }
+        });
+        sceneEl.addEventListener('exit-vr', () => { /* ... tu lógica de exit-ar ... */ });
+        sceneEl.addEventListener('before-render', () => { /* ... tu lógica de before-render para el retículo ... */ });
     });
-
-    // --- LÓGICA PARA EL BOTÓN DE GIROSCOPIO ---
-  document.addEventListener('DOMContentLoaded', () => {
-    const gyroButton = document.getElementById('gyro-btn');
-    const cameraEl = document.getElementById('camera');
-
-    // Si no encontramos los elementos, no hacemos nada.
-    if (!gyroButton || !cameraEl) return;
-
-    // Solo mostramos el botón en dispositivos móviles.
-    if (AFRAME.utils.device.isMobile()) {
-      gyroButton.style.display = 'inline-block';
-    }
-
-    // Añadimos el evento de clic al botón.
-    gyroButton.addEventListener('click', () => {
-      // Obtenemos el componente 'look-controls' de la cámara.
-      const lookControls = cameraEl.components['look-controls'];
-      
-      if (lookControls) {
-        // Verificamos si el giroscopio está actualmente activado.
-        const isGyroEnabled = lookControls.data.magicWindowTrackingEnabled;
-
-        // Invertimos el estado: si estaba activado, lo desactivamos, y viceversa.
-        lookControls.data.magicWindowTrackingEnabled = !isGyroEnabled;
-        
-        // Actualizamos el estilo del botón para dar feedback visual.
-        gyroButton.classList.toggle('active', !isGyroEnabled);
-      }
-    });
-  });
   </script>
 
 </body>
