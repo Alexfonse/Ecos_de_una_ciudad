@@ -60,6 +60,9 @@
         <div class="immersion-buttons">
           <button id="enter-vr-btn" class="boton-vr">Entrar en VR</button>
           <button id="enter-ar-btn" class="boton-vr">Ver en AR</button>
+            <button id="gyro-btn" class="boton-vr" title="Activar Giroscopio">
+    <i data-lucide="smartphone"></i>
+  </button>
         </div>
       </div>
       <div class="aframe-container">
@@ -188,6 +191,37 @@
             });
         });
     });
+
+    // --- LÓGICA PARA EL BOTÓN DE GIROSCOPIO ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const gyroButton = document.getElementById('gyro-btn');
+    const cameraEl = document.getElementById('camera');
+
+    // Si no encontramos los elementos, no hacemos nada.
+    if (!gyroButton || !cameraEl) return;
+
+    // Solo mostramos el botón en dispositivos móviles.
+    if (AFRAME.utils.device.isMobile()) {
+      gyroButton.style.display = 'inline-block';
+    }
+
+    // Añadimos el evento de clic al botón.
+    gyroButton.addEventListener('click', () => {
+      // Obtenemos el componente 'look-controls' de la cámara.
+      const lookControls = cameraEl.components['look-controls'];
+      
+      if (lookControls) {
+        // Verificamos si el giroscopio está actualmente activado.
+        const isGyroEnabled = lookControls.data.magicWindowTrackingEnabled;
+
+        // Invertimos el estado: si estaba activado, lo desactivamos, y viceversa.
+        lookControls.data.magicWindowTrackingEnabled = !isGyroEnabled;
+        
+        // Actualizamos el estilo del botón para dar feedback visual.
+        gyroButton.classList.toggle('active', !isGyroEnabled);
+      }
+    });
+  });
   </script>
 
 </body>

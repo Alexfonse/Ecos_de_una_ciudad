@@ -1269,3 +1269,18 @@ p {
     border-radius: 0;
   }
 }
+
+/* En assets/css/style.css */
+
+/* Hacemos que los íconos dentro del botón se vean bien */
+.boton-vr i {
+  width: 18px;
+  height: 18px;
+  stroke-width: 3px;
+}
+
+/* Un nuevo estilo para cuando el botón de giroscopio esté 'activo' */
+.boton-vr.active {
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
+}
