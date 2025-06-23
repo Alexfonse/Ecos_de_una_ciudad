@@ -1,45 +1,100 @@
 // Variables globales
-let respuestas;            // Objeto con la base de conocimiento (respuestas.json)
-let categoriaActual = null;
-let indicePaso = 0;
-
-// Elementos del DOM
+let respuestas;
 const chatContainer = document.getElementById('chat-container');
+const AVATAR_GAITALOMA = '../assets/img/prueba_2.png'; // Ruta al avatar
 
-// Función para agregar un mensaje al chat
+/**
+ * NOVEDAD: La función ahora crea una fila completa (avatar + burbuja).
+ */
 function agregarMensaje(texto, clase = 'bot') {
-  const p = document.createElement('p');
-  p.className = `mensaje ${clase}`;
-  p.textContent = texto;
-  chatContainer.appendChild(p);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
+  const filaMensaje = document.createElement('div');
+  filaMensaje.className = `mensaje-fila ${clase}`;
+
+  let contenidoHTML = '';
+
   if (clase === 'bot') {
-    voz.sonido('paloma');
-    voz.hablar(texto);
+    // Si el mensaje es del bot, añade el avatar
+    contenidoHTML += `<img src="${AVATAR_GAITALOMA}" alt="Avatar Don Gaitaloma" class="avatar-chat">`;
+  }
+  
+  // Añade la burbuja del mensaje
+  contenidoHTML += `<p class="mensaje ${clase}">${texto}</p>`;
+  
+  filaMensaje.innerHTML = contenidoHTML;
+  
+  // Inserta la fila completa en el chat
+  chatContainer.appendChild(filaMensaje);
+
+  // Animación y scroll (sin cambios)
+  filaMensaje.style.opacity = 0;
+  filaMensaje.style.transform = 'translateY(10px)';
+  setTimeout(() => {
+    filaMensaje.style.opacity = 1;
+    filaMensaje.style.transform = 'translateY(0)';
+  }, 100);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  if (clase === 'bot') {
+    setTimeout(() => {
+      voz.sonido('paloma');
+      voz.hablar(texto);
+    }, 400);
   }
 }
 
-// Función para agregar botones de opción
+// El resto del archivo JavaScript sigue la misma lógica de antes,
+// solo que ahora `agregarMensaje` es más potente.
+
 function agregarOpciones(opciones) {
   const divBtns = document.createElement('div');
   divBtns.className = 'opciones';
   opciones.forEach(opc => {
     const btn = document.createElement('button');
     btn.textContent = opc.texto;
-    btn.onclick = opc.funcion;
+    btn.onclick = () => manejarSeleccionUsuario(opc.texto, opc.funcion);
     divBtns.appendChild(btn);
   });
   chatContainer.appendChild(divBtns);
   chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
-// Reinicia la conversación al menú principal
+function manejarSeleccionUsuario(textoSeleccion, accionSiguiente) {
+  // 1. Mostrar la elección del usuario como un mensaje.
+  agregarMensaje(textoSeleccion, 'user');
+
+  // 2. Deshabilitar y eliminar los botones de opción.
+  const opcionesActuales = chatContainer.querySelector('.opciones');
+  if (opcionesActuales) {
+    opcionesActuales.querySelectorAll('button').forEach(btn => btn.disabled = true);
+    opcionesActuales.style.transition = 'opacity 0.3s ease';
+    opcionesActuales.style.opacity = 0;
+    setTimeout(() => { opcionesActuales.remove(); }, 300);
+  }
+
+  // 3. NOVEDAD: Mostrar el indicador de "escribiendo...".
+  const indicador = document.createElement('div');
+  indicador.className = 'mensaje-fila bot'; // Para que se alinee a la izquierda
+  indicador.innerHTML = `
+    <img src="${AVATAR_GAITALOMA}" alt="Avatar Don Gaitaloma" class="avatar-chat">
+    <div class="typing-indicator">
+      <span></span><span></span><span></span>
+    </div>
+  `;
+  chatContainer.appendChild(indicador);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+
+  // 4. Simular que el bot "piensa".
+  setTimeout(() => {
+    // 5. NOVEDAD: Eliminar el indicador de "escribiendo...".
+    indicador.remove();
+    
+    // 6. Ejecutar la acción correspondiente (mostrar la respuesta del bot).
+    accionSiguiente();
+  }, 1500); // Aumenté un poco el tiempo para que el indicador sea visible
+}
+
 function mostrarMenuPrincipal() {
-  chatContainer.innerHTML = '';  // limpiar chat
-  categoriaActual = null;
-  indicePaso = 0;
   agregarMensaje("¿En qué le puedo colaborar, sumercé? Elija un tema de conversación:", 'bot');
-  // Botones de categorías principales
   const categorias = Object.keys(respuestas);
   const opciones = categorias.map(cat => ({
     texto: cat,
@@ -48,84 +103,56 @@ function mostrarMenuPrincipal() {
   agregarOpciones(opciones);
 }
 
-// Maneja la selección de una categoría principal
 function seleccionarCategoria(nombreCat) {
-  // Guardar categoría seleccionada y reiniciar índice (para secuenciales)
   categoriaActual = nombreCat;
   indicePaso = 0;
-  // Limpiar opciones anteriores y mostrar intro o subopciones
-  chatContainer.innerHTML = '';
   const datosCat = respuestas[nombreCat];
   if (datosCat.intro) {
-    // Si hay texto introductorio, mostrarlo
     agregarMensaje(datosCat.intro, 'bot');
   }
-  // Dependiendo del tipo de items (lista de objetos o lista de strings), actuar:
   if (datosCat.items.length && typeof datosCat.items[0] === 'object') {
-    // Caso: la categoría tiene subelementos seleccionables (objetos con título)
     const subOpciones = datosCat.items.map(item => ({
       texto: item.title,
       funcion: () => mostrarSubItem(item)
     }));
-    // Añadir botón para volver al menú principal
-    subOpciones.push({
-      texto: '↩ Volver al menú',
-      funcion: mostrarMenuPrincipal
-    });
+    subOpciones.push({ texto: '↩ Volver al menú', funcion: mostrarMenuPrincipal });
     agregarOpciones(subOpciones);
   } else {
-    // Caso: la categoría es una secuencia de pasos (lista de strings)
     mostrarPasoSecuencial();
   }
 }
 
-// Muestra contenido de un sub-elemento (personaje o lugar) y luego opciones para continuar
 function mostrarSubItem(item) {
-  // Limpiar opciones previas
-  chatContainer.innerHTML = '';
-  agregarMensaje(item.text, 'bot');  // mostrar contenido del subitem
-  // Ofrecer opciones: ver otro del mismo tema, o volver al menú principal
+  agregarMensaje(item.text, 'bot');
   const opciones = [
-    {
-      texto: '🔄 Otro tema de ' + categoriaActual.toLowerCase(),
-      funcion: () => seleccionarCategoria(categoriaActual)
-    },
-    {
-      texto: '↩ Volver al menú',
-      funcion: mostrarMenuPrincipal
-    }
+    { texto: `🔄 Ver otro de "${categoriaActual}"`, funcion: () => seleccionarCategoria(categoriaActual) },
+    { texto: '↩ Volver al menú', funcion: mostrarMenuPrincipal }
   ];
   agregarOpciones(opciones);
 }
 
-// Muestra el siguiente paso de una categoría secuencial (transporte, curiosidades)
 function mostrarPasoSecuencial() {
   const items = respuestas[categoriaActual].items;
   if (indicePaso < items.length) {
     agregarMensaje(items[indicePaso], 'bot');
     indicePaso++;
-    // Si hay más pasos, mostrar botón "Siguiente"
+    const opcionesSiguientes = [];
     if (indicePaso < items.length) {
-      agregarOpciones([
-        { texto: '▶ Siguiente', funcion: mostrarPasoSecuencial },
-        { texto: '↩ Volver al menú', funcion: mostrarMenuPrincipal }
-      ]);
-    } else {
-      // Último paso: solo opción de volver al menú
-      agregarOpciones([
-        { texto: '↩ Volver al menú', funcion: mostrarMenuPrincipal }
-      ]);
+      opcionesSiguientes.push({ texto: '▶ Siguiente', funcion: mostrarPasoSecuencial });
     }
+    opcionesSiguientes.push({ texto: '↩ Volver al menú', funcion: mostrarMenuPrincipal });
+    agregarOpciones(opcionesSiguientes);
   }
 }
 
-// Cargar el archivo JSON con las respuestas
 fetch('./respuestas.json')
   .then(response => response.json())
   .then(data => {
     respuestas = data;
-    // Iniciar la conversación mostrando el menú principal
+    chatContainer.innerHTML = '';
     mostrarMenuPrincipal();
+    // NOVEDAD: Inicializa los íconos de Lucide que acabamos de añadir
+    lucide.createIcons();
   })
   .catch(error => {
     console.error("Error cargando respuestas.json:", error);

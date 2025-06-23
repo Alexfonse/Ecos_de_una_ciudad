@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Ecos de una Ciudad</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="blog.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div id="loader">
+    <div class="spinner"></div>
+    <p>Cargando relatos...</p>
+  </div>
+
+  <header class="hero-header">
+    <img src="../assets/img/prueba.png" alt="Fondo Hero Blog" class="hero-bg" loading="lazy" />
+    <div class="hero-overlay">
+      <h1 class="titulo-hero">Relatos de la<br><span class="frase-impacto">Capital</span></h1>
+      <p class="subtexto-hero">Un espacio para leer, descubrir y compartir las historias que la ciudad susurra.</p>
+    </div>
+    <div class="onda-inferior">
+      <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <defs><path id="wavePath" d="M0,30 C150,80 350,0 600,30 C850,60 1050,10 1200,30 L1200,120 L0,120 Z" /></defs>
+        <g class="waveGroup"><use xlink:href="#wavePath" class="wave-fill" /><use xlink:href="#wavePath" class="wave-fill-secondary" /></g>
+      </svg>
+    </div>
+  </header>
+
+  <main class="blog-container">
+    <div class="container">
+      <div class="blog-grid">
+        <article class="blog-card featured" data-post-id="post-bogotazo">
+          <a href="#" class="card-link">
+            <div class="blog-card-image-wrapper">
+              <img src="/assets/img/prueba.png" alt="El Bogotazo">
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-card-category">Historia</span>
+              <h3 class="blog-card-title">El Bogotazo: El Día que Partió la Historia</h3>
+              <p class="blog-card-excerpt">El 9 de abril de 1948 no es una fecha más; es el parteaguas del siglo XX, un evento que redefinió el curso político, social y urbano de Bogotá y de la nación entera...</p>
+              <span class="blog-card-readmore">Leer más</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-post-id="post-tranvia">
+           <a href="#" class="card-link">
+            <div class="blog-card-image-wrapper">
+              <img src="/assets/img/prueba.png" alt="Tranvía de Bogotá">
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-card-category">Urbanismo</span>
+              <h3 class="blog-card-title">El Tranvía: Crónica de un Símbolo Perdido</h3>
+              <p class="blog-card-excerpt">Durante 67 años, fue un actor central en la vida y configuración de la ciudad. Su historia es la crónica de las promesas de modernidad y de las fuerzas que lo borraron del paisaje.</p>
+              <span class="blog-card-readmore">Leer más</span>
+            </div>
+          </a>
+        </article>
+        
+        <article class="blog-card" data-post-id="post-cafes">
+           <a href="#" class="card-link">
+            <div class="blog-card-image-wrapper">
+              <img src="/assets/img/prueba.png" alt="Café El Automático">
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-card-category">Cultura</span>
+              <h3 class="blog-card-title">Los Cafés Olvidados: Refugios de la Bohemia</h3>
+              <p class="blog-card-excerpt">Antes de las franquicias, Bogotá vibraba al ritmo de tertulias en locales que eran el escenario de la creación literaria, la conspiración política y el debate artístico.</p>
+              <span class="blog-card-readmore">Leer más</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-post-id="post-barrios">
+           <a href="#" class="card-link">
+            <div class="blog-card-image-wrapper">
+              <img src="../assets/img/prueba.png">
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-card-category">Sociedad</span>
+              <h3 class="blog-card-title">La Ciudad Hecha a Mano: La Gesta de los Barrios Populares</h3>
+              <p class="blog-card-excerpt">Mientras la Bogotá "formal" se expandía al norte, en sus periferias surgía otra ciudad, una no planificada en los tableros de los arquitectos, sino construida con las manos de sus habitantes.</p>
+              <span class="blog-card-readmore">Leer más</span>
+            </div>
+          </a>
+        </article>
+
+        <article class="blog-card" data-post-id="post-mitos">
+           <a href="#" class="card-link">
+            <div class="blog-card-image-wrapper">
+              <img src="/assets/img/prueba.png" alt="Cementerio Central">
+            </div>
+            <div class="blog-card-content">
+              <span class="blog-card-category">Tradición</span>
+              <h3 class="blog-card-title">El Alma Oculta: Mitos, Fantasmas y Cultos Urbanos</h3>
+              <p class="blog-card-excerpt">Paralela a la historia oficial corre una corriente de memoria popular que se manifiesta en el folclore, las leyendas y los cultos que florecen en lugares como el Cementerio Central.</p>
+              <span class="blog-card-readmore">Leer más</span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </main>
+  
+  <div id="post-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar artículo">
+        <i data-lucide="x"></i>
+      </button>
+      <div id="modal-body" class="modal-body">
+        </div>
+    </div>
+  </div>
+
+  <div id="hidden-post-content" style="display: none;">
+    
+    <div id="post-bogotazo">
+      <h2>El Bogotazo: El Día que Partió la Historia</h2>
+      <p>El 9 de abril de 1948 no es una fecha más en el calendario colombiano; es el parteaguas del siglo XX, un evento que redefinió el curso político, social y urbano de Bogotá.</p>
+      
+      <figure class="modal-figure">
+        <img src="/assets/img/prueba.png" alt="Tranvía incendiado durante el Bogotazo" class="modal-image">
+        <figcaption>Un tranvía arde en llamas frente al Capitolio Nacional durante los disturbios del 9 de abril de 1948. Autor: Daniel Pradilla Holguin. Licencia: Dominio Público.</figcaption>
+      </figure>
+
+      <h3>Antecedentes: La Tormenta que se Avecinaba</h3>
+      <p>El estallido no fue un rayo en cielo sereno, sino la culminación de tensiones políticas acumuladas entre los partidos Liberal y Conservador. En este clima, emergió Jorge Eliécer Gaitán, un fenómeno social que canalizó el descontento popular con un discurso contra la "oligarquía".</p>
+
+      <h3>Crónica del 9 de Abril: El Estallido</h3>
+      <p>A la 1:05 p.m., al salir de su oficina, Jorge Eliécer Gaitán fue abatido a tiros. Su presunto autor, Juan Roa Sierra, fue linchado por la multitud en un acto de furia incontenible. La radio se convirtió en el amplificador del caos, con emisoras incitando a la rebelión. La multitud, enardecida, se volcó sobre el centro de Bogotá, incendiando tranvías, edificios y locales comerciales.</p>
+      
+      <h3>Consecuencias: La Larga Sombra del 9 de Abril</h3>
+      <p>El Bogotazo dejó entre 500 y 3,000 muertos y una masiva destrucción material en el centro. Provocó un éxodo de las clases altas y medias hacia el norte, agudizando un patrón de segregación socio-espacial que define a la ciudad hoy. Además, el evento fue instrumentalizado para acelerar planes de modernización urbana, demoliendo parte del trazado colonial para dar paso a grandes avenidas. El asesinato de Gaitán también recrudeció "La Violencia" a nivel nacional, sentando las bases para el surgimiento de las guerrillas.</p>
+    </div>
+
+    <div id="post-tranvia">
+      <h2>El Tranvía de Bogotá: Crónica de un Símbolo Perdido (1884-1951)</h2>
+      <p>Durante 67 años, el tranvía fue un actor central en la vida de Bogotá, trazando el mapa del crecimiento urbano. Su historia es la de las promesas de modernidad y de las fuerzas que lo borraron del paisaje.</p>
+      <figure class="modal-figure">
+        <img src="/assets/img/prueba.png" alt="Vestigios del tranvía" class="modal-image">
+        <figcaption>Restos de los rieles del antiguo tranvía, conservados hoy en el Eje Ambiental, un recuerdo permanente de un sistema que marcó la historia de la ciudad. Autor: Felipe Restrepo Acosta. Licencia: CC BY-SA 3.0.</figcaption>
+      </figure>
+      <h3>El Ocaso y el Golpe de Gracia</h3>
+      <p>La creencia de que el Bogotazo fue el único responsable de la muerte del tranvía es una simplificación. Si bien los incendios del 9 de abril fueron un golpe devastador, el sistema ya se encontraba en una situación precaria. Desde la década de 1940, enfrentaba una competencia agresiva por parte de las cooperativas de autobuses privados, vinculadas a intereses políticos. La quema de 34 vagones fue denunciada como un acto de sabotaje deliberado por parte de estos competidores. La decisión final la tomó en 1951 el alcalde Fernando Mazuera Villegas, quien tenía intereses en la importación de buses, ordenando la supresión definitiva del sistema.</p>
+    </div>
+    
+    <div id="post-cafes">
+      <h2>Los Cafés Olvidados: Refugios de la Bohemia y la Intelectualidad</h2>
+      <p>Antes de las franquicias, Bogotá vibraba al ritmo de tertulias en establecimientos que eran escenarios para la creación literaria y el debate político. La desaparición de estos cafés icónicos es un testimonio de cómo la transformación de la ciudad desmanteló los espacios que albergaban su alma bohemia.</p>
+      <figure class="modal-figure">
+        <img src="/assets/img/prueba.png" alt="León de Greiff en el Café Automático" class="modal-image">
+        <figcaption>El poeta León de Greiff (centro) en el Café Automático en 1958. Autor: Leo Matiz. Licencia: Derechos de autor.</figcaption>
+      </figure>
+      <h3>Perfiles de Lugares Míticos</h3>
+      <p>Dos cafés encarnan esta época: <b>El Automático</b>, fortín del poeta León de Greiff y su grupo "Los Nuevos", que funcionaba como galería de arte improvisada; y <b>El Cisne</b>, cuartel general del nadaísmo, un movimiento literario contestatario. Su demolición para construir la Torre Colpatria simboliza la sustitución de la cultura bohemia por la modernidad corporativa.</p>
+    </div>
+
+    <div id="post-barrios">
+       <h2>La Ciudad Hecha a Mano: La Gesta de los Barrios Populares</h2>
+      <p>Mientras la Bogotá "formal" se expandía, en sus periferias surgía otra ciudad, construida por sus propios habitantes. El nacimiento de los barrios populares de invasión es la otra cara de la modernización, un proceso impulsado por la violencia y la exclusión.</p>
+      <figure class="modal-figure">
+         <img src="/assets/img/prueba.png" alt="Barrio de autoconstrucción en Bogotá" class="modal-image">
+         <figcaption>Panorámica de un barrio de autoconstrucción en Bogotá, resultado de décadas de desplazamiento y lucha por la vivienda. Fotografía de la publicación "Bogotá Hecha a Mano".</figcaption>
+      </figure>
+      <h3>El Éxodo: La Violencia como Motor</h3>
+      <p>El Bogotazo de 1948 intensificó "La Violencia" en las zonas rurales, provocando un desplazamiento forzado masivo hacia la capital. Sin políticas de vivienda asequible, la única alternativa fue la ocupación organizada de terrenos en la periferia. El caso del barrio Policarpa Salavarrieta, nacido en 1961, es un ejemplo de esta gesta, liderada por la Central Nacional Provivienda (Cenaprov) y con un fuerte componente de organización comunitaria y resistencia, donde las mujeres desempeñaron un papel protagónico.</p>
+    </div>
+
+    <div id="post-mitos">
+      <h2>El Alma Oculta: Mitos, Fantasmas y Cultos Urbanos</h2>
+      <p>Paralela a la historia oficial, corre una corriente de memoria popular que se manifiesta en el folclore y las leyendas de la ciudad. Estas narrativas revelan el alma oculta de Bogotá.</p>
+      <figure class="modal-figure">
+        <img src="/assets/img/prueba.png" alt="Portada del Cementerio Central" class="modal-image">
+        <figcaption>Entrada principal del Cementerio Central de Bogotá, panteón oficial y santuario para diversos cultos populares. Autor: Baiji. Licencia: CC BY-SA 4.0.</figcaption>
+      </figure>
+      <h3>El Cementerio Central: Panteón y Santuario</h3>
+      <p>Este lugar es un espacio de dualidad: es el panteón oficial de la nación, pero también un vibrante santuario popular. Aquí, la devoción se dirige a un panteón alternativo de "santos" no oficiales, como <b>Leo Kopp</b> (fundador de Bavaria y patrón del trabajo), <b>Julio Garavito</b> (astrónomo y santo de las finanzas) y las <b>Hermanas Bodmer</b> (protectoras de los niños). Estos cultos, con sus rituales específicos, representan una contramemoria que desafía la narrativa oficial, respondiendo a las urgencias de la vida cotidiana.</p>
+    </div>
+  </div>
+
+  <nav class="floating-navbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="menu-fullscreen" id="menu-fullscreen">
+    <ul class="menu-items">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="../galeria.html">Galería</a></li>
+      <li><a href="../galeria3d.html">Galería 3D</a></li>
+      <li><a href="../public/chat.html">Don Gaitaloma</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="../eventos.html">Eventos</a></li>
+      <li><a href="../sobre.html">Sobre nosotros</a></li>
+    </ul>
+  </div>
+  <footer class="footer">
+    <div class="footer-form-container">
+      <h4>¿Quieres recibir más ecos de la ciudad?</h4>
+      <p>Suscríbete para no perderte nuevas historias, galerías y eventos.</p>
+      <form id="footer-form" class="footer-subscribe-form">
+        <input type="email" id="footer-email" name="email" placeholder="Escribe tu correo electrónico aquí" required>
+        <button type="submit" class="boton-principal">Suscribirme</button>
+      </form>
+    </div>
+    <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
+    <div class="redes">
+      <a href="https://instagram.com/Focus_Bogota" target="_blank">Instagram</a> |
+      <a href="mailto:focus@gmail.com">Correo</a> |
+      <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
+    </div>
+    <div class="cirgaita">
+      <img src="../assets/img/prueba_2.png" alt="Logo circular">
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="blog.js"></script>
+</body>
+</html>

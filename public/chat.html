@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don Gaitaloma - Chat Histórico</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero-header">
+    <img src="../assets/img/prueba_2.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
+    <div class="hero-overlay">
+      <div class="scroll-indicator">
+        <div class="flecha-bajar"></div>
+      </div>
+      <h1 class="titulo-hero">Ecos de una<br><span class="frase-impacto">ciudad</span></h1>
+      <p class="subtexto-hero">Explora cómo el pasado, el presente y el futuro se entrelazan en cada rincón de Bogotá.
+      </p>
+
+
+    </div>
+    <div class="onda-inferior">
+      <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <defs>
+          <path id="wavePath" d="M0,30 C150,80 350,0 600,30 C850,60 1050,10 1200,30 L1200,120 L0,120 Z" />
+        </defs>
+        <g class="waveGroup">
+          <use xlink:href="#wavePath" class="wave-fill" />
+          <use xlink:href="#wavePath" class="wave-fill-secondary" />
+        </g>
+      </svg>
+
+    </div>
+  </header>
+
+  <main id="chat-container">
+    <div id="loader">
+      <div class="spinner"></div>
+      <p>Despertando a Don Gaitaloma...</p>
+    </div>
+    <div class="chat-input-bar">
+    <input type="text" placeholder="Escribe tu mensaje aquí..." disabled>
+    <button class="boton-enviar" disabled>
+      <i data-lucide="send-horizontal"></i>
+    </button>
+  </div>
+</main>
+  </main>
+  
+  <nav class="floating-navbar">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="menu-fullscreen" id="menu-fullscreen">
+    <ul class="menu-items">
+      <li><a href="/index.html">Inicio</a></li>
+      <li><a href="/galeria.html">Galería</a></li>
+      <li><a href="/galeria3d.html">Galería 3D</a></li>
+      <li><a href="/public/chat.html">Don gaitaloma</a></li>
+      <li><a href="/blog/blog.html">Blog</a></li>
+      <li><a href="/eventos.html">Eventos</a></li>
+      <li><a href="/sobre.html">Sobre nosotros</a></li>
+    </ul>
+  </div>
+
+<footer class="footer">
+  <div class="footer-form-container">
+    <h4>¿Quieres recibir más ecos de la ciudad?</h4>
+    <p>Suscríbete para no perderte nuevas historias, galerías y eventos.</p>
+    <form id="footer-form" class="footer-subscribe-form">
+      <input type="email" id="footer-email" name="email" placeholder="Escribe tu correo electrónico aquí" required>
+      <button type="submit" class="boton-principal">Suscribirme</button>
+    </form>
+  </div>
+  <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
+  <div class="redes">
+    <a href="https://instagram.com/Focus_Bogota" target="_blank">Instagram</a> |
+    <a href="mailto:focus@gmail.com">Correo</a> |
+    <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
+  </div>
+  <div class="cirgaita">
+    <img src="assets/img/prueba_2.png" alt="Logo circular">
+  </div>
+</footer>
+
+  <script src="./chat.js" defer></script>
+  <script src="./voz.js" defer></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
