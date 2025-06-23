@@ -57,18 +57,18 @@
     <div class="container">
       <div class="section-title-container" style="padding-bottom: 2rem;">
         <h2>Un Vistazo a Otra Dimensión</h2>
-        <p>Muévete libremente por el espacio.</p>
+        <p>Explora el espacio a tu manera.</p>
       </div>
       <div class="aframe-container">
-        <a-scene embedded shadow="type: pcfsoft;" fog="type: exponential; color: #002A36; density: 0.04">
+        <a-scene embedded shadow="type: pcfsoft;">
           
           <a-assets>
             <a-asset-item id="pasillo-model" src="assets/img/Pasillo.glb"></a-asset-item>
-            </a-assets>
+          </a-assets>
 
           <a-sky color="#1a252f"></a-sky>
-          <a-light type="ambient" color="#999"></a-light>
-          <a-light type="directional" intensity="0.5" position="-2 5 2" castShadow="true"></a-light>
+          <a-light type="ambient" color="#808080"></a-light>
+          <a-light type="directional" intensity="0.6" position="-2 5 2" castShadow="true"></a-light>
           
           <a-entity id="rig" position="0 1.6 0">
               <a-entity id="camera" camera position="0 0 0" look-controls></a-entity>
@@ -99,18 +99,26 @@
 
   <script src="assets/js/main.js"></script>
 
-  <script>
-    // 1. Creamos el nuevo componente "tap-to-move" para avanzar al tocar en móvil
+ <script>
+    // 1. Creamos el nuevo componente "tap-to-move"
+    // Este será nuestro "superpoder" para avanzar al tocar en móvil.
     AFRAME.registerComponent('tap-to-move', {
       init: function () {
-        this.cameraRig = document.querySelector('#rig');
-        this.camera = this.cameraRig.querySelector('[camera]');
-        this.speed = 0.3; // Velocidad de avance con cada toque
+        const rig = this.el; // 'this.el' es la entidad que tiene este componente (el rig)
+        const camera = rig.querySelector('[camera]');
+        const sceneEl = this.el.sceneEl;
+        const speed = 0.4; // Qué tan lejos avanza con cada toque. ¡Puedes ajustar esto!
 
-        // Usamos 'mousedown' que funciona tanto para clic como para toque en pantalla
-        this.el.sceneEl.addEventListener('mousedown', () => {
-          const direction = this.camera.object3D.getWorldDirection(new THREE.Vector3());
-          this.cameraRig.object3D.position.add(direction.multiplyScalar(-this.speed));
+        // Usamos 'mousedown' que funciona tanto para clic en PC como para toque en pantalla
+        sceneEl.addEventListener('mousedown', (evt) => {
+          // Ignoramos los clics en los botones de la interfaz (como el de VR)
+          if (evt.target.tagName === 'BUTTON') return;
+
+          // Obtenemos la dirección en la que la cámara está mirando
+          const direction = camera.object3D.getWorldDirection(new THREE.Vector3());
+          
+          // Movemos el rig hacia adelante en esa dirección
+          rig.object3D.position.add(direction.multiplyScalar(-speed));
         });
       }
     });
@@ -125,13 +133,13 @@
 
         // 3. Sistema inteligente: Detecta si es PC o Celular
         if (AFRAME.utils.device.isMobile()) {
-          // --- Si es CELULAR:
+          // --- Si es CELULAR ---
           // Activamos el giroscopio por defecto para mirar
           camera.setAttribute('look-controls', { magicWindowTrackingEnabled: true });
           // Añadimos nuestro nuevo componente para avanzar al tocar
           rig.setAttribute('tap-to-move', '');
         } else {
-          // --- Si es PC:
+          // --- Si es PC ---
           // Le damos los controles de vuelo con teclado
           rig.setAttribute('movement-controls', 'speed: 0.2; fly: true;');
         }
