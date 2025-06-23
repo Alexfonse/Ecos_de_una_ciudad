@@ -55,7 +55,6 @@ const circularGalleryData = [
     location: 'Cerros Orientales',
     year: '2023'
   },
-  // Puedes añadir más imágenes a la galería circular aquí...
 ];
 
 class EnhancedGallery {
@@ -173,159 +172,193 @@ class EnhancedGallery {
 }
 
 // ========================================================================
-// --- SECCIÓN 2: CÓDIGO PARA LA GALERÍA DE SCROLL (LA NUEVA) ---
+// --- SECCIÓN 2: CÓDIGO PARA LAS GALERÍAS DE SCROLL ---
 // ========================================================================
 
+// --- 2.1 DATOS PARA LA GALERÍA DE ARQUITECTURA ---
+const scrollGalleryData = [
+    { 
+        items: [
+            {
+                src: 'assets/img/prueba.png',
+                title: 'Plaza de Bolívar y sus Alrededores',
+                description: 'Un recorrido visual por el corazón histórico y político de Bogotá, donde convergen el pasado y el presente.'
+            },
+            {
+                src: 'assets/img/prueba3.jpeg',
+                title: 'El Capitolio Nacional',
+                description: 'Sede del Congreso de la República, su construcción tardó casi 80 años en completarse.'
+            },
+            {
+                src: 'assets/img/prueba_2.png',
+                title: 'Catedral Primada de Colombia',
+                description: 'Construida entre 1807 y 1823, es un monumento neoclásico que guarda la historia religiosa del país.'
+            }
+        ]
+    },
+    { 
+        items: [
+            {
+                src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800',
+                title: 'La Metrópoli desde las Alturas',
+                description: 'Una vista panorámica que captura la inmensidad y la densidad de la ciudad moderna.'
+            },
+            {
+                src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800',
+                title: 'Reflejos de la Vida Urbana',
+                description: 'Los edificios actúan como espejos, duplicando la energía y el movimiento constante de las calles.'
+            }
+        ]
+    }
+];
+
+// --- 2.2 DATOS PARA LA GALERÍA DE PERSONAJES ---
+const characterGalleryData = [
+    { 
+        items: [
+            {
+                src: 'assets/img/prueba.png',
+                title: 'Gabriel García Márquez',
+                description: 'Premio Nobel de Literatura en 1982, su obra inmortalizó a Colombia en el realismo mágico.'
+            },
+            {
+                src: 'assets/img/prueba.png',
+                title: 'Gabo, Años de Juventud',
+                description: '“Lo que importa en la vida no es lo que te ocurre, sino lo que recuerdas y cómo lo recuerdas para contarlo.”'
+            }
+        ]
+    },
+    { 
+        items: [
+            {
+                src: 'assets/img/prueba3.jpeg',
+                title: 'Jorge Eliécer Gaitán',
+                description: 'Líder político cuya voz resonó en toda la nación y cuyo asesinato marcó un antes y un después en la historia del país.'
+            }
+        ]
+    }
+];
+
+// --- 2.3 LÓGICA PRINCIPAL QUE SE EJECUTA AL CARGAR LA PÁGINA ---
 document.addEventListener('DOMContentLoaded', () => {
     // Inicia la galería circular de arriba
     new EnhancedGallery();
 
-    // --- 2.1. Definimos los datos (CON TEXTO POR IMAGEN) ---
-    const scrollGalleryData = [
-        { // Primer bloque de galería
-            items: [
-                {
-                    src: 'assets/img/prueba.png',
-                    title: 'Plaza de Bolívar y sus Alrededores',
-                    description: 'Un recorrido visual por el corazón histórico y político de Bogotá, donde convergen el pasado y el presente.'
-                },
-                {
-                    src: 'assets/img/prueba3.jpeg',
-                    title: 'El Capitolio Nacional',
-                    description: 'Sede del Congreso de la República, su construcción tardó casi 80 años en completarse.'
-                },
-                {
-                    src: 'assets/img/prueba_2.png',
-                    title: 'Catedral Primada de Colombia',
-                    description: 'Construida entre 1807 y 1823, es un monumento neoclásico que guarda la historia religiosa del país.'
-                }
-            ]
-        },
-        { // Segundo bloque de galería
-            items: [
-                {
-                    src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800',
-                    title: 'La Metrópoli desde las Alturas',
-                    description: 'Una vista panorámica que captura la inmensidad y la densidad de la ciudad moderna.'
-                },
-                {
-                    src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800',
-                    title: 'Reflejos de la Vida Urbana',
-                    description: 'Los edificios actúan como espejos, duplicando la energía y el movimiento constante de las calles.'
-                },
-                {
-                    src: 'https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=800',
-                    title: 'Geometría del Poder',
-                    description: 'Líneas y ángulos que definen los centros financieros y de negocios de la capital.'
-                }
-            ]
-        }
-    ];
-
-    // --- 2.2. Lógica principal para la galería de scroll ---
-    const galleryContainer = document.getElementById('scroll-gallery-container');
-    if (!galleryContainer) return;
-
     const maskCircle = document.getElementById('maskCircle');
-    if (!maskCircle) return;
+    if (!maskCircle) return; // Si no hay máscara, detenemos todo para evitar errores.
 
-    scrollGalleryData.forEach((gallery, galleryIndex) => {
-        const initialItem = gallery.items[0];
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'scroll-gallery-item scroll-reveal';
+    // --- FUNCIÓN GENÉRICA PARA CREAR UNA GALERÍA DE SCROLL ---
+    // Esta función tomará los datos, el ID del contenedor y una clase especial
+    // para crear una galería. La usaremos para Arquitectura y para Personajes.
+    function createScrollGallery(data, containerId, specialClass) {
+        const galleryContainer = document.getElementById(containerId);
+        if (!galleryContainer) return; // Si no encuentra el contenedor, no hace nada.
 
-        galleryItem.innerHTML = `
-            <div class="scroll-item-image reveal-mask-container">
-                <img src="${initialItem.src}" alt="${initialItem.title}" class="img-revealed">
-                <img src="" alt="" class="img-mask-overlay" style="opacity: 0;">
-                <div class="click-indicator-scroll"></div>
-            </div>
-            <div class="scroll-item-text">
-                <h3 class="gallery-item-title">${initialItem.title}</h3>
-                <p class="gallery-item-description">${initialItem.description}</p>
-                <p class="text-sm text-gray-400" style="opacity: 0.7;">Haz clic en la imagen para explorar.</p>
-            </div>
-        `;
-        galleryContainer.appendChild(galleryItem);
+        data.forEach((gallery, galleryIndex) => {
+            const initialItem = gallery.items[0];
+            const galleryItem = document.createElement('div');
+            galleryItem.className = `scroll-gallery-item ${specialClass} scroll-reveal`;
 
-        if ((galleryIndex + 1) % 2 === 0) {
-            galleryItem.style.flexDirection = 'row-reverse';
-        }
+            galleryItem.innerHTML = `
+                <div class="scroll-item-image reveal-mask-container">
+                    <img src="${initialItem.src}" alt="${initialItem.title}" class="img-revealed">
+                    <img src="" alt="" class="img-mask-overlay" style="opacity: 0;">
+                    <div class="click-indicator-scroll"></div>
+                </div>
+                <div class="scroll-item-text">
+                    <h3 class="gallery-item-title">${initialItem.title}</h3>
+                    <p class="gallery-item-description">${initialItem.description}</p>
+                    <p class="text-sm text-gray-400" style="opacity: 0.7;">Haz clic en la imagen para explorar.</p>
+                </div>
+            `;
+            galleryContainer.appendChild(galleryItem);
 
-        const imageContainer = galleryItem.querySelector('.reveal-mask-container');
-        const currentImage = galleryItem.querySelector('.img-revealed');
-        const nextImage = galleryItem.querySelector('.img-mask-overlay');
-        const clickIndicator = galleryItem.querySelector('.click-indicator-scroll');
-        const titleElement = galleryItem.querySelector('.gallery-item-title');
-        const descriptionElement = galleryItem.querySelector('.gallery-item-description');
-        
-        let currentIndex = 0;
-        let transitioning = false;
-
-        imageContainer.addEventListener('click', (event) => {
-            if (transitioning) return;
-            transitioning = true;
-
-            titleElement.style.opacity = '0';
-            descriptionElement.style.opacity = '0';
-
-            const containerRect = imageContainer.getBoundingClientRect();
-            const clickX = event.clientX - containerRect.left;
-            const clickY = event.clientY - containerRect.top;
-
-            clickIndicator.style.left = `${clickX}px`;
-            clickIndicator.style.top = `${clickY}px`;
-            clickIndicator.style.opacity = '0.8';
-            setTimeout(() => { clickIndicator.style.opacity = '0'; }, 300);
-
-            const newIndex = (currentIndex + 1) % gallery.items.length;
-            const newItem = gallery.items[newIndex];
-            
-            nextImage.src = newItem.src;
-            nextImage.alt = newItem.title;
-            nextImage.style.opacity = '1';
-            nextImage.style.mask = 'url(#paintMask)';
-            nextImage.style.webkitMask = 'url(#paintMask)';
-            
-            maskCircle.setAttribute('cx', `${clickX}px`);
-            maskCircle.setAttribute('cy', `${clickY}px`);
-            maskCircle.setAttribute('r', '0');
-
-            let startTime = null;
-            const duration = 1500;
-            const maxRadius = Math.sqrt(Math.max(clickX, containerRect.width - clickX)**2 + Math.max(clickY, containerRect.height - clickY)**2) * 1.1;
-
-            function animate(currentTime) {
-                if (!startTime) startTime = currentTime;
-                const progress = (currentTime - startTime) / duration;
-
-                if (progress < 1) {
-                    maskCircle.setAttribute('r', `${progress * maxRadius}`);
-                    requestAnimationFrame(animate);
-                } else {
-                    currentImage.src = newItem.src;
-                    currentImage.alt = newItem.title;
-                    
-                    titleElement.textContent = newItem.title;
-                    descriptionElement.textContent = newItem.description;
-
-                    titleElement.style.opacity = '1';
-                    descriptionElement.style.opacity = '1';
-                    
-                    nextImage.style.opacity = '0';
-                    nextImage.style.mask = 'none';
-                    nextImage.style.webkitMask = 'none';
-                    maskCircle.setAttribute('r', '0');
-                    
-                    currentIndex = newIndex;
-                    transitioning = false;
-                }
+            if ((galleryIndex + 1) % 2 === 0) {
+                galleryItem.style.flexDirection = 'row-reverse';
             }
-            requestAnimationFrame(animate);
-        });
-    });
 
-    // --- 2.3. Código para el efecto de aparición al hacer scroll ---
+            const imageContainer = galleryItem.querySelector('.reveal-mask-container');
+            const currentImage = galleryItem.querySelector('.img-revealed');
+            const nextImage = galleryItem.querySelector('.img-mask-overlay');
+            const clickIndicator = galleryItem.querySelector('.click-indicator-scroll');
+            const titleElement = galleryItem.querySelector('.gallery-item-title');
+            const descriptionElement = galleryItem.querySelector('.gallery-item-description');
+            
+            let currentIndex = 0;
+            let transitioning = false;
+
+            imageContainer.addEventListener('click', (event) => {
+                if (transitioning) return;
+                transitioning = true;
+
+                titleElement.style.opacity = '0';
+                descriptionElement.style.opacity = '0';
+
+                const containerRect = imageContainer.getBoundingClientRect();
+                const clickX = event.clientX - containerRect.left;
+                const clickY = event.clientY - containerRect.top;
+
+                clickIndicator.style.left = `${clickX}px`;
+                clickIndicator.style.top = `${clickY}px`;
+                clickIndicator.style.opacity = '0.8';
+                setTimeout(() => { clickIndicator.style.opacity = '0'; }, 300);
+
+                const newIndex = (currentIndex + 1) % gallery.items.length;
+                const newItem = gallery.items[newIndex];
+                
+                nextImage.src = newItem.src;
+                nextImage.alt = newItem.title;
+                nextImage.style.opacity = '1';
+                nextImage.style.mask = 'url(#paintMask)';
+                nextImage.style.webkitMask = 'url(#paintMask)';
+                
+                maskCircle.setAttribute('cx', `${clickX}px`);
+                maskCircle.setAttribute('cy', `${clickY}px`);
+                maskCircle.setAttribute('r', '0');
+
+                let startTime = null;
+                const duration = 1500;
+                const maxRadius = Math.sqrt(Math.max(clickX, containerRect.width - clickX)**2 + Math.max(clickY, containerRect.height - clickY)**2) * 1.1;
+
+                function animate(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    const progress = (currentTime - startTime) / duration;
+
+                    if (progress < 1) {
+                        maskCircle.setAttribute('r', `${progress * maxRadius}`);
+                        requestAnimationFrame(animate);
+                    } else {
+                        currentImage.src = newItem.src;
+                        currentImage.alt = newItem.title;
+                        
+                        titleElement.textContent = newItem.title;
+                        descriptionElement.textContent = newItem.description;
+
+                        titleElement.style.opacity = '1';
+                        descriptionElement.style.opacity = '1';
+                        
+                        nextImage.style.opacity = '0';
+                        nextImage.style.mask = 'none';
+                        nextImage.style.webkitMask = 'none';
+                        maskCircle.setAttribute('r', '0');
+                        
+                        currentIndex = newIndex;
+                        transitioning = false;
+                    }
+                }
+                requestAnimationFrame(animate);
+            });
+        });
+    }
+
+    // --- AHORA USAMOS LA FUNCIÓN PARA CREAR AMBAS GALERÍAS ---
+    // 1. Creamos la galería de Arquitectura (sin clase especial)
+    createScrollGallery(scrollGalleryData, 'scroll-gallery-container', '');
+    
+    // 2. Creamos la galería de Personajes (con la clase 'character-item' para los estilos Polaroid)
+    createScrollGallery(characterGalleryData, 'character-gallery-container', 'character-item');
+
+    // --- CÓDIGO PARA EL EFECTO DE APARICIÓN AL HACER SCROLL ---
     const scrollItems = document.querySelectorAll('.scroll-reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

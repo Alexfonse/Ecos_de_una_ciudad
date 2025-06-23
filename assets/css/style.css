@@ -977,17 +977,34 @@ p {
 }
 
 /* Responsive: en pantallas pequeñas, apilar columna */
+/*==================================================*/
+/* Pega este bloque corregido o simplemente añade !important a tu código */
+/*==================================================*/
+
 @media (max-width: 768px) {
   .scroll-gallery-item, 
   .scroll-gallery-item:nth-child(even) {
-    flex-direction: column;
-    text-align: center; /* centrar contenido en móvil */
+    /* Con !important, esta regla ganará y forzará a TODOS los bloques a apilarse */
+    flex-direction: column !important; 
+    text-align: center;
   }
+
   .scroll-gallery-item {
     margin-bottom: 2.5rem;
   }
-}
+  
+  .scroll-item-image.reveal-mask-container {
+    height: 60vh; 
+    width: 95%;
+    margin: 0 auto;
+  }
 
+  .scroll-item-text {
+    text-align: center;
+    width: 95%;
+    margin: 1.5rem auto 0;
+  }
+}
 /* === Animaciones de aparición con scroll === */
 .scroll-reveal {
   opacity: 0;
@@ -1036,3 +1053,278 @@ p {
 }
 
 /* ... (continúa con tus estilos existentes hasta la sección de Galería Scroll) ... */
+/* ======================================================================== */
+/* === AJUSTES RESPONSIVE PARA LA GALERÍA DE SCROLL (NUEVO) === */
+/* ======================================================================== */
+
+/* --- 1. SOLUCIÓN PARA EL RESPONSIVE EN MÓVILES --- */
+
+/* En pantallas de 768px o menos (móviles y tablets pequeñas)... */
+@media (max-width: 768px) {
+
+  /* Hacemos que el contenedor de la galería ocupe menos espacio */
+  .scroll-gallery {
+    padding: 2rem 1rem; /* Reducimos el padding */
+  }
+
+  /* El contenedor de la imagen ya no tendrá una altura fija de 800px, 
+     sino una altura más razonable y proporcional. */
+  .scroll-item-image.reveal-mask-container {
+    /* Usamos 60vh (60% de la altura de la pantalla) para que se adapte a cualquier móvil.
+       Puedes cambiar este valor si lo quieres más alto o más bajo. */
+    height: 60vh; 
+    width: 95%; /* Hacemos que ocupe casi todo el ancho */
+    margin: 0 auto; /* Lo centramos */
+  }
+
+  /* Centramos el texto que acompaña a la imagen */
+  .scroll-item-text {
+    text-align: center;
+    width: 95%;
+    margin: 1.5rem auto 0; /* Añadimos un margen superior */
+  }
+}
+
+
+/* --- 2. SOLUCIÓN PARA MOSTRAR IMÁGENES VERTICALES Y HORIZONTALES --- */
+
+/* Modificamos el contenedor de la imagen para que tenga un fondo sutil.
+   Esto es para que si una imagen no llena todo el espacio, no se vea un vacío negro. */
+.scroll-item-image.reveal-mask-container {
+  background-color: rgba(0, 0, 0, 0.2); /* Fondo oscuro semitransparente */
+  display: flex; /* Centramos la imagen hija */
+  justify-content: center;
+  align-items: center;
+}
+
+/* El cambio MÁS IMPORTANTE está aquí. 
+   Cambiamos "object-fit: cover" por "object-fit: contain". */
+.scroll-item-image.reveal-mask-container img {
+  /* "contain" asegura que TODA la imagen (sea vertical u horizontal) 
+     siempre sea visible dentro del contenedor, sin ser recortada. */
+  object-fit: contain;
+
+  /* Hacemos que la imagen no ocupe necesariamente el 100% del alto/ancho,
+     sino que se ajuste manteniendo su proporción. */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+
+  /* Quitamos el posicionamiento absoluto para que el centrado con flexbox funcione */
+  position: relative; 
+}
+
+/* Tenemos que ajustar también la imagen de la máscara para que siga la misma lógica */
+.img-mask-overlay {
+  /* La volvemos a poner encima con position: absolute */
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ======================================================================== */
+/* === ESTILOS PARA LA NUEVA SECCIÓN DE PERSONAJES (ESTILO POLAROID) === */
+/* ======================================================================== */
+
+/* Estilos para el título de la nueva sección */
+.section-title-container {
+    text-align: center;
+    padding: 3rem 1rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.section-title-container h2 {
+    font-family: var(--font-titulo);
+    font-size: 2.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+.section-title-container p {
+    font-size: 1.1rem;
+    color: var(--color-on-surface);
+    opacity: 0.8;
+}
+
+/* Le damos la forma de Polaroid al contenedor de la imagen */
+.character-item .scroll-item-image {
+    /* Borde blanco hueso, más grueso en la parte de abajo */
+    padding: 15px 15px 70px 15px; 
+    background-color: #f0f0e0; 
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    transform: rotate(-2.5deg); /* Le damos una ligera rotación */
+    transition: transform 0.4s ease-in-out;
+}
+
+/* Al pasar el cursor, la "foto" se endereza y crece un poco */
+.character-item:hover .scroll-item-image {
+    transform: rotate(0deg) scale(1.03);
+}
+
+/* El nombre del personaje lo ponemos en el borde de la Polaroid */
+.character-item .scroll-item-text h3 {
+    position: relative;
+    top: -55px; /* Sube el título para que se monte sobre el borde inferior */
+    font-family: var(--font-titulo);
+    font-size: 2.2rem;
+  color: var(--color-secondary);
+    text-align: center;
+    margin-bottom: -30px; /* Reducimos el espacio que ocupa */
+}
+
+/* La descripción del personaje */
+.character-item .scroll-item-text p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-on-surface);
+    opacity: 0.9;
+    text-align: center;
+}
+
+/* Ajustes para que se vea bien en móviles */
+@media (max-width: 768px) {
+    .character-item .scroll-item-image {
+        transform: rotate(0); /* Quitamos la rotación en pantallas pequeñas */
+    }
+    .character-item .scroll-item-text h3 {
+        top: -45px;
+        font-size: 1.8rem;
+    }
+}
+
+/* ======================================================================== */
+/* === ESTILOS PARA LA GALERÍA 3D INTEGRADA (NUEVO) === */
+/* ======================================================================== */
+
+/* Contenedor principal que envuelve la escena de A-Frame y el panel de info */
+.aframe-container {
+    position: relative; /* Clave para posicionar el panel de info encima */
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo en pantallas grandes */
+    margin: 0 auto; /* Centramos el contenedor */
+    /* Usamos aspect-ratio para que sea responsive. 16/9 es un buen punto de partida. */
+    aspect-ratio: 16 / 9; 
+    border-radius: 20px;
+    overflow: hidden; /* Oculta cualquier cosa que se salga del borde redondeado */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Estilo específico para la escena de A-Frame cuando está incrustada */
+a-scene[embedded] {
+    width: 100%;
+    height: 100%;
+}
+
+/* Panel de información que se superpone a la escena 3D */
+.info-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 70%; /* Ocupa como máximo el 70% de la altura */
+    background: rgba(14, 26, 28, 0.85); /* Un color de tu paleta con transparencia */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque del fondo */
+    color: var(--color-on-surface);
+    padding: 2rem;
+    border-top: 2px solid var(--color-secondary);
+    transform: translateY(0);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    z-index: 10;
+}
+
+/* Clase para ocultar el panel */
+.info-panel.hidden {
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none; /* No se puede hacer clic en él cuando está oculto */
+}
+
+/* Estilos del contenido del panel */
+.info-panel img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+.info-panel h3 {
+    font-family: var(--font-titulo);
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+.info-panel p {
+    font-family: var(--font-parrafo);
+    line-height: 1.6;
+}
+
+/* Botón de cerrar el panel */
+.info-panel .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+.info-panel .close-btn:hover {
+    opacity: 1;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .aframe-container {
+        /* En móvil, hacemos la escena más alta para que se aprecie mejor */
+        aspect-ratio: 4 / 5; 
+        border-radius: 0; /* Sin bordes redondeados para que ocupe todo el ancho */
+    }
+    .info-panel {
+        padding: 1.5rem;
+    }
+    .info-panel h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* ======================================================================== */
+/* === ESTILOS PARA LA ESCENA DE A-FRAME RESPONSIVE (CORREGIDO) === */
+/* ======================================================================== */
+
+.seccion-aframe {
+  padding: 4rem 0;
+  background-color: var(--color-tertiary);
+}
+
+/* Contenedor que hará que la escena 3D sea responsive */
+.aframe-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  /* Esta es la proporción para pantallas grandes (escritorio) */
+  aspect-ratio: 16 / 9; 
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Estilo para la escena de A-Frame cuando está dentro de nuestro contenedor */
+.aframe-container a-scene {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ================================================= */
+/* === ¡LA CORRECCIÓN PARA MÓVILES ESTÁ AQUÍ! === */
+/* ================================================= */
+@media (max-width: 768px) {
+  .aframe-container {
+    /* En móvil, cambiamos la proporción para que sea más ALTA que ancha */
+    aspect-ratio: 4 / 5; 
+    border-radius: 0; /* Opcional: quita los bordes redondeados en móvil */
+  }
+}
