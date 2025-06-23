@@ -1193,94 +1193,39 @@ p {
 }
 
 /* ======================================================================== */
-/* === ESTILOS DEFINITIVOS PARA SECCIONES 3D Y CONTENEDORES === */
+/* === ESTILOS PARA LA ESCENA DE A-FRAME RESPONSIVE (CORREGIDO) === */
 /* ======================================================================== */
 
-/* Título de las secciones (como "Personajes" o "Galería 3D") */
-.section-title-container {
-    text-align: center;
-    padding: 3rem 1rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-.section-title-container h2 {
-    font-family: var(--font-titulo);
-    font-size: 2.5rem;
-    color: var(--color-secondary);
-    margin-bottom: 0.5rem;
-}
-.section-title-container p {
-    font-size: 1.1rem;
-    color: var(--color-on-surface);
-    opacity: 0.8;
+.seccion-aframe {
+  padding: 4rem 0;
+  background-color: var(--color-tertiary);
 }
 
-/* Contenedor principal de la escena A-Frame */
+/* Contenedor que hará que la escena 3D sea responsive */
 .aframe-container {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 1200px;
-  margin: 2rem auto 0; /* Ajusta el margen superior */
+  /* Esta es la proporción para pantallas grandes (escritorio) */
   aspect-ratio: 16 / 9; 
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
+/* Estilo para la escena de A-Frame cuando está dentro de nuestro contenedor */
 .aframe-container a-scene {
   width: 100%;
   height: 100%;
 }
 
-/* Contenedor para los botones de VR y AR */
-.immersion-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1rem;
-}
 
-/* Estilo de los botones de VR y AR */
-.boton-vr {
-  font-family: var(--font-parrafo);
-  background-color: transparent;
-  color: var(--color-on-secondary);
-  padding: 10px 25px;
-  border-radius: 50px;
-  border: 2px solid var(--color-secondary);
-  font-weight: bold;
-  font-size: 1rem;
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  display: none; /* JS los mostrará si son compatibles */
-}
-
-.boton-vr:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-surface);
-  transform: scale(1.05);
-}
-
-
-/* Responsive para el contenedor de A-Frame */
+/* ================================================= */
+/* === ¡LA CORRECCIÓN PARA MÓVILES ESTÁ AQUÍ! === */
+/* ================================================= */
 @media (max-width: 768px) {
   .aframe-container {
+    /* En móvil, cambiamos la proporción para que sea más ALTA que ancha */
     aspect-ratio: 4 / 5; 
-    border-radius: 0;
+    border-radius: 0; /* Opcional: quita los bordes redondeados en móvil */
   }
-}
-
-/* En assets/css/style.css */
-
-/* Hacemos que los íconos dentro del botón se vean bien */
-.boton-vr i {
-  width: 18px;
-  height: 18px;
-  stroke-width: 3px;
-}
-
-/* Un nuevo estilo para cuando el botón de giroscopio esté 'activo' */
-.boton-vr.active {
-  background-color: var(--color-secondary);
-  color: var(--color-surface);
 }
