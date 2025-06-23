@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +7,7 @@
 
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-  <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
-  <script src="https://unpkg.com/aframe-animation-component@5.1.2/dist/aframe-animation-component.min.js"></script>
-
+  
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -30,22 +27,15 @@
     </div>
     <div class="onda-inferior">
       <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <defs>
-          <path id="wavePath" d="M0,30 C150,80 350,0 600,30 C850,60 1050,10 1200,30 L1200,120 L0,120 Z" />
-        </defs>
-        <g class="waveGroup">
-          <use xlink:href="#wavePath" class="wave-fill" />
-          <use xlink:href="#wavePath" class="wave-fill-secondary" />
-        </g>
+        <defs><path id="wavePath" d="M0,30 C150,80 350,0 600,30 C850,60 1050,10 1200,30 L1200,120 L0,120 Z" /></defs>
+        <g class="waveGroup"><use xlink:href="#wavePath" class="wave-fill" /><use xlink:href="#wavePath" class="wave-fill-secondary" /></g>
       </svg>
     </div>
   </header>
 
   <nav class="floating-navbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
@@ -55,6 +45,10 @@
       <li><a href="galeria.html">Galería</a></li>
       <li><a href="galeria3d.html">Galería 3D</a></li>
       <li><a href="blog/index.html">Blog</a></li>
+      <li><a href="eventos.html">Eventos</a></li>
+      <li><a href="gaitaloma-chat.html">Chat</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="testimonios.html">Testimonios</a></li>
     </ul>
   </div>
 
@@ -62,44 +56,42 @@
     <div class="container">
       <div class="section-title-container" style="padding-bottom: 2rem;">
         <h2>Un Vistazo a Otra Dimensión</h2>
-        <p>Muévete libremente con WASD + Q/E (subir/bajar). Haz clic para explorar el objeto.</p>
+        <p>Muévete libremente por el espacio o proyéctalo en tu mundo.</p>
+        <div class="immersion-buttons">
+          <button id="enter-vr-btn" class="boton-vr">Entrar en VR</button>
+          <button id="enter-ar-btn" class="boton-vr">Ver en AR</button>
+        </div>
       </div>
       <div class="aframe-container">
-<section class="seccion-aframe">
-  <div class="aframe-container">
-    <a-scene embedded shadow="type: pcfsoft; autoUpdate: true;" fog="type: exponential; color: #1a252f; density: 0.07">
-      
-      <a-assets>
-        <audio id="click-sound" src="https://cdn.freesound.org/previews/242/242819_4279959-hq.mp3" preload="auto"></audio>
-        <audio id="footsteps-sound" src="https://cdn.freesound.org/previews/533/533817_11921999-hq.mp3" preload="auto"></audio>
-      </a-assets>
+        <a-scene embedded shadow="type: pcfsoft; autoUpdate: true;" fog="type: exponential; color: #1a252f; density: 0.07"
+                 renderer="colorManagement: true"
+                 webxr="optionalFeatures: hit-test, local-floor, anchor, plane-detection;">
+          
+          <a-assets>
+            <a-asset-item id="pasillo-model" src="assets/img/Pasillo.glb"></a-asset-item>
+          </a-assets>
 
-      <a-sky color="#1a252f"></a-sky>
-
-      <a-light type="ambient" color="#808080"></a-light>
-      <a-light type="directional" intensity="0.6" position="-2 5 2" castShadow="true"></a-light>
-      
-      <a-entity id="rig" movement-controls="speed: 0.15; fly: true;" position="0 0 0">
-          <a-entity id="camera" camera position="0 1.6 0" look-controls>
-              <a-sound id="footsteps" src="#footsteps-sound" loop="true" autoplay="false" volume="0.4"></a-sound>
+          <a-entity id="environment" visible="true">
+            <a-sky color="#1a252f"></a-sky>
+            <a-light type="ambient" color="#808080"></a-light>
+            <a-light type="directional" intensity="0.6" position="-2 5 2" castShadow="true"></a-light>
           </a-entity>
-      </a-entity>
+          
+          <a-entity id="rig" position="0 0 0" movement-controls="speed: 0.15; fly: true;">
+              <a-entity id="camera" camera position="0 1.6 0" look-controls="magicWindowTrackingEnabled: false"></a-entity>
+          </a-entity>
 
-      </a-scene>
-  </div>
-</section>
+          <a-entity id="gallery-content">
+              <a-gltf-model id="pasillo" src="#pasillo-model" position="0 0 0" scale="1.5 1.5 1.5" rotation="0 15 0" shadow="cast: true"></a-gltf-model>
+          </a-entity>
 
-<footer class="footer">...</footer>
+          <a-entity id="reticle" cursor="fuse: false" raycaster="objects: .raycastable"
+                    geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
+                    material="color: #FFD6A5; shader: flat"
+                    visible="false">
+          </a-entity>
 
-<script src="assets/js/main.js"></script>
-<script src="assets/js/galeria3d.js"></script>
-
-<script>
-  // ...
-</script>
-
-</body>
-</html>
+        </a-scene>
       </div>
     </div>
   </section>
@@ -111,45 +103,91 @@
       <a href="mailto:focus@gmail.com">Correo</a> |
       <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
     </div>
-    <div class="cirgaita">
-      <img src="assets/img/prueba_2.png" alt="">
-    </div>
+    <div class="cirgaita"><img src="assets/img/prueba_2.png" alt=""></div>
   </footer>
 
   <script src="assets/js/main.js"></script>
-
-  <script>
+  <script src="assets/js/galeria3d.js"></script>
+<script>
     document.addEventListener('DOMContentLoaded', () => {
-      const scene = document.querySelector('a-scene');
-      if (scene.hasLoaded) {
-        runFootstepLogic();
-      } else {
-        scene.addEventListener('loaded', runFootstepLogic);
-      }
-      function runFootstepLogic() {
-        const footsteps = document.querySelector('#footsteps');
-        if (!footsteps) return;
-        let isMoving = false;
-        const moveKeys = ['w', 'a', 's', 'd', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'q', 'e'];
+        const sceneEl = document.querySelector('a-scene');
+        const vrButton = document.getElementById('enter-vr-btn');
+        const arButton = document.getElementById('enter-ar-btn');
+        const galleryContent = document.getElementById('gallery-content');
+        const environment = document.getElementById('environment');
+        const reticle = document.getElementById('reticle');
 
-        document.addEventListener('keydown', (e) => {
-          if (moveKeys.includes(e.key.toLowerCase()) && !isMoving) {
-            isMoving = true;
-            footsteps.components.sound.playSound();
-          }
-        });
+        // Función para colocar el modelo en el mundo AR
+        let hitTestResults = null;
+        function placeModel() {
+            if (hitTestResults && hitTestResults.length > 0) {
+                const hit = hitTestResults[0];
+                const pose = hit.getPose(sceneEl.renderer.xr.getReferenceSpace());
+                galleryContent.setAttribute('position', pose.transform.position);
+                galleryContent.setAttribute('visible', 'true');
+            }
+        }
 
-        document.addEventListener('keyup', (e) => {
-          if (moveKeys.includes(e.key.toLowerCase())) {
-            isMoving = false;
-            footsteps.components.sound.pauseSound();
-          }
+        sceneEl.addEventListener('loaded', () => {
+            // 1. Lógica para mostrar botones
+            if (AFRAME.utils.device.isVRDisplay()) {
+                vrButton.style.display = 'inline-block';
+                vrButton.addEventListener('click', () => sceneEl.enterVR());
+            }
+
+            sceneEl.renderer.xr.isSessionSupported('immersive-ar').then((supported) => {
+                if(supported) {
+                    arButton.style.display = 'inline-block';
+                    arButton.addEventListener('click', () => sceneEl.enterAR());
+                }
+            });
+
+            // 2. Lógica para el modo AR
+            sceneEl.addEventListener('enter-vr', () => {
+                if (sceneEl.is('ar-mode')) {
+                    // Estamos en modo AR
+                    environment.setAttribute('visible', 'false'); // Ocultar cielo y luces
+                    galleryContent.setAttribute('visible', 'false'); // Ocultar modelo al principio
+                    reticle.setAttribute('visible', 'true'); // Mostrar el cursor de AR
+
+                    // Detectar superficies
+                    sceneEl.xrSession.requestReferenceSpace('viewer').then(space => {
+                        sceneEl.xrSession.requestHitTestSource({ space: space }).then(source => {
+                            sceneEl.xrHitTestSource = source;
+                        });
+                    });
+                    
+                    sceneEl.addEventListener('ar-hit-test-results', (e) => {
+                        hitTestResults = e.detail.hits;
+                    });
+                    
+                    sceneEl.addEventListener('select', placeModel);
+                }
+            });
+
+            sceneEl.addEventListener('exit-vr', () => {
+                // Al salir de AR o VR, restaurar la vista normal
+                environment.setAttribute('visible', 'true');
+                galleryContent.setAttribute('visible', 'true');
+                reticle.setAttribute('visible', 'false');
+                if(sceneEl.xrHitTestSource) sceneEl.xrHitTestSource = null;
+            });
+
+            // Mover el retículo con la cámara en AR
+            sceneEl.addEventListener('before-render', () => {
+                if (sceneEl.is('ar-mode') && sceneEl.xrHitTestSource && !galleryContent.getAttribute('visible')) {
+                    if (hitTestResults && hitTestResults.length > 0) {
+                        const hit = hitTestResults[0];
+                        const pose = hit.getPose(sceneEl.renderer.xr.getReferenceSpace());
+                        reticle.setAttribute('position', pose.transform.position);
+                        reticle.setAttribute('visible', 'true');
+                    } else {
+                        reticle.setAttribute('visible', 'false');
+                    }
+                }
+            });
         });
-      }
     });
-  </script>
-
-  <script src="assets/js/galeria3d.js">
   </script>
 
 </body>
