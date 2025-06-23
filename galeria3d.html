@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,46 +53,40 @@
     </ul>
   </div>
 
-<section class="seccion-aframe">
+  <section class="seccion-aframe">
     <div class="container">
       <div class="section-title-container" style="padding-bottom: 2rem;">
         <h2>Un Vistazo a Otra Dimensión</h2>
-        <p>Muévete libremente por el espacio o proyéctalo en tu mundo.</p>
+        <p>Muévete libremente por el espacio.</p>
       </div>
       <div class="aframe-container">
-        <a-scene embedded shadow="type: pcfsoft; autoUpdate: true;" fog="type: exponential; color: #1a252f; density: 0.07"
-                 renderer="colorManagement: true"
-                 webxr="optionalFeatures: hit-test, local-floor, anchor, plane-detection;">
+        <a-scene embedded shadow="type: pcfsoft;" fog="type: exponential; color: #002A36; density: 0.04">
           
           <a-assets>
             <a-asset-item id="pasillo-model" src="assets/img/Pasillo.glb"></a-asset-item>
-          </a-assets>
+            </a-assets>
 
-          <a-entity id="environment" visible="true">
-            <a-sky color="#1a252f"></a-sky>
-            <a-light type="ambient" color="#808080"></a-light>
-            <a-light type="directional" intensity="0.6" position="-2 5 2" castShadow="true"></a-light>
-          </a-entity>
+          <a-sky color="#1a252f"></a-sky>
+          <a-light type="ambient" color="#999"></a-light>
+          <a-light type="directional" intensity="0.5" position="-2 5 2" castShadow="true"></a-light>
           
-          <a-entity id="rig" position="0 0 0" movement-controls="speed: 0.15; fly: true;">
-              <a-entity id="camera" camera position="0 1.6 0" look-controls="magicWindowTrackingEnabled: false"></a-entity>
+          <a-entity id="rig" position="0 1.6 0">
+              <a-entity id="camera" camera position="0 0 0" look-controls></a-entity>
           </a-entity>
 
-          <a-entity id="gallery-content">
-              <a-gltf-model id="pasillo" src="#pasillo-model" position="0 0 0" scale="1.5 1.5 1.5" rotation="0 15 0" shadow="cast: true"></a-gltf-model>
-          </a-entity>
-
-          <a-entity id="reticle" cursor="fuse: false" raycaster="objects: .raycastable"
-                    geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
-                    material="color: #FFD6A5; shader: flat"
-                    visible="false">
-          </a-entity>
-
+          <a-gltf-model 
+              src="#pasillo-model"
+              position="0 0 0"
+              rotation="0 0 0" 
+              scale="2.5 2.5 2.5"
+              shadow="cast: true">
+          </a-gltf-model>
+          
         </a-scene>
       </div>
     </div>
   </section>
-
+  
   <footer class="footer">
     <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
     <div class="redes">
@@ -103,67 +98,46 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/galeria3d.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
+
+  <script>
+    // 1. Creamos el nuevo componente "tap-to-move" para avanzar al tocar en móvil
+    AFRAME.registerComponent('tap-to-move', {
+      init: function () {
+        this.cameraRig = document.querySelector('#rig');
+        this.camera = this.cameraRig.querySelector('[camera]');
+        this.speed = 0.3; // Velocidad de avance con cada toque
+
+        // Usamos 'mousedown' que funciona tanto para clic como para toque en pantalla
+        this.el.sceneEl.addEventListener('mousedown', () => {
+          const direction = this.camera.object3D.getWorldDirection(new THREE.Vector3());
+          this.cameraRig.object3D.position.add(direction.multiplyScalar(-this.speed));
+        });
+      }
+    });
+
+    // 2. Esperamos a que la página cargue para aplicar los controles correctos
+    document.addEventListener('DOMContentLoaded', () => {
       const sceneEl = document.querySelector('a-scene');
-      if (!sceneEl) return;
-
-      // Esperamos a que la escena se cargue por completo
+      
       sceneEl.addEventListener('loaded', () => {
-          const vrButton = document.getElementById('enter-vr-btn');
-          const arButton = document.getElementById('enter-ar-btn');
-          const gyroButton = document.getElementById('gyro-btn');
-          const cameraEl = document.getElementById('camera');
+        const rig = document.querySelector('#rig');
+        const camera = document.querySelector('#camera');
 
-          // Lógica para el botón de VR
-          if (vrButton && (AFRAME.utils.device.isVRDisplay() || sceneEl.is('vr-mode-available'))) {
-              vrButton.style.display = 'inline-block';
-              vrButton.addEventListener('click', () => sceneEl.enterVR());
-          }
-
-          // Lógica para el botón de AR
-          if (arButton) {
-              sceneEl.renderer.xr.isSessionSupported('immersive-ar').then((supported) => {
-                  if (supported) {
-                      arButton.style.display = 'inline-block';
-                      arButton.addEventListener('click', () => sceneEl.enterAR());
-                  }
-              });
-          }
-
-          // --- ¡LÓGICA CORREGIDA PARA EL BOTÓN DE GIROSCOPIO! ---
-          if (gyroButton && cameraEl && AFRAME.utils.device.isMobile()) {
-              gyroButton.style.display = 'inline-block';
-              
-              gyroButton.addEventListener('click', () => {
-                  const lookControlsComponent = cameraEl.components['look-controls'];
-                  if (lookControlsComponent) {
-                      // 1. Leemos el estado actual
-                      const currentGyroState = lookControlsComponent.data.magicWindowTrackingEnabled;
-                      const newGyroState = !currentGyroState;
-
-                      // 2. ¡LA CORRECCIÓN! Usamos setAttribute para notificar al componente del cambio.
-                      // Esto mantiene todas las demás propiedades de look-controls y solo cambia la del giroscopio.
-                      cameraEl.setAttribute('look-controls', {
-                          magicWindowTrackingEnabled: newGyroState
-                      });
-
-                      // 3. Actualizamos el estilo del botón para dar feedback visual.
-                      gyroButton.classList.toggle('active', newGyroState);
-                  }
-              });
-          }
-
-          // ... (El resto de tu lógica de AR, si la tienes, va aquí) ...
-          
-          
+        // 3. Sistema inteligente: Detecta si es PC o Celular
+        if (AFRAME.utils.device.isMobile()) {
+          // --- Si es CELULAR:
+          // Activamos el giroscopio por defecto para mirar
+          camera.setAttribute('look-controls', { magicWindowTrackingEnabled: true });
+          // Añadimos nuestro nuevo componente para avanzar al tocar
+          rig.setAttribute('tap-to-move', '');
+        } else {
+          // --- Si es PC:
+          // Le damos los controles de vuelo con teclado
+          rig.setAttribute('movement-controls', 'speed: 0.2; fly: true;');
+        }
       });
-
-      // La lógica de AR (si la estás usando)
-      // ...
-  });
-</script>
+    });
+  </script>
 
 </body>
 </html>
