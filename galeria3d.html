@@ -112,63 +112,36 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/galeria3d.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-      const sceneEl = document.querySelector('a-scene');
-      if (!sceneEl) return;
+    document.addEventListener('DOMContentLoaded', () => {
+      const scene = document.querySelector('a-scene');
+      if (scene.hasLoaded) {
+        runFootstepLogic();
+      } else {
+        scene.addEventListener('loaded', runFootstepLogic);
+      }
+      function runFootstepLogic() {
+        const footsteps = document.querySelector('#footsteps');
+        if (!footsteps) return;
+        let isMoving = false;
+        const moveKeys = ['w', 'a', 's', 'd', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'q', 'e'];
 
-      // Esperamos a que la escena se cargue por completo
-      sceneEl.addEventListener('loaded', () => {
-          const vrButton = document.getElementById('enter-vr-btn');
-          const arButton = document.getElementById('enter-ar-btn');
-          const gyroButton = document.getElementById('gyro-btn');
-          const cameraEl = document.getElementById('camera');
-
-          // Lógica para el botón de VR
-          if (vrButton && (AFRAME.utils.device.isVRDisplay() || sceneEl.is('vr-mode-available'))) {
-              vrButton.style.display = 'inline-block';
-              vrButton.addEventListener('click', () => sceneEl.enterVR());
+        document.addEventListener('keydown', (e) => {
+          if (moveKeys.includes(e.key.toLowerCase()) && !isMoving) {
+            isMoving = true;
+            footsteps.components.sound.playSound();
           }
+        });
 
-          // Lógica para el botón de AR
-          if (arButton) {
-              sceneEl.renderer.xr.isSessionSupported('immersive-ar').then((supported) => {
-                  if (supported) {
-                      arButton.style.display = 'inline-block';
-                      arButton.addEventListener('click', () => sceneEl.enterAR());
-                  }
-              });
+        document.addEventListener('keyup', (e) => {
+          if (moveKeys.includes(e.key.toLowerCase())) {
+            isMoving = false;
+            footsteps.components.sound.pauseSound();
           }
+        });
+      }
+    });
+  </script>
 
-          // --- ¡LÓGICA CORREGIDA PARA EL BOTÓN DE GIROSCOPIO! ---
-          if (gyroButton && cameraEl && AFRAME.utils.device.isMobile()) {
-              gyroButton.style.display = 'inline-block';
-              
-              gyroButton.addEventListener('click', () => {
-                  const lookControlsComponent = cameraEl.components['look-controls'];
-                  if (lookControlsComponent) {
-                      // 1. Leemos el estado actual
-                      const currentGyroState = lookControlsComponent.data.magicWindowTrackingEnabled;
-                      const newGyroState = !currentGyroState;
-
-                      // 2. ¡LA CORRECCIÓN! Usamos setAttribute para notificar al componente del cambio.
-                      // Esto mantiene todas las demás propiedades de look-controls y solo cambia la del giroscopio.
-                      cameraEl.setAttribute('look-controls', {
-                          magicWindowTrackingEnabled: newGyroState
-                      });
-
-                      // 3. Actualizamos el estilo del botón para dar feedback visual.
-                      gyroButton.classList.toggle('active', newGyroState);
-                  }
-              });
-          }
-
-          // ... (El resto de tu lógica de AR, si la tienes, va aquí) ...
-          
-      });
-
-      // La lógica de AR (si la estás usando)
-      // ...
-  });
 </script>
 
 </body>
