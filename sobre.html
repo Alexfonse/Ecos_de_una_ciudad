@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +9,44 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
 
-    <div id="loader">...</div>
-    <header class="hero-header">...</header>
-    <nav class="floating-navbar">...</nav>
-    <div class="menu-fullscreen" id="menu-fullscreen">...</div>
+<body>
+    <header class="hero-header">
+        <img src="assets/img/prueba.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
+        <div class="hero-overlay">
+            <div class="scroll-indicator">
+                <div class="flecha-bajar"></div>
+            </div>
+            <h1 class="titulo-hero">Sobre<br><span class="frase-impacto">nosotros</span></h1>
+            <p class="subtexto-hero">sobre nosotros un equipo multidisciplinario de investigadores, diseñadores y creativos del SENA</p>
+
+
+
+        </div>
+        <div class="onda-inferior">
+            <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <defs>
+                    <path id="wavePath" d="M0,30 C150,80 350,0 600,30 C850,60 1050,10 1200,30 L1200,120 L0,120 Z" />
+                </defs>
+                <g class="waveGroup">
+                    <use xlink:href="#wavePath" class="wave-fill" />
+                    <use xlink:href="#wavePath" class="wave-fill-secondary" />
+                </g>
+            </svg>
+
+        </div>
+    </header>
+
+
 
     <main>
         <section class="about-section">
             <div class="container">
                 <div class="section-title-container">
                     <h2>Nuestra Misión</h2>
-                    <p class="article-intro">Fomentar el reconocimiento y la apropiación del patrimonio cultural de Bogotá, fortaleciendo la identidad colectiva y promoviendo la participación ciudadana en su preservación.</p>
+                    <p class="article-intro">Fomentar el reconocimiento y la apropiación del patrimonio cultural de
+                        Bogotá, fortaleciendo la identidad colectiva y promoviendo la participación ciudadana en su
+                        preservación.</p>
                 </div>
             </div>
         </section>
@@ -31,13 +57,14 @@
                     <h2>Los Creadores</h2>
                     <p>Un equipo multidisciplinario de investigadores, diseñadores y creativos del SENA.</p>
                 </div>
-                
+
                 <div class="team-grid-square">
-                
+
                     <div class="team-card">
                         <div class="team-card-inner">
                             <div class="team-card-front">
-                                <img src="assets/img/angela_salazar.jpg" alt="Foto de Ángela Salazar" class="team-photo">
+                                <img src="assets/img/angela_salazar.jpg" alt="Foto de Ángela Salazar"
+                                    class="team-photo">
                                 <div class="team-info">
                                     <h3 class="team-name">Ángela Salazar</h3>
                                     <p class="team-role">Diseñadora Gráfica</p>
@@ -45,7 +72,8 @@
                             </div>
                             <div class="team-card-back">
                                 <h4>Perfil</h4>
-                                <p>Creativa y armoniosa, con un enfoque en la creación de identidades visuales y marketing. Apasionada por la comunicación eficaz a través del diseño.</p>
+                                <p>Creativa y armoniosa, con un enfoque en la creación de identidades visuales y
+                                    marketing. Apasionada por la comunicación eficaz a través del diseño.</p>
                                 <h5>Habilidades:</h5>
                                 <ul>
                                     <li>Identidad Corporativa</li>
@@ -67,7 +95,8 @@
                             </div>
                             <div class="team-card-back">
                                 <h4>Perfil</h4>
-                                <p>Especialista en la creación y gestión de marcas, con un profundo enfoque en la investigación y el desarrollo de proyectos con alma creativa.</p>
+                                <p>Especialista en la creación y gestión de marcas, con un profundo enfoque en la
+                                    investigación y el desarrollo de proyectos con alma creativa.</p>
                                 <h5>Habilidades:</h5>
                                 <ul>
                                     <li>Dirección de Proyectos</li>
@@ -85,7 +114,8 @@
                     <div class="team-card">
                         <div class="team-card-inner">
                             <div class="team-card-front">
-                                <img src="assets/img/jackeline_mateus.jpg" alt="Foto de Jackeline Mateus" class="team-photo">
+                                <img src="assets/img/jackeline_mateus.jpg" alt="Foto de Jackeline Mateus"
+                                    class="team-photo">
                                 <div class="team-info">
                                     <h3 class="team-name">Jackeline Mateus</h3>
                                     <p class="team-role">Investigadora e Ilustradora</p>
@@ -93,7 +123,8 @@
                             </div>
                             <div class="team-card-back">
                                 <h4>Perfil</h4>
-                                <p>Investigadora y redactora con habilidades para comunicar visualmente a través de la ilustración 2D y 3D, y la edición de video.</p>
+                                <p>Investigadora y redactora con habilidades para comunicar visualmente a través de la
+                                    ilustración 2D y 3D, y la edición de video.</p>
                                 <h5>Habilidades:</h5>
                                 <ul>
                                     <li>Redacción de Contenidos</li>
@@ -107,7 +138,8 @@
                     <div class="team-card">
                         <div class="team-card-inner">
                             <div class="team-card-front">
-                                <img src="assets/img/alexander_fonseca.jpg" alt="Foto de Alexander Fonseca" class="team-photo">
+                                <img src="assets/img/alexander_fonseca.jpg" alt="Foto de Alexander Fonseca"
+                                    class="team-photo">
                                 <div class="team-info">
                                     <h3 class="team-name">Alexander Fonseca</h3>
                                     <p class="team-role">Director de Fotografía</p>
@@ -115,12 +147,14 @@
                             </div>
                             <div class="team-card-back">
                                 <h4>Perfil</h4>
-                                <p>Técnico en Diseño Multimedia con experiencia en fotografía, diseño digital y producción de contenidos interactivos. Reconocido a nivel regional por su trabajo.</p>
+                                <p>Técnico en Diseño Multimedia con experiencia en fotografía, diseño digital y
+                                    producción de contenidos interactivos. Reconocido a nivel regional por su trabajo.
+                                </p>
                                 <h5>Habilidades:</h5>
                                 <ul>
                                     <li>Fotografía Profesional</li>
                                     <li>Modelado 3D (Blender)</li>
-                                    <li>Desarrollo Web Básico</li>
+                                    <li>Desarrollo Web</li>
                                 </ul>
                             </div>
                         </div>
@@ -129,8 +163,46 @@
             </div>
         </section>
     </main>
-    
-    <footer class="footer">...</footer>
+
+    <nav class="floating-navbar">
+        <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+
+    <div class="menu-fullscreen" id="menu-fullscreen">
+        <ul class="menu-items">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="galeria3d.html">Galería 3D</a></li>
+            <li><a href="public/chat.html">Don gaitaloma</a></li>
+            <li><a href="blog/blog.html">Blog</a></li>
+            <li><a href="eventos.html">Eventos</a></li>
+            <li><a href="sobre.html">Sobre nosotros</a></li>
+        </ul>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-form-container">
+            <h4>¿Quieres recibir más ecos de la ciudad?</h4>
+            <p>Suscríbete para no perderte nuevas historias, galerías y eventos.</p>
+            <form id="footer-form" class="footer-subscribe-form">
+                <input type="email" id="footer-email" name="email" placeholder="Escribe tu correo electrónico aquí"
+                    required>
+                <button type="submit" class="boton-principal">Suscribirme</button>
+            </form>
+        </div>
+        <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
+        <div class="redes">
+            <a href="https://instagram.com/Focus_Bogota" target="_blank">Instagram</a> |
+            <a href="mailto:focus@gmail.com">Correo</a> |
+            <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
+        </div>
+        <div class="cirgaita">
+            <img src="assets/img/prueba_2.png" alt="Logo circular">
+        </div>
+    </footer>
 
     <script src="assets/js/main.js"></script>
     <script>
@@ -144,4 +216,5 @@
         });
     </script>
 </body>
+
 </html>

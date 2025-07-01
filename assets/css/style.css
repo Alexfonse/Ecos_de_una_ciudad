@@ -1616,8 +1616,8 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .team-card-back {
-  background-color: var(--color-tertiary-container);
-  color: var(--color-on-tertiary-container);
+  background-color: var(--color-inverse-on-surface);
+  color: var(--white);
   transform: rotateY(180deg);
   padding: 2rem;
   display: flex;
@@ -1690,4 +1690,176 @@ html::-webkit-scrollbar-thumb:hover {
     /* Ocultamos el logo central en móvil para no sobrecargar el diseño */
     display: none; 
   }
+}
+
+/* ======================================================================== */
+/* === ESTILOS PARA LA NUEVA PÁGINA DE EVENTOS === */
+/* ======================================================================== */
+
+.events-container {
+  background-color: var(--color-surface);
+  padding: 4rem 0;
+}
+
+.filters-and-search-bar {
+  background-color: var(--color-surface-variant);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: center;
+  position: sticky;
+  top: 1rem;
+  z-index: 100;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.search-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+.search-wrapper input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border-radius: 50px;
+  border: 1px solid var(--color-outline);
+  background-color: var(--color-surface);
+  color: white;
+  font-family: var(--font-parrafo);
+}
+
+.search-wrapper i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-outline);
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-btn {
+  background-color: transparent;
+  color: var(--color-outline);
+  border: 1px solid var(--color-outline);
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+.filter-btn:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+}
+.filter-btn.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.event-card {
+    display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface-variant);
+  border-radius: 15px;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.event-card-image {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.event-card-category {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(14, 26, 28, 0.7);
+  backdrop-filter: blur(5px);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.event-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Permite que este contenedor crezca para llenar el espacio */
+}
+
+.event-card-title {
+  font-family: var(--font-titulo);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-on-surface);
+}
+
+.event-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-outline);
+  margin-bottom: 1rem;
+}
+.event-card-details span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.event-card-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  /* ¡ELIMINADO! Quitamos la altura fija y el overflow */
+  flex-grow: 1; /* Hace que este párrafo ocupe todo el espacio disponible, empujando el link hacia abajo */
+}
+
+
+.event-card-link {
+  font-weight: bold;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.event-card-link:hover {
+  color: var(--color-secondary);
+}
+
+.no-results-message {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: var(--color-outline);
+}
+.no-results-message.hidden {
+  display: none;
+}
+.no-results-message i {
+  width: 60px;
+  height: 60px;
+  stroke-width: 1.5px;
+  margin-bottom: 1rem;
 }

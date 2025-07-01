@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos - Ecos de una Ciudad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div id="loader">...</div>
+    < <!-- HERO -->
+        <header class="hero-header">
+            <img src="assets/img/prueba.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
+            <div class="hero-overlay">
+                <div class="scroll-indicator">
+                    <div class="flecha-bajar"></div>
+                </div>
+                <h1 class="titulo-hero">Agenda<br><span class="frase-impacto">cultural</span></h1>
+                <p class="subtexto-hero">Descubre los eventos que hacen vibrar a Bogotá. Teatro, música, cine y más.
+                </p>
+
+
+            </div>
+            <div class="onda-inferior">
+                <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <defs>
+                        <path id="wavePath" d="M0,30 C150,80 350,0 600,30 C850,60 1050,10 1200,30 L1200,120 L0,120 Z" />
+                    </defs>
+                    <g class="waveGroup">
+                        <use xlink:href="#wavePath" class="wave-fill" />
+                        <use xlink:href="#wavePath" class="wave-fill-secondary" />
+                    </g>
+                </svg>
+
+            </div>
+        </header>
+
+
+        <nav class="floating-navbar">
+            <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+
+        <div class="menu-fullscreen" id="menu-fullscreen">
+            <ul class="menu-items">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="galeria3d.html">Galería 3D</a></li>
+                <li><a href="public/chat.html">Don gaitaloma</a></li>
+                <li><a href="blog/blog.html">Blog</a></li>
+                <li><a href="eventos.html">Eventos</a></li>
+                <li><a href="sobre.html">Sobre nosotros</a></li>
+            </ul>
+        </div>
+
+        <main class="events-container">
+            <div class="container">
+                <div class="filters-and-search-bar">
+                    <div class="search-wrapper">
+                        <i data-lucide="search"></i>
+                        <input type="text" id="searchInput" placeholder="Buscar por nombre del evento...">
+                    </div>
+                    <div id="filterContainer" class="filter-buttons">
+                        <button data-category="Todos" class="filter-btn active">Todos</button>
+                        <button data-category="Teatro" class="filter-btn">Teatro</button>
+                        <button data-category="Cine" class="filter-btn">Cine</button>
+                        <button data-category="Música" class="filter-btn">Música</button>
+                        <button data-category="Cultural" class="filter-btn">Cultural</button>
+                    </div>
+                </div>
+
+                <div id="event-grid" class="row">
+                </div>
+
+                <div id="no-results" class="no-results-message hidden">
+                    <i data-lucide="file-search-2"></i>
+                    <h2>No se encontraron eventos</h2>
+                    <p>Intenta con otra búsqueda o filtro.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-form-container">
+                <h4>¿Quieres recibir más ecos de la ciudad?</h4>
+                <p>Suscríbete para no perderte nuevas historias, galerías y eventos.</p>
+                <form id="footer-form" class="footer-subscribe-form">
+                    <input type="email" id="footer-email" name="email" placeholder="Escribe tu correo electrónico aquí"
+                        required>
+                    <button type="submit" class="boton-principal">Suscribirme</button>
+                </form>
+            </div>
+            <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
+            <div class="redes">
+                <a href="https://instagram.com/Focus_Bogota" target="_blank">Instagram</a> |
+                <a href="mailto:focus@gmail.com">Correo</a> |
+                <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
+            </div>
+            <div class="cirgaita">
+                <img src="assets/img/prueba_2.png" alt="Logo circular">
+            </div>
+
+            <script src="assets/js/main.js"></script>
+            <script src="assets/js/eventos.js"></script>
+</body>
+
+</html>
