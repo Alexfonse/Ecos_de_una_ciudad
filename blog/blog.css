@@ -194,3 +194,439 @@
     font-size: 2rem;
   }
 }
+/* Pega esto al final de tu blog.css */
+
+/* --- Estilos para el Artículo Dentro del Modal --- */
+.modal-body .article-intro {
+  font-size: 1.2rem;
+  font-style: italic;
+  max-width: 70ch;
+  margin: 1.5rem auto 2rem auto; /* Ajuste de margen */
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* --- Estilos para la Línea de Tiempo Vertical --- */
+.timeline {
+  position: relative;
+  max-width: 650px;
+  margin: 3rem auto;
+  padding: 1rem 0;
+}
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: var(--color-outline-variant);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+}
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.timeline-item.visible { opacity: 1; }
+.timeline-item.fade-in-left { animation: fadeInLeft 0.8s ease-out forwards; }
+.timeline-item.fade-in-right { animation: fadeInRight 0.8s ease-out forwards; }
+@keyframes fadeInLeft { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+.timeline-item:nth-child(odd) { left: 0; }
+.timeline-item:nth-child(even) { left: 50%; }
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: -10px;
+  background-color: var(--color-surface);
+  border: 4px solid var(--color-secondary);
+  top: 28px;
+  border-radius: 50%;
+  z-index: 1;
+}
+.timeline-item:nth-child(even)::after { left: -10px; }
+.timeline-content { padding: 1.5rem; background: var(--color-surface); border-radius: 10px; }
+.timeline-time { font-weight: bold; color: var(--color-primary); }
+.timeline-title { font-family: var(--font-titulo); font-size: 1.8rem; margin: 0.5rem 0; }
+
+/* --- Estilos para las Tarjetas de Datos --- */
+.data-cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+.data-card {
+  background: var(--color-surface-variant);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 220px;
+  border-bottom: 5px solid var(--color-primary);
+  opacity: 0;
+}
+.data-card.visible.zoom-in { animation: zoomIn 0.6s ease-out forwards; }
+@keyframes zoomIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+.data-card-number { font-size: 3.5rem; font-weight: bold; color: var(--color-secondary); }
+.data-card-label { display: block; margin-bottom: 0.5rem; }
+.data-card-source { font-size: 0.8rem; opacity: 0.7; }
+
+/* Responsive para la línea de tiempo en móviles */
+@media (max-width: 768px) {
+  .timeline::after { left: 20px; }
+  .timeline-item { width: 100%; padding-left: 55px; padding-right: 15px; }
+  .timeline-item:nth-child(even) { left: 0; }
+  .timeline-item.visible.fade-in-right { animation: fadeInLeft 0.8s ease-out forwards; }
+}
+
+/* ======================================================================== */
+/* === ESTILOS PERSONALIZADOS PARA LA BARRA DE SCROLL DEL MODAL === */
+/* ======================================================================== */
+
+/* --- Para navegadores WebKit (Chrome, Safari, Edge, etc.) --- */
+
+/* Seleccionamos el cuerpo del modal y su scrollbar */
+.modal-body::-webkit-scrollbar {
+  width: 12px; /* Ancho de la barra de scroll */
+}
+
+/* Este es el "riel" o fondo de la barra */
+.modal-body::-webkit-scrollbar-track {
+  background: var(--color-surface); /* Un color oscuro de tu paleta */
+  border-radius: 10px;
+}
+
+/* Esta es la barra móvil, la que arrastras */
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline); /* Un color de acento de tu paleta */
+  border-radius: 10px;
+  border: 3px solid var(--color-surface); /* Crea un pequeño borde alrededor */
+}
+
+/* Efecto al pasar el cursor sobre la barra */
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-secondary); /* Se ilumina con tu color secundario */
+}
+
+
+/* --- Para Firefox --- */
+.modal-body {
+  /* Firefox usa una propiedad más simple: color de la barra y color del fondo */
+  scrollbar-width: thin; /* Puede ser 'auto', 'thin', o 'none' */
+  scrollbar-color: var(--color-outline) var(--color-surface);
+}
+
+/* En tu archivo blog.css */
+
+/* --- Estilos para la Tarjeta de Personaje Clave --- */
+.key-figure-card {
+  margin: 3rem auto;
+  max-width: 650px;
+  background: var(--color-surface); /* Un fondo ligeramente diferente */
+  border-left: 5px solid var(--color-primary); /* Un acento de color */
+  padding: 1.5rem 2rem;
+  border-radius: 0 10px 10px 0;
+  opacity: 0;
+}
+.key-figure-card.visible.zoom-in {
+  animation: zoomIn 0.8s ease-out forwards;
+}
+.key-figure-card h4 {
+  font-family: var(--font-parrafo);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.key-figure-card h3 {
+  font-family: var(--font-titulo);
+  color: var(--color-on-surface);
+  font-size: 2rem;
+  margin-top: 0;
+}
+.key-figure-card p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 0;
+}
+
+/* En tu archivo blog.css */
+
+/* --- Estilos para el Comparador de Imágenes "Antes y Después" --- */
+.image-comparison-slider {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 3rem auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 10px;
+  cursor: ew-resize; /* Cursor de mover de lado a lado */
+  opacity: 0;
+}
+.image-comparison-slider.visible.fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.image-comparison-slider .image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image-comparison-slider .image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* La imagen "después" (la de encima) se recorta por defecto */
+.image-comparison-slider .image-after {
+  clip-path: inset(0 0 0 50%);
+}
+
+/* La barra divisora */
+.image-comparison-slider .slider-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background-color: white;
+  transform: translateX(-2px);
+  pointer-events: none; /* Para que no interfiera con el arrastre */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* El círculo del handle */
+.image-comparison-slider .slider-handle::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+/* Las flechas dentro del círculo */
+.handle-arrow {
+  width: 0; 
+  height: 0; 
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  position: absolute;
+}
+.left-arrow {
+  border-right: 8px solid white; 
+  left: -20px;
+}
+.right-arrow {
+  border-left: 8px solid white; 
+  right: -20px;
+}
+
+/* --- Estilos para el Gráfico de Barras Animado (Versión Definitiva y a Prueba de Fallos) --- */
+.chart-container {
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: var(--color-surface-variant);
+  border-radius: 10px;
+  text-align: center;
+  max-width: 650px;
+  opacity: 0;
+}
+.chart-container.visible.fade-in-up {
+  animation: fadeInUp 1s ease-out forwards;
+}
+.chart-container h4 {
+  font-family: var(--font-titulo);
+  margin-bottom: 2rem;
+}
+.bar-chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 200px;
+  border-left: 2px solid var(--color-outline);
+  border-bottom: 2px solid var(--color-outline);
+  padding-left: 1rem;
+}
+.bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+}
+.bar {
+  width: 50%;
+  background: linear-gradient(to top, var(--color-primary), var(--color-secondary));
+  border-radius: 5px 5px 0 0;
+  /* El estado inicial para TODAS las barras es altura CERO */
+  height: 0;
+  transition: height 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- ¡LA MAGIA ESTÁ AQUÍ (TU SOLUCIÓN)! --- */
+/* Cuando el contenedor es visible, cada barra crece a su altura específica */
+
+.chart-container.visible .bar-1 {
+  height: 25px; /* Altura para la primera barra */
+}
+.chart-container.visible .bar-2 {
+  height: 70px; /* Altura para la segunda barra */
+}
+
+.bar-label {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+.bar-value {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+.chart-caption {
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* ======================================================================== */
+/* === ESTILOS CORREGIDOS PARA LAS TARJETAS GIRATORIAS === */
+/* ======================================================================== */
+
+.flip-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 3rem 0;
+  perspective: 1000px; 
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 280px;
+  height: 350px;
+  cursor: pointer;
+  /* ¡AÑADIDO! Transición suave para el efecto de elevación */
+  transition: transform 0.3s ease, z-index 0s 0.15s; 
+}
+
+/* ¡AÑADIDO! Hacemos que la tarjeta activa se eleve y se ponga al frente */
+.flip-card:hover {
+  transform: scale(1.05); /* La tarjeta se hace un poco más grande */
+  z-index: 10; /* La traemos al frente para que no se atraviese con otras */
+  transition: transform 0.3s ease, z-index 0s 0s;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  border-radius: 15px; /* Movido aquí para que ambas caras lo hereden */
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Oculta la cara trasera por defecto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+}
+
+.flip-card-front {
+  background: #4a5a59;
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
+  border: 2px solid var(--color-outline);
+}
+
+.flip-card-front h3 {
+  /* ¡MODIFICADO! Usamos tu fuente principal */
+  font-family: var(--font-titulo); 
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.flip-card-instruction {
+  font-style: italic;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* Reemplaza los estilos de .flip-card-back con estos en tu blog.css */
+
+.flip-card-back {
+  background-color: var(--color-surface-variant);
+  color: var(--color-on-surface);
+  transform: rotateY(180deg); 
+  /* ¡MODIFICADO! Ajustamos el layout */
+  justify-content: flex-start; /* Alineamos el contenido arriba */
+  padding-top: 2rem;
+}
+
+/* Estilo para el nuevo ícono */
+.flip-card-back i {
+  width: 48px;
+  height: 48px;
+  stroke-width: 1.5px;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.flip-card-back h4 {
+  /* ¡MODIFICADO! Usamos tu fuente principal de títulos */
+  font-family: var(--font-titulo); 
+  font-size: 1.8rem;
+  color: var(--color-on-surface);
+  position: relative; /* Para la línea decorativa */
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+/* ¡AÑADIDO! Línea decorativa debajo del título */
+.flip-card-back h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-secondary);
+}
+
+.flip-card-back p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}

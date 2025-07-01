@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Ecos de una Ciudad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+    <div id="loader">...</div>
+    <header class="hero-header">...</header>
+    <nav class="floating-navbar">...</nav>
+    <div class="menu-fullscreen" id="menu-fullscreen">...</div>
+
+    <main>
+        <section class="about-section">
+            <div class="container">
+                <div class="section-title-container">
+                    <h2>Nuestra Misión</h2>
+                    <p class="article-intro">Fomentar el reconocimiento y la apropiación del patrimonio cultural de Bogotá, fortaleciendo la identidad colectiva y promoviendo la participación ciudadana en su preservación.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <div class="section-title-container">
+                    <h2>Los Creadores</h2>
+                    <p>Un equipo multidisciplinario de investigadores, diseñadores y creativos del SENA.</p>
+                </div>
+                
+                <div class="team-grid-square">
+                
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <img src="assets/img/angela_salazar.jpg" alt="Foto de Ángela Salazar" class="team-photo">
+                                <div class="team-info">
+                                    <h3 class="team-name">Ángela Salazar</h3>
+                                    <p class="team-role">Diseñadora Gráfica</p>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Perfil</h4>
+                                <p>Creativa y armoniosa, con un enfoque en la creación de identidades visuales y marketing. Apasionada por la comunicación eficaz a través del diseño.</p>
+                                <h5>Habilidades:</h5>
+                                <ul>
+                                    <li>Identidad Corporativa</li>
+                                    <li>Diseño Editorial</li>
+                                    <li>Suite Adobe</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <img src="assets/img/flor_macias.jpg" alt="Foto de Flor Macías" class="team-photo">
+                                <div class="team-info">
+                                    <h3 class="team-name">Flor Macías</h3>
+                                    <p class="team-role">Investigación y Marca</p>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Perfil</h4>
+                                <p>Especialista en la creación y gestión de marcas, con un profundo enfoque en la investigación y el desarrollo de proyectos con alma creativa.</p>
+                                <h5>Habilidades:</h5>
+                                <ul>
+                                    <li>Dirección de Proyectos</li>
+                                    <li>Investigación</li>
+                                    <li>Branding Estratégico</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-center-logo">
+                        <img src="assets/img/portada.jpg" alt="Don Gaitaloma">
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <img src="assets/img/jackeline_mateus.jpg" alt="Foto de Jackeline Mateus" class="team-photo">
+                                <div class="team-info">
+                                    <h3 class="team-name">Jackeline Mateus</h3>
+                                    <p class="team-role">Investigadora e Ilustradora</p>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Perfil</h4>
+                                <p>Investigadora y redactora con habilidades para comunicar visualmente a través de la ilustración 2D y 3D, y la edición de video.</p>
+                                <h5>Habilidades:</h5>
+                                <ul>
+                                    <li>Redacción de Contenidos</li>
+                                    <li>Ilustración Digital</li>
+                                    <li>Blender (3D)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-card-inner">
+                            <div class="team-card-front">
+                                <img src="assets/img/alexander_fonseca.jpg" alt="Foto de Alexander Fonseca" class="team-photo">
+                                <div class="team-info">
+                                    <h3 class="team-name">Alexander Fonseca</h3>
+                                    <p class="team-role">Director de Fotografía</p>
+                                </div>
+                            </div>
+                            <div class="team-card-back">
+                                <h4>Perfil</h4>
+                                <p>Técnico en Diseño Multimedia con experiencia en fotografía, diseño digital y producción de contenidos interactivos. Reconocido a nivel regional por su trabajo.</p>
+                                <h5>Habilidades:</h5>
+                                <ul>
+                                    <li>Fotografía Profesional</li>
+                                    <li>Modelado 3D (Blender)</li>
+                                    <li>Desarrollo Web Básico</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">...</footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const teamCards = document.querySelectorAll('.team-card');
+            teamCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('flipped');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

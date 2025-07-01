@@ -1495,3 +1495,199 @@ p {
     width: 100%;
   }
 }
+
+/* ======================================================================== */
+/* === ESTILO PARA EL SCROLLBAR GENERAL DE LA PÁGINA === */
+/* ======================================================================== */
+
+/* --- Para Firefox --- */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary) var(--color-surface);
+}
+
+/* --- Para Chrome, Safari, Edge --- */
+html::-webkit-scrollbar {
+  width: 14px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline);
+  border-radius: 20px;
+  border: 3px solid var(--color-surface);
+  transition: background-color 0.3s ease;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-secondary);
+  box-shadow: 0 0 10px var(--color-secondary); /* Efecto de brillo */
+}
+
+/* ======================================================================== */
+/* === ESTILOS PARA LA PÁGINA "SOBRE NOSOTROS" === */
+/* ======================================================================== */
+
+.about-section {
+  padding: 4rem 0;
+  background-color: var(--color-surface-variant);
+}
+
+.team-section {
+  padding: 4rem 0;
+  background-color: var(--color-surface);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.team-card {
+  perspective: 1500px;
+}
+
+.team-card-inner {
+  position: relative;
+  width: 100%;
+  padding-bottom: 125%; /* Proporción 4:5 */
+  transition: transform 0.7s;
+  transform-style: preserve-3d;
+}
+
+.team-card.flipped .team-card-inner {
+  transform: rotateY(180deg);
+}
+
+.team-card-front, .team-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+.team-card-front {
+  background: var(--color-surface-variant);
+}
+
+.team-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .team-photo {
+  transform: scale(1.05);
+}
+
+.team-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(14, 26, 28, 0.9) 20%, transparent);
+  color: white;
+}
+
+.team-name {
+  font-family: var(--font-titulo);
+  font-size: 1.8rem;
+  color: white;
+  margin: 0;
+}
+
+.team-role {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  font-weight: bold;
+  margin: 0;
+}
+
+.team-card-back {
+  background-color: var(--color-tertiary-container);
+  color: var(--color-on-tertiary-container);
+  transform: rotateY(180deg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card-back h4 {
+  font-family: var(--font-titulo);
+  color: var(--color-primary);
+}
+
+.team-card-back h5 {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.team-card-back ul {
+  list-style-type: none;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+/* En assets/css/style.css */
+
+/* === ¡NUEVO! Estilos para la Cuadrícula del Equipo 2x2 === */
+
+.team-grid-square {
+  display: grid;
+  /* Creamos una cuadrícula de 2x2 */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2rem;
+  max-width: 900px; /* Ancho máximo para el contenedor */
+  margin: 0 auto;
+  position: relative; /* Para posicionar el logo en el centro */
+}
+
+/* El logo de Don Gaitaloma en el centro */
+.team-center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  background-color: var(--color-surface-variant);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0 0 0 10px var(--color-surface), 0 5px 20px rgba(0,0,0,0.5);
+  z-index: 20;
+}
+
+.team-center-logo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --- Responsive para la cuadrícula --- */
+@media (max-width: 768px) {
+  .team-grid-square {
+    /* En móvil, volvemos a una sola columna */
+    grid-template-columns: 1fr;
+  }
+  .team-center-logo {
+    /* Ocultamos el logo central en móvil para no sobrecargar el diseño */
+    display: none; 
+  }
+}
