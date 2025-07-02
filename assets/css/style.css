@@ -138,6 +138,7 @@ p,
   overflow: hidden;
 }
 
+
 .hero-bg {
   position: absolute;
   width: 100%;
@@ -715,6 +716,12 @@ p {
   border: 2px solid transparent;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(10px);
+    /* NUEVO: Contenedor flex para organizar imagen y texto */
+  display: flex;
+  flex-direction: column; /* Apila la imagen y el panel de información */
+  align-items: center; /* Centra el contenido horizontalmente */
+  justify-content: flex-start; /* Alinea el contenido al inicio de la tarjeta */
+  padding-top: 10px; /* Pequeño padding en la parte superior para la imagen */
 }
 
 .gallery-item img {
@@ -731,16 +738,31 @@ p {
 }
 
 .gallery-item.active {
-  width: 300px;
-  height: 400px;
-  z-index: 100;
-  box-shadow: 0 30px 60px rgba(217, 122, 5, 0.4);
+  width: 300px; /* Ancho más grande cuando está activa */
+  height: 400px; /* Altura más grande cuando está activa */
+  z-index: 100; /* Asegura que esté al frente */
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   border-color: var(--color-secondary);
+  padding: 15px; /* Ajusta el padding para el tamaño activo */
 }
 
 .gallery-item.hidden {
   opacity: 0.3;
   transform: scale(0.8);
+}
+
+.gallery-info-panel {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  padding: 0 1.5rem 1.5rem; /* Padding para el contenido del texto */
+  text-align: center;
+  
+  /* Controla la visibilidad y animación del panel */
+  opacity: 0;
+  transform: translateY(10px); /* Pequeño efecto de deslizamiento al aparecer */
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+
+  background: none; /* No tiene fondo degradado; la tarjeta ya lo tiene */
+  color: white; /* Color del texto */
 }
 
 /* INFORMACIÓN DE LA IMAGEN */
@@ -755,6 +777,11 @@ p {
   transform: translateY(100%);
   transition: transform 0.4s ease;
   border-radius: 0 0 20px 20px;
+    /* MODIFICACIONES PARA GESTIONAR ESPACIO Y SCROLL */
+  display: flex; /* Habilita Flexbox para organizar los hijos */
+  flex-direction: column; /* Apila los elementos verticalmente */
+  height: 100%; /* Permite que image-info ocupe toda la altura de gallery-item cuando se necesite más espacio */
+  justify-content: flex-end; /* Alinea el contenido hacia la parte inferior */
 }
 
 .gallery-item.active .image-info {
@@ -780,14 +807,40 @@ p {
   font-size: 0.9rem;
   line-height: 1.4;
   opacity: 0.9;
+  /* MODIFICACIONES PARA SCROLL DEL TEXTO LARGO */
+  flex-grow: 1; /* Permite que la descripción crezca y ocupe el espacio disponible */
+  overflow-y: auto; /* Añade una barra de desplazamiento vertical si el contenido excede la altura */
+  margin-bottom: 0.5rem; /* Ajustar margen inferior si es necesario */
+  
+  /* Estilos personalizados para la barra de scroll (Firefox) */
+  scrollbar-width: thin; 
+  scrollbar-color: var(--color-outline) var(--color-surface); 
+}
+
+/* Estilos de la barra de desplazamiento para navegadores basados en WebKit (Chrome, Safari, Edge) */
+.image-description::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de scroll */
+}
+.image-description::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2); /* Fondo transparente para el track */
+  border-radius: 10px;
+}
+.image-description::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline); /* Color de la barra */
+  border-radius: 10px;
+  border: 2px solid transparent; /* Borde transparente para la thumb */
+}
+.image-description::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-secondary); /* Color al pasar el cursor */
 }
 
 .image-details {
   display: flex;
   gap: 1rem;
-  margin-top: 0.8rem;
+  margin-top: auto; /* Empuja los detalles al final del contenedor disponible */
   font-size: 0.8rem;
   opacity: 0.7;
+  font-family: var(--font-parrafo);
 }
 
 /* CONTROLES */
@@ -842,6 +895,19 @@ p {
     margin-left: 50px;
     margin-top: 75px;
   }
+  
+  .gallery-item .gallery-main-image {
+  width: 90%; /* Ancho de la imagen dentro de la tarjeta */
+  height: 120px; /* Altura fija para la imagen */
+  object-fit: cover;
+  border-radius: 10px; /* Bordes redondeados para la imagen */
+  margin-bottom: 10px; /* Espacio entre la imagen y el panel de texto */
+  transition: transform 0.6s ease; /* Mantener la transición al pasar el mouse */
+}
+
+.gallery-item:hover .gallery-main-image {
+  transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
+}
 
   .gallery-center-info {
     font-size: 0.9rem;

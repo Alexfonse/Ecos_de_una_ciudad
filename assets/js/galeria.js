@@ -14,11 +14,11 @@
 
 const circularGalleryData = [
   {
-    src: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=1200&fit=crop',
-    title: 'Centro Histórico',
-    description: 'La arquitectura colonial que define el corazón de la ciudad.',
-    location: 'La Candelaria',
-    year: '2023'
+    src: 'assets/img/artis.png',
+    title: 'Pionero del Impresionismo Colombiano',
+    description: 'Andrés de Santa María fue el artista que rompió con la tradición académica en Colombia, introduciendo el Impresionismo y abriendo un nuevo camino para el arte moderno en el país. Sus obras, como "La calle en Bogotá" o "Interior del claustro de San Agustín", capturaron la luz y la atmósfera de su tiempo, dejando un legado transformador.',
+    location: '(Director de la Escuela Nacional de Bellas Artes)',
+    year: '1860-1945'
   },
   {
     src: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=1200&fit=crop',
@@ -217,24 +217,45 @@ const characterGalleryData = [
     { 
         items: [
             {
-                src: 'assets/img/prueba.png',
-                title: 'Gabriel García Márquez',
-                description: 'Premio Nobel de Literatura en 1982, su obra inmortalizó a Colombia en el realismo mágico.'
+                src: 'assets/img/jorge.png',
+                title: ' Jorge Eliécer Gaitán (1903-1948)',
+                description: 'Jorge Eliécer Gaitán fue un abogado y carismático líder liberal que se erigió como la voz de las clases populares en Colombia, criticando fuertemente a la oligarquía. Su asesinato el 9 de abril de 1948 en Bogotá no solo truncó su prometedora carrera política, sino que desató el violento estallido social conocido como "El Bogotazo", un evento que marcó profundamente el inicio de una larga y dolorosa era de violencia política en el país. Su influencia es innegable y su memoria perdura en numerosos homenajes a nivel nacional, reafirmando el eco de su icónica frase: "Yo no soy un hombre, soy un pueblo.',
             },
             {
-                src: 'assets/img/prueba.png',
-                title: 'Gabo, Años de Juventud',
-                description: '“Lo que importa en la vida no es lo que te ocurre, sino lo que recuerdas y cómo lo recuerdas para contarlo.”'
+                src: 'assets/img/rafael_uribe.png ',
+                title: 'Rafael Uribe Uribe (1859-1914)',
+                description: 'Rafael Uribe Uribe fue un destacado general liberal y político que se distinguió por su ferviente defensa de los derechos laborales y sociales en Colombia, siendo además una figura crucial durante la Guerra de los Mil Días. Su vida fue trágicamente segada en Bogotá, cuando fue brutalmente asesinado a hachazos, un suceso que generó un intenso debate sobre las condiciones laborales y el poder de las élites dominantes. Su legado como precursor de las reivindicaciones sociales se mantiene vivo a través de una localidad que lleva su nombre y su imponente estatua frente al Congreso Nacional, simbolizando su eterna defensa del pueblo.'
+            },
+            {
+                src: 'assets/img/francisco.png ',
+                title: 'Francisco José de Caldas (1768-1816)',
+                description: 'Francisco José de Caldas fue un brillante científico, ingeniero, militar e intelectual criollo, reconocido como uno de los primeros grandes sabios del continente americano. Su compromiso con la causa independentista le costó la vida, siendo fusilado por el régimen español durante la Reconquista. Su ejecución se convirtió en un poderoso símbolo del sacrificio por la libertad y la búsqueda incansable del conocimiento. Hoy, su invaluable aporte a la ciencia y su espíritu patriótico son honrados por la Universidad Distrital Francisco José de Caldas, así como por barrios, calles y su presencia en importantes museos de historia.'
             }
         ]
     },
     { 
         items: [
             {
-                src: 'assets/img/prueba3.jpeg',
-                title: 'Jorge Eliécer Gaitán',
-                description: 'Líder político cuya voz resonó en toda la nación y cuyo asesinato marcó un antes y un después en la historia del país.'
+                src: 'assets/img/loca_margarita.png',
+                title: 'La Loca Margarita (¿1860? - 1925 aprox.)',
+                description: 'Margarita Villaquirá, cariñosamente conocida como La Loca Margarita, fue una figura enigmática y entrañable que deambulaba por el centro de Bogotá, vestida de blanco, siempre con su sombrilla y flores. Más allá de su aparente excentricidad, fue vista por muchos como un símbolo de la dignidad en la marginalidad, la resistencia y la memoria viva del pueblo bogotano. Aunque las circunstancias exactas de su muerte son inciertas, su historia se diluyó en la leyenda, convirtiéndola en una leyenda urbana querida por niños, artistas y escritores. Su legado persiste en murales, obras de teatro y en la sabiduría de su frase: "¡No se ría, que usted también está loco y no se ha dado cuenta!"'
+            },
+            {
+                src: 'assets/img/camilo.png',
+                title: 'Camilo Torres Restrepo (1929-1966)',
+                description: 'Camilo Torres Restrepo fue un sacerdote, sociólogo y activista político que se convirtió en una figura central del movimiento de la Teología de la Liberación en Colombia antes de unirse a la guerrilla del ELN. Su vida terminó abruptamente al morir en su primer combate como guerrillero, lo que lo convirtió en una figura profundamente polémica: para algunos, un mártir que se sacrificó por los más necesitados, para otros, una dolorosa traición a la Iglesia. A pesar de las divisiones, su impacto es innegable y su memoria se mantiene viva en colegios, parques populares y en diversas expresiones de la cultura urbana y popular.'
+            },
+            {
+                src: 'assets/img/pepe_cierra.png',
+                title: 'Pepe Sierra (1836-1921)',
+                description: 'Pepe Sierra fue uno de los empresarios más ricos y visionarios de su época en Colombia, destacándose como banquero, inversionista y un crucial impulsor del desarrollo urbano en Bogotá. A diferencia de otros personajes históricos, su vida concluyó en paz, dejando un inmenso legado económico que contribuyó significativamente a la modernización del país. Se le reconoce como uno de los pioneros de la transformación empresarial y urbana de la capital. Su nombre y contribuciones son perpetuados en homenajes tan relevantes como la transitada Avenida Pepe Sierra (Calle 116), la estación de TransMilenio, y varios colegios y barrios residenciales.'
+            },
+            {
+                src: 'assets/img/jaime.png',
+                title: 'Jaime Garzón (1960-1999)',
+                description: 'Jaime Garzón fue un abogado, periodista, humorista, pedagogo y activista por la paz cuya perspicacia y humor lo convirtieron en una de las voces más críticas y queridas de Colombia. A través de programas como Zoociedad y ¡Quac! El Noticiero, utilizó la sátira para cuestionar el poder. Su vida fue trágicamente segada el 13 de agosto de 1999 por sicarios en Bogotá, en un crimen que expuso la responsabilidad de paramilitares y agentes estatales, y que se convirtió en un crudo símbolo de la censura por medio de la violencia. A pesar del dolor, su legado sigue vivo en parques, murales y en su emblemática frase: "Si ustedes los jóvenes no asumen el control de su propio país, nadie va a venir a salvárselos", que inspira a nuevas generaciones.'
             }
+
         ]
     }
 ];
