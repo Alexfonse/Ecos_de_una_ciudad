@@ -739,7 +739,7 @@ p {
 
 /* NUEVO: Estilo para la imagen principal de la tarjeta (ahora no es overlay) */
 .gallery-item .gallery-main-image {
-  width: 50%;
+  width: 100%;
   /* Ancho de la imagen dentro de la tarjeta */
   height: auto;
   /* La altura se ajusta automáticamente para mantener la proporción */
@@ -755,7 +755,9 @@ p {
   /* Mantener la transición al pasar el mouse */
 }
 
-
+.gallery-item.active .gallery-main-image {
+    width: 50%;
+}
 
 /* Efecto hover: la tarjeta completa crece y la imagen también */
 .gallery-item:hover {
@@ -774,7 +776,7 @@ p {
 .gallery-item.active {
   width: 400px;
   /* Ancho más grande cuando está activa */
-  height: 700px;
+  height: 600px;
   /* AUMENTADO: Mucho más alta para el contenido */
   z-index: 100;
   /* Asegura que esté al frente */
@@ -814,9 +816,6 @@ p {
   /* Habilita Flexbox para organizar los hijos */
   flex-direction: column;
   /* Apila título, descripción, detalles */
-  flex-grow: 1;
-  /* Permite que este panel crezca y ocupe el espacio restante en .gallery-item */
-  justify-content: flex-end;
   /* Alinea el contenido hacia la parte inferior del panel */
 }
 
@@ -964,13 +963,14 @@ p {
   /* Ajustes para el .gallery-item activo en móvil */
   .gallery-item.active {
     width: 280px;
-    height: 550px;
+    height: 500px;
     /* AUMENTADO: Mucho más alta para la tarjeta activa en móvil */
   }
 
   /* Ajustes para el panel de información en móvil */
   .gallery-info-panel {
     padding: 0 1rem 1rem;
+
   }
 
   .image-title {
@@ -1283,10 +1283,6 @@ p {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 100%;
-
-  /* Quitamos el posicionamiento absoluto para que el centrado con flexbox funcione */
-  position: relative;
 }
 
 /* Tenemos que ajustar también la imagen de la máscara para que siga la misma lógica */

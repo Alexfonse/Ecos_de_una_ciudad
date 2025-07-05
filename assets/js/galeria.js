@@ -21,40 +21,55 @@ const circularGalleryData = [
     year: '1860-1945'
   },
   {
-    src: '/assets/img/silva.png',
-    title: 'José Asunción Silva',
+    src: 'assets/img/silva.png',
+    title: 'La Voz del Modernismo',
     description: 'José Asunción Silva, figura central del modernismo literario en Colombia, fue un poeta cuya obra se caracteriza por una profunda sensibilidad, introspección y melancolía. Títulos como "Nocturno" y "De sobremesa" son referentes de su genio. Su legado poético sigue vivo en Bogotá, donde su antigua casa es hoy la Casa de Poesía Silva, un importante museo literario.',
     location: 'Bogotá (Casa de Poesía Silva)',
     year: '1865-1896'
   },
   {
-    src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=1200&fit=crop',
-    title: 'Amanecer Capitalino',
-    description: 'Los primeros rayos de sol iluminan la silueta urbana.',
-    location: 'Cerros Orientales',
+    src: 'assets/img/mario.png',
+    title: 'El Cronista del Caos Urbano',
+    description: 'Mario Mendoza es uno de los novelistas contemporáneos más influyentes de Bogotá. Su obra literaria se sumerge en el caos urbano, entrelazando elementos psicológicos y sociales que reflejan los miedos, contradicciones y espiritualidades de la ciudad. Novelas como "Satanás", "Scorpio City" y "El año del verano que nunca llegó" a menudo se ambientan en las calles y lugares reales de Bogotá, consolidando su legado como un agudo observador de la vida capitalina.',
+    location: 'Bogotá (Lugares reales de la ciudad en sus novelas)',
     year: '2023'
   },
     {
-    src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=1200&fit=crop',
-    title: 'Amanecer Capitalino',
-    description: 'Los primeros rayos de sol iluminan la silueta urbana.',
-    location: 'Cerros Orientales',
-    year: '2023'
+    src: 'assets/img/elisa.png',
+    title: 'Precursora de la Voz Femenina',
+    description: ' Elisa Mujica fue una destacada escritora, poeta, activista y diplomática que residió en Bogotá. Su obra fue precursora al abordar temas cruciales como la identidad femenina, la ciencia y la cultura, dándole voz a las mujeres en un ámbito literario y social tradicionalmente dominado por hombres. Su libro "El mundo secreto" es un reflejo de sus profundas reflexiones sobre el papel de la mujer en la sociedad intelectual de su tiempo.',
+    location: 'Bogotá',
+    year: '1918-2003'
   },
     {
-    src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=1200&fit=crop',
-    title: 'Amanecer Capitalino',
-    description: 'Los primeros rayos de sol iluminan la silueta urbana.',
-    location: 'Cerros Orientales',
-    year: '2023'
+    src: 'assets/img/lucy.png',
+    title: 'Miradas Femeninas en el Arte Colombiano',
+    description: 'Aunque oriunda de Pereira, Lucy Tejada tuvo una gran presencia artística en Bogotá, donde sus obras reflejan con maestría la vida cotidiana femenina, la maternidad y el conflicto interno. Participó activamente en exposiciones en la capital, aportando una visión profundamente femenina y social al arte colombiano y enriqueciendo el panorama cultural con su perspectiva única.',
+    location: 'Bogotá (Exposiciones y presencia artística)',
+    year: '1920-2011'
   },
     {
-    src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=1200&fit=crop',
-    title: 'Amanecer Capitalino',
-    description: 'Los primeros rayos de sol iluminan la silueta urbana.',
-    location: 'Cerros Orientales',
-    year: '2023'
+    src: 'assets/img/garavito.png',
+    title: 'El Astrónomo de la Luna Bogotana',
+    description: 'Julio Garavito Armero, astrónomo, ingeniero y matemático nacido y criado en Bogotá, es una de las mentes científicas más brillantes de Colombia, cuyo rostro adorna el billete de $20.000 pesos. Desde el Observatorio Astronómico Nacional, que dirigió por más de 25 años, realizó cálculos precisos sobre la órbita lunar y sus perturbaciones. Su trabajo fue tan riguroso que la NASA lo reconoció y utilizó en los programas de cálculo para las misiones Apolo, e incluso un cráter lunar lleva su nombre en su honor.',
+    location: 'Bogotá (Observatorio Astronómico Nacional, billete de $20.000)',
+    year: '1865-1920'
   },
+      {
+    src: 'assets/img/leon.png',
+    title: ' El Bardo Vanguardista de la Universidad Nacional',
+    description: 'Nacido en Medellín, León de Greiff fue un poeta, intelectual y maestro cuya figura se volvió esencial en Bogotá, especialmente en la Universidad Nacional de Colombia. Pionero del lenguaje experimental y vanguardista, transformó la poesía colombiana con su estilo musical, barroco y filosófico, y defendió la libertad de pensamiento y el arte por el arte. Como profesor en la Universidad Nacional, inspiró generaciones, y su legado como "maestro espiritual" es honrado con la Biblioteca Central y el Auditorio León de Greiff, símbolos de la libertad intelectual y artística.',
+    location: 'Bogotá (Universidad Nacional de Colombia, Biblioteca Central "León de Greiff")',
+    year: '1895-1976'
+  },
+      {
+    src: 'assets/img/devora.png',
+    title: 'La Pintora Rebelde de Colombia',
+    description: 'Aunque antioqueña, Débora Arango Pérez fue una pintora rebelde y pionera que dejó una huella imborrable en el arte colombiano, desafiando tabúes al retratar la realidad política y social con una visión audazmente crítica. En Bogotá, sus obras inicialmente fueron rechazadas por la élite conservadora, pero eventualmente encontraron escenarios que reconocieron su genialidad. Fue una de las primeras en pintar desnudos femeninos en Colombia, rompiendo normas y abriendo caminos para la libertad de expresión artística.',
+    location: 'Bogotá (Exposiciones y reconocimiento artístico)',
+    year: '1907-2005'
+  }
+  
 ];
 
 class EnhancedGallery {

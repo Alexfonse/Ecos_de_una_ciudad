@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Parque Simón Bolívar",
             date: "2025-07-06",
             description: "El festival de rock gratuito más grande de Latinoamérica. Tres días de pura energía con bandas nacionales e internacionales.",
-            image: "/assets/img/rock.webp"
+            image: "assets/img/rock.webp"
         },
         {
             title: "La Obra que Sale Mal",
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Teatro Nacional La Castellana",
             date: "2025-07-15",
             description: "Una comedia galardonada internacionalmente que te hará reír a carcajadas. Perfecta para una noche de humor y caos.",
-            image: "/assets/img/la_obra_sal.jpeg"
+            image: "assets/img/la_obra_sal.jpeg"
         },
         {
             title: "Festival de Cine Independiente - IndieBo",
