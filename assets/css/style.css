@@ -244,12 +244,14 @@ p,
 
 @media (max-width: 768px) {
   .onda-inferior {
-    height: 80px; /* Más baja en móvil */
+    height: 80px;
+    /* Más baja en móvil */
   }
 
   .wave {
     height: 100%;
-    transform: scaleY(0.5); /* Aplasta verticalmente */
+    transform: scaleY(0.5);
+    /* Aplasta verticalmente */
     transform-origin: top;
   }
 }
@@ -696,7 +698,8 @@ p {
 .enhanced-gallery {
   position: relative;
   width: 100%;
-  height: 120vh;
+  height: 180vh;
+  /* Se mantiene para el espacio total de la galería */
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -704,46 +707,81 @@ p {
   justify-content: center;
 }
 
+
 .gallery-item {
   position: absolute;
+  /* Se mantiene absoluto para la distribución circular */
   width: 140px;
+  /* Ancho base de la tarjeta */
   height: 200px;
+  /* Alto base de la tarjeta */
   border-radius: 20px;
   overflow: hidden;
+  /* Asegura que el contenido no se salga */
   cursor: pointer;
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   border: 2px solid transparent;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(10px);
-    /* NUEVO: Contenedor flex para organizar imagen y texto */
+
+  /* NUEVO: Contenedor flex para organizar imagen y texto */
   display: flex;
-  flex-direction: column; /* Apila la imagen y el panel de información */
-  align-items: center; /* Centra el contenido horizontalmente */
-  justify-content: flex-start; /* Alinea el contenido al inicio de la tarjeta */
-  padding-top: 10px; /* Pequeño padding en la parte superior para la imagen */
+  flex-direction: column;
+  /* Apila la imagen y el panel de información */
+  align-items: center;
+  /* Centra el contenido horizontalmente */
+  justify-content: flex-start;
+  /* Alinea el contenido al inicio de la tarjeta */
+  padding-top: 10px;
+  /* Pequeño padding en la parte superior para la imagen */
 }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* NUEVO: Estilo para la imagen principal de la tarjeta (ahora no es overlay) */
+.gallery-item .gallery-main-image {
+  width: 50%;
+  /* Ancho de la imagen dentro de la tarjeta */
+  height: auto;
+  /* La altura se ajusta automáticamente para mantener la proporción */
+  max-height: 100%;
+  /* La imagen no tomará más del 55% del alto disponible del .gallery-item */
+  object-fit: contain;
+  /* ¡CRÍTICO! Asegura que la imagen completa sea visible, sin cortes */
+  border-radius: 10px;
+  /* Bordes redondeados para la imagen */
+  margin-bottom: 10px;
+  /* Espacio entre la imagen y el panel de texto */
   transition: transform 0.6s ease;
+  /* Mantener la transición al pasar el mouse */
 }
 
+
+
+/* Efecto hover: la tarjeta completa crece y la imagen también */
 .gallery-item:hover {
   transform: scale(1.1);
   box-shadow: 0 20px 40px rgba(217, 122, 5, 0.3);
   border-color: var(--color-secondary);
 }
 
+.gallery-item:hover .gallery-main-image {
+  transform: scale(1.05);
+  /* Ligeramente más grande al pasar el mouse */
+}
+
+
+/* Estado activo de la tarjeta */
 .gallery-item.active {
-  width: 300px; /* Ancho más grande cuando está activa */
-  height: 400px; /* Altura más grande cuando está activa */
-  z-index: 100; /* Asegura que esté al frente */
+  width: 400px;
+  /* Ancho más grande cuando está activa */
+  height: 700px;
+  /* AUMENTADO: Mucho más alta para el contenido */
+  z-index: 100;
+  /* Asegura que esté al frente */
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   border-color: var(--color-secondary);
-  padding: 15px; /* Ajusta el padding para el tamaño activo */
+  padding: 15px;
+  /* Ajusta el padding para el tamaño activo */
 }
 
 .gallery-item.hidden {
@@ -751,50 +789,58 @@ p {
   transform: scale(0.8);
 }
 
+
+/* NUEVO: Panel de información (texto) */
 .gallery-info-panel {
-  width: 100%; /* Ocupa todo el ancho disponible */
-  padding: 0 1.5rem 1.5rem; /* Padding para el contenido del texto */
+  width: 100%;
+  /* Ocupa todo el ancho disponible */
+  padding: 0 1.5rem 1.5rem;
+  /* Padding para el contenido del texto */
   text-align: center;
-  
+
   /* Controla la visibilidad y animación del panel */
   opacity: 0;
-  transform: translateY(10px); /* Pequeño efecto de deslizamiento al aparecer */
+  transform: translateY(10px);
+  /* Pequeño efecto de deslizamiento al aparecer */
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 
-  background: none; /* No tiene fondo degradado; la tarjeta ya lo tiene */
-  color: white; /* Color del texto */
+  background: none;
+  /* No tiene fondo degradado; la tarjeta ya lo tiene */
+  color: white;
+  /* Color del texto */
+
+  /* MODIFICACIONES PARA GESTIONAR ESPACIO Y SCROLL DENTRO DEL PANEL */
+  display: flex;
+  /* Habilita Flexbox para organizar los hijos */
+  flex-direction: column;
+  /* Apila título, descripción, detalles */
+  flex-grow: 1;
+  /* Permite que este panel crezca y ocupe el espacio restante en .gallery-item */
+  justify-content: flex-end;
+  /* Alinea el contenido hacia la parte inferior del panel */
 }
 
-/* INFORMACIÓN DE LA IMAGEN */
-.image-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-  color: white;
-  padding: 2rem 1.5rem 1.5rem;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-  border-radius: 0 0 20px 20px;
-    /* MODIFICACIONES PARA GESTIONAR ESPACIO Y SCROLL */
-  display: flex; /* Habilita Flexbox para organizar los hijos */
-  flex-direction: column; /* Apila los elementos verticalmente */
-  height: 100%; /* Permite que image-info ocupe toda la altura de gallery-item cuando se necesite más espacio */
-  justify-content: flex-end; /* Alinea el contenido hacia la parte inferior */
+
+
+/* Cuando la tarjeta está activa, el panel de información se hace visible */
+.gallery-item.active .gallery-info-panel {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+
 
 .gallery-item.active .image-info {
   transform: translateY(0);
 }
 
+/* Estilos para el título */
 .image-title {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: var(--color-secondary);
   font-family: var(--font-titulo);
-  /* AÑADIDO */
 }
 
 .image-description,
@@ -803,45 +849,60 @@ p {
   /* AÑADIDO */
 }
 
+/* Estilos para la descripción */
 .image-description {
   font-size: 0.9rem;
   line-height: 1.4;
   opacity: 0.9;
+
   /* MODIFICACIONES PARA SCROLL DEL TEXTO LARGO */
-  flex-grow: 1; /* Permite que la descripción crezca y ocupe el espacio disponible */
-  overflow-y: auto; /* Añade una barra de desplazamiento vertical si el contenido excede la altura */
-  margin-bottom: 0.5rem; /* Ajustar margen inferior si es necesario */
-  
+  flex-grow: 1;
+  /* Permite que la descripción crezca y ocupe el espacio disponible */
+  overflow-y: auto;
+  /* Añade una barra de desplazamiento vertical si el contenido excede la altura */
+  max-height: 150px;
+  /* AUMENTADO SIGNIFICATIVAMENTE: Permite más líneas antes del scroll */
+  margin-bottom: 0.5rem;
+  /* Espacio entre descripción y detalles */
+
   /* Estilos personalizados para la barra de scroll (Firefox) */
-  scrollbar-width: thin; 
-  scrollbar-color: var(--color-outline) var(--color-surface); 
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-outline) var(--color-surface);
 }
 
 /* Estilos de la barra de desplazamiento para navegadores basados en WebKit (Chrome, Safari, Edge) */
 .image-description::-webkit-scrollbar {
-  width: 8px; /* Ancho de la barra de scroll */
-}
-.image-description::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2); /* Fondo transparente para el track */
-  border-radius: 10px;
-}
-.image-description::-webkit-scrollbar-thumb {
-  background-color: var(--color-outline); /* Color de la barra */
-  border-radius: 10px;
-  border: 2px solid transparent; /* Borde transparente para la thumb */
-}
-.image-description::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-secondary); /* Color al pasar el cursor */
+  width: 8px;
 }
 
+.image-description::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+.image-description::-webkit-scrollbar-thumb {
+  background-color: var(--color-outline);
+  border-radius: 10px;
+  border: 2px solid transparent;
+}
+
+.image-description::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-secondary);
+}
+
+/* Estilos para los detalles (ubicación, año) */
 .image-details {
   display: flex;
   gap: 1rem;
-  margin-top: auto; /* Empuja los detalles al final del contenedor disponible */
+  margin-top: auto;
+  /* Empuja los detalles al final del panel */
   font-size: 0.8rem;
   opacity: 0.7;
   font-family: var(--font-parrafo);
+  justify-content: center;
+  /* Centrar los detalles */
 }
+
 
 /* CONTROLES */
 .gallery-controls {
@@ -877,48 +938,66 @@ p {
 .next-control {
   right: 2rem;
 }
+
 @media (max-width: 768px) {
   .enhanced-gallery {
-    height: 80vh;
-    padding: 1rem;
+    height: 100vh;
+    padding: 0.5rem;
   }
 
-  .gallery-item.active {
-    width: 220px;
-    height: 300px;
-    margin-left: 40px;
-  }
 
+  /* Ajustes para el .gallery-item base en móvil */
   .gallery-item {
-    width: 50px;
-    height: 70px;
-    margin-left: 50px;
-    margin-top: 75px;
+    width: 80px;
+    height: 100px;
+    padding-top: 10px;
+    margin-left: 30px;
+    margin-top: 37px;
   }
-  
+
+  /* Ajustes para la imagen principal en móvil */
   .gallery-item .gallery-main-image {
-  width: 90%; /* Ancho de la imagen dentro de la tarjeta */
-  height: 120px; /* Altura fija para la imagen */
-  object-fit: cover;
-  border-radius: 10px; /* Bordes redondeados para la imagen */
-  margin-bottom: 10px; /* Espacio entre la imagen y el panel de texto */
-  transition: transform 0.6s ease; /* Mantener la transición al pasar el mouse */
-}
-
-.gallery-item:hover .gallery-main-image {
-  transform: scale(1.05); /* Ligeramente más grande al pasar el mouse */
-}
-
-  .gallery-center-info {
-    font-size: 0.9rem;
-    padding: 1rem;
+    max-height: 100%;
   }
 
-  .control-btn {
-    width: 40px;
-    height: 40px;
+
+  /* Ajustes para el .gallery-item activo en móvil */
+  .gallery-item.active {
+    width: 280px;
+    height: 550px;
+    /* AUMENTADO: Mucho más alta para la tarjeta activa en móvil */
+  }
+
+  /* Ajustes para el panel de información en móvil */
+  .gallery-info-panel {
+    padding: 0 1rem 1rem;
+  }
+
+  .image-title {
     font-size: 1.2rem;
+    margin-bottom: 0.4rem;
   }
+
+  .image-description {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    max-height: 100px;
+    /* AUMENTADO SIGNIFICATIVAMENTE para móvil */
+  }
+
+  .image-details {
+    font-size: 0.75rem;
+    margin-top: 0.6rem;
+  }
+
+  /* Controles (botones de navegación izquierda/derecha) */
+  .control-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.6rem;
+  }
+
+
 }
 
 
@@ -960,14 +1039,18 @@ p {
   position: relative;
   /* Fondo con degradado difuminado similar a .gallery-container-unique */
   background: linear-gradient(180deg,
-              var(--color-tertiary) 0%,
-              #1a252f 50%,
-              #243040 100%);
+      var(--color-tertiary) 0%,
+      #4b5d73 100%
+      ,#108bff 50%);
 }
+
 .gallery-container-scroll::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(ellipse at center, rgba(217, 122, 5, 0.1) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -989,36 +1072,44 @@ p {
 
 /* MODIFICAR: Contenedor para las dos imágenes del efecto de revelado */
 .scroll-item-image.reveal-mask-container {
-  position: relative; /* CRUCIAL: Necesario para posicionar absolutamente las imágenes hijas */
+  position: relative;
+  /* CRUCIAL: Necesario para posicionar absolutamente las imágenes hijas */
   width: 100%;
-  height: 800px; /* IMPORTANTE: Define una altura fija o min-height para el contenedor de la imagen.
+  height: 800px;
+  /* IMPORTANTE: Define una altura fija o min-height para el contenedor de la imagen.
                      El tamaño de la imagen dentro se ajustará a esto.
                      Puedes ajustar este valor para que se vea bien en tu diseño. */
-  overflow: hidden; /* Oculta cualquier parte de la máscara que se salga de los límites del contenedor */
+  overflow: hidden;
+  /* Oculta cualquier parte de la máscara que se salga de los límites del contenedor */
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* NUEVO: Estilos para AMBAS imágenes dentro de .reveal-mask-container */
 .scroll-item-image.reveal-mask-container img {
-  position: absolute; /* Permite que las imágenes se superpongan */
+  position: absolute;
+  /* Permite que las imágenes se superpongan */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+  object-fit: cover;
+  /* Asegura que la imagen cubra el área sin distorsionarse */
 }
 
 /* NUEVO: La imagen de primer plano a la que se le aplicará la máscara SVG */
 .img-mask-overlay {
-  z-index: 2; /* Asegura que esta imagen esté por encima de la imagen a revelar */
-  opacity: 1; /* Inicialmente visible para ocultar la imagen de fondo */
+  z-index: 2;
+  /* Asegura que esta imagen esté por encima de la imagen a revelar */
+  opacity: 1;
+  /* Inicialmente visible para ocultar la imagen de fondo */
   /* Las propiedades de máscara (mask, webkit-mask) se establecerán y animarán con JavaScript */
 }
 
 /* NUEVO: La imagen de fondo que será revelada */
 .img-revealed {
-  z-index: 1; /* Estará debajo de la imagen de máscara */
+  z-index: 1;
+  /* Estará debajo de la imagen de máscara */
 }
 
 /* ... (continúa con el resto de tus estilos de la sección scroll y media queries) ... */
@@ -1029,6 +1120,7 @@ p {
   color: var(--color-secondary);
   margin-bottom: 0.5rem;
 }
+
 .scroll-item-text p {
   font-family: var(--font-parrafo);
   line-height: 1.6;
@@ -1048,19 +1140,20 @@ p {
 /*==================================================*/
 
 @media (max-width: 768px) {
-  .scroll-gallery-item, 
+
+  .scroll-gallery-item,
   .scroll-gallery-item:nth-child(even) {
     /* Con !important, esta regla ganará y forzará a TODOS los bloques a apilarse */
-    flex-direction: column !important; 
+    flex-direction: column !important;
     text-align: center;
   }
 
   .scroll-gallery-item {
     margin-bottom: 2.5rem;
   }
-  
+
   .scroll-item-image.reveal-mask-container {
-    height: 60vh; 
+    height: 60vh;
     width: 95%;
     margin: 0 auto;
   }
@@ -1071,6 +1164,7 @@ p {
     margin: 1.5rem auto 0;
   }
 }
+
 /* === Animaciones de aparición con scroll === */
 .scroll-reveal {
   opacity: 0;
@@ -1079,6 +1173,7 @@ p {
   transition: opacity 0.6s ease-out, transform 1.2s ease-out;
   will-change: opacity, transform, visibility;
 }
+
 .scroll-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
@@ -1090,32 +1185,39 @@ p {
 /* AÑADIR ESTOS ESTILOS */
 /* Oculta el SVG de la máscara para que no ocupe espacio visual en el diseño */
 .hidden-svg-mask {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 /* Estilos para el indicador visual de clic en la Galería Scroll */
 .click-indicator-scroll {
-    position: absolute;
-    background-color: var(--color-secondary); /* Usa tu variable de color institucional */
-    border-radius: 50%; /* Lo convierte en un círculo */
-    opacity: 0; /* Inicialmente invisible */
-    width: 20px; /* Tamaño del indicador */
-    height: 20px;
-    /* Centra el indicador perfectamente en el punto de clic */
-    transform: translate(-50%, -50%) scale(1);
-    /* Transiciones suaves para la aparición y desaparición */
-    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-    pointer-events: none; /* Asegura que el indicador no interfiera con los clics */
-    z-index: 10; /* Lo coloca por encima de las imágenes */
+  position: absolute;
+  background-color: var(--color-secondary);
+  /* Usa tu variable de color institucional */
+  border-radius: 50%;
+  /* Lo convierte en un círculo */
+  opacity: 0;
+  /* Inicialmente invisible */
+  width: 20px;
+  /* Tamaño del indicador */
+  height: 20px;
+  /* Centra el indicador perfectamente en el punto de clic */
+  transform: translate(-50%, -50%) scale(1);
+  /* Transiciones suaves para la aparición y desaparición */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  pointer-events: none;
+  /* Asegura que el indicador no interfiera con los clics */
+  z-index: 10;
+  /* Lo coloca por encima de las imágenes */
 }
 
 /* style.css */
 
-.gallery-item-title, .gallery-item-description {
-    transition: opacity 0.5s ease-in-out;
+.gallery-item-title,
+.gallery-item-description {
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* ... (continúa con tus estilos existentes hasta la sección de Galería Scroll) ... */
@@ -1130,7 +1232,8 @@ p {
 
   /* Hacemos que el contenedor de la galería ocupe menos espacio */
   .scroll-gallery {
-    padding: 2rem 1rem; /* Reducimos el padding */
+    padding: 2rem 1rem;
+    /* Reducimos el padding */
   }
 
   /* El contenedor de la imagen ya no tendrá una altura fija de 800px, 
@@ -1138,16 +1241,19 @@ p {
   .scroll-item-image.reveal-mask-container {
     /* Usamos 60vh (60% de la altura de la pantalla) para que se adapte a cualquier móvil.
        Puedes cambiar este valor si lo quieres más alto o más bajo. */
-    height: 60vh; 
-    width: 95%; /* Hacemos que ocupe casi todo el ancho */
-    margin: 0 auto; /* Lo centramos */
+    height: 60vh;
+    width: 95%;
+    /* Hacemos que ocupe casi todo el ancho */
+    margin: 0 auto;
+    /* Lo centramos */
   }
 
   /* Centramos el texto que acompaña a la imagen */
   .scroll-item-text {
     text-align: center;
     width: 95%;
-    margin: 1.5rem auto 0; /* Añadimos un margen superior */
+    margin: 1.5rem auto 0;
+    /* Añadimos un margen superior */
   }
 }
 
@@ -1157,8 +1263,10 @@ p {
 /* Modificamos el contenedor de la imagen para que tenga un fondo sutil.
    Esto es para que si una imagen no llena todo el espacio, no se vea un vacío negro. */
 .scroll-item-image.reveal-mask-container {
-  background-color: rgba(0, 0, 0, 0.2); /* Fondo oscuro semitransparente */
-  display: flex; /* Centramos la imagen hija */
+  background-color: rgba(0, 0, 0, 0.2);
+  /* Fondo oscuro semitransparente */
+  display: flex;
+  /* Centramos la imagen hija */
   justify-content: center;
   align-items: center;
 }
@@ -1178,7 +1286,7 @@ p {
   max-height: 100%;
 
   /* Quitamos el posicionamiento absoluto para que el centrado con flexbox funcione */
-  position: relative; 
+  position: relative;
 }
 
 /* Tenemos que ajustar también la imagen de la máscara para que siga la misma lógica */
@@ -1195,67 +1303,74 @@ p {
 
 /* Estilos para el título de la nueva sección */
 .section-title-container {
-    text-align: center;
-    padding: 3rem 1rem 1rem;
-    max-width: 800px;
-    margin: 0 auto;
+  text-align: center;
+  padding: 3rem 1rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
 .section-title-container h2 {
-    font-family: var(--font-titulo);
-    font-size: 2.5rem;
-    color: var(--color-secondary);
-    margin-bottom: 0.5rem;
+  font-family: var(--font-titulo);
+  font-size: 2.5rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
 }
+
 .section-title-container p {
-    font-size: 1.1rem;
-    color: var(--color-on-surface);
-    opacity: 0.8;
+  font-size: 1.1rem;
+  color: var(--color-on-surface);
+  opacity: 0.8;
 }
 
 /* Le damos la forma de Polaroid al contenedor de la imagen */
 .character-item .scroll-item-image {
-    /* Borde blanco hueso, más grueso en la parte de abajo */
-    padding: 15px 15px 70px 15px; 
-    background-color: #f0f0e0; 
-    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-    transform: rotate(-2.5deg); /* Le damos una ligera rotación */
-    transition: transform 0.4s ease-in-out;
+  /* Borde blanco hueso, más grueso en la parte de abajo */
+  padding: 15px 15px 70px 15px;
+  background-color: #f0f0e0;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  transform: rotate(-2.5deg);
+  /* Le damos una ligera rotación */
+  transition: transform 0.4s ease-in-out;
 }
 
 /* Al pasar el cursor, la "foto" se endereza y crece un poco */
 .character-item:hover .scroll-item-image {
-    transform: rotate(0deg) scale(1.03);
+  transform: rotate(0deg) scale(1.03);
 }
 
 /* El nombre del personaje lo ponemos en el borde de la Polaroid */
 .character-item .scroll-item-text h3 {
-    position: relative;
-    top: -55px; /* Sube el título para que se monte sobre el borde inferior */
-    font-family: var(--font-titulo);
-    font-size: 2.2rem;
+  position: relative;
+  top: -55px;
+  /* Sube el título para que se monte sobre el borde inferior */
+  font-family: var(--font-titulo);
+  font-size: 2.2rem;
   color: var(--color-secondary);
-    text-align: center;
-    margin-bottom: -30px; /* Reducimos el espacio que ocupa */
+  text-align: center;
+  margin-bottom: -30px;
+  /* Reducimos el espacio que ocupa */
 }
 
 /* La descripción del personaje */
 .character-item .scroll-item-text p {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--color-on-surface);
-    opacity: 0.9;
-    text-align: center;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-on-surface);
+  opacity: 0.9;
+  text-align: center;
 }
 
 /* Ajustes para que se vea bien en móviles */
 @media (max-width: 768px) {
-    .character-item .scroll-item-image {
-        transform: rotate(0); /* Quitamos la rotación en pantallas pequeñas */
-    }
-    .character-item .scroll-item-text h3 {
-        top: -45px;
-        font-size: 1.8rem;
-    }
+  .character-item .scroll-item-image {
+    transform: rotate(0);
+    /* Quitamos la rotación en pantallas pequeñas */
+  }
+
+  .character-item .scroll-item-text h3 {
+    top: -45px;
+    font-size: 1.8rem;
+  }
 }
 
 /* ======================================================================== */
@@ -1273,9 +1388,9 @@ p {
   overflow: hidden;
   width: 100%;
   /* Esta es la proporción para pantallas grandes (escritorio) */
-  aspect-ratio: 16 / 9; 
+  aspect-ratio: 16 / 9;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Estilo para la escena de A-Frame cuando está dentro de nuestro contenedor */
@@ -1291,8 +1406,9 @@ p {
 @media (max-width: 768px) {
   .aframe-container {
     /* En móvil, cambiamos la proporción para que sea más ALTA que ancha */
-    aspect-ratio: 4 / 5; 
-    border-radius: 0; /* Opcional: quita los bordes redondeados en móvil */
+    aspect-ratio: 4 / 5;
+    border-radius: 0;
+    /* Opcional: quita los bordes redondeados en móvil */
   }
 }
 
@@ -1307,20 +1423,22 @@ p {
   padding: 1.5rem;
   background-color: var(--color-surface-variant);
   border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   min-height: 50vh;
   /* Separamos el chat de la barra de entrada inferior */
-  padding-bottom: 80px; 
+  padding-bottom: 80px;
 }
 
 /* --- 2. Estructura Fila de Mensaje y Avatar --- */
 .mensaje-fila {
   display: flex;
-  align-items: flex-end; /* Alinea el avatar con la base de la burbuja */
-  gap: 15px; /* Espacio entre el avatar y el mensaje */
+  align-items: flex-end;
+  /* Alinea el avatar con la base de la burbuja */
+  gap: 15px;
+  /* Espacio entre el avatar y el mensaje */
   max-width: 90%;
 }
 
@@ -1330,13 +1448,15 @@ p {
   border-radius: 50%;
   border: 2px solid var(--color-outline);
   object-fit: cover;
-  flex-shrink: 0; /* Evita que el avatar se encoja */
+  flex-shrink: 0;
+  /* Evita que el avatar se encoja */
 }
 
 /* Para los mensajes de usuario, invertimos el orden */
 .mensaje-fila.user {
   flex-direction: row-reverse;
-  align-self: flex-end; /* La fila completa se alinea a la derecha */
+  align-self: flex-end;
+  /* La fila completa se alinea a la derecha */
 }
 
 /* Los mensajes de bot se quedan a la izquierda (por defecto) */
@@ -1347,7 +1467,8 @@ p {
 
 /* --- 3. Burbujas de los mensajes con "Cola" --- */
 .mensaje {
-  position: relative; /* Necesario para posicionar la cola */
+  position: relative;
+  /* Necesario para posicionar la cola */
   padding: 12px 18px;
   border-radius: 20px;
   line-height: 1.6;
@@ -1358,7 +1479,8 @@ p {
 /* Estilo para los mensajes del BOT (Don Gaitaloma) */
 .mensaje.bot {
   background-color: var(--color-tertiary-container);
-  border-bottom-left-radius: 4px; /* Le da forma de burbuja de chat */
+  border-bottom-left-radius: 4px;
+  /* Le da forma de burbuja de chat */
   text-align: left;
 }
 
@@ -1366,7 +1488,8 @@ p {
 .mensaje.user {
   background-color: var(--color-primary);
   color: var(--color-on-primary);
-  border-bottom-right-radius: 4px; /* Forma de burbuja en el otro lado */
+  border-bottom-right-radius: 4px;
+  /* Forma de burbuja en el otro lado */
   text-align: right;
 }
 
@@ -1381,13 +1504,17 @@ p {
 }
 
 .mensaje.bot::after {
-  left: -12px; /* Posición de la cola a la izquierda */
-  border-right-color: var(--color-tertiary-container); /* El color de la burbuja */
+  left: -12px;
+  /* Posición de la cola a la izquierda */
+  border-right-color: var(--color-tertiary-container);
+  /* El color de la burbuja */
 }
 
 .mensaje.user::after {
-  right: -12px; /* Posición de la cola a la derecha */
-  border-left-color: var(--color-primary); /* El color de la burbuja de usuario */
+  right: -12px;
+  /* Posición de la cola a la derecha */
+  border-left-color: var(--color-primary);
+  /* El color de la burbuja de usuario */
 }
 
 
@@ -1398,7 +1525,8 @@ p {
   justify-content: center;
   gap: 10px;
   margin-top: 1rem;
-  align-self: center; /* Centra el contenedor de botones */
+  align-self: center;
+  /* Centra el contenedor de botones */
   width: 100%;
 }
 
@@ -1473,7 +1601,8 @@ p {
   background-color: var(--color-tertiary-container);
   border-radius: 20px;
   padding: 10px 15px;
-  width: fit-content; /* Se ajusta al contenido */
+  width: fit-content;
+  /* Se ajusta al contenido */
   border-bottom-left-radius: 4px;
 }
 
@@ -1496,9 +1625,13 @@ p {
 }
 
 @keyframes typing-bounce {
-  0%, 80%, 100% {
+
+  0%,
+  80%,
+  100% {
     transform: scale(0);
   }
+
   40% {
     transform: scale(1.0);
   }
@@ -1510,7 +1643,8 @@ p {
 
 .footer-form-container {
   max-width: 600px;
-  margin: 0 auto 2.5rem auto; /* Espaciado inferior */
+  margin: 0 auto 2.5rem auto;
+  /* Espaciado inferior */
   padding: 1.5rem;
   background-color: var(--color-surface);
   border-radius: 15px;
@@ -1548,15 +1682,18 @@ p {
 }
 
 .footer-subscribe-form button {
-  padding: 12px 25px; /* Ajuste de padding para el botón */
+  padding: 12px 25px;
+  /* Ajuste de padding para el botón */
 }
 
 /* Ajustes para pantallas pequeñas */
 @media (max-width: 576px) {
   .footer-subscribe-form {
-    flex-direction: column; /* Apila el input y el botón en móviles */
+    flex-direction: column;
+    /* Apila el input y el botón en móviles */
     align-items: center;
   }
+
   .footer-subscribe-form input {
     width: 100%;
   }
@@ -1590,7 +1727,8 @@ html::-webkit-scrollbar-thumb {
 
 html::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-secondary);
-  box-shadow: 0 0 10px var(--color-secondary); /* Efecto de brillo */
+  box-shadow: 0 0 10px var(--color-secondary);
+  /* Efecto de brillo */
 }
 
 /* ======================================================================== */
@@ -1620,7 +1758,8 @@ html::-webkit-scrollbar-thumb:hover {
 .team-card-inner {
   position: relative;
   width: 100%;
-  padding-bottom: 125%; /* Proporción 4:5 */
+  padding-bottom: 125%;
+  /* Proporción 4:5 */
   transition: transform 0.7s;
   transform-style: preserve-3d;
 }
@@ -1629,7 +1768,8 @@ html::-webkit-scrollbar-thumb:hover {
   transform: rotateY(180deg);
 }
 
-.team-card-front, .team-card-back {
+.team-card-front,
+.team-card-back {
   position: absolute;
   top: 0;
   left: 0;
@@ -1638,7 +1778,7 @@ html::-webkit-scrollbar-thumb:hover {
   backface-visibility: hidden;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
@@ -1716,9 +1856,11 @@ html::-webkit-scrollbar-thumb:hover {
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 2rem;
-  max-width: 900px; /* Ancho máximo para el contenedor */
+  max-width: 900px;
+  /* Ancho máximo para el contenedor */
   margin: 0 auto;
-  position: relative; /* Para posicionar el logo en el centro */
+  position: relative;
+  /* Para posicionar el logo en el centro */
 }
 
 /* El logo de Don Gaitaloma en el centro */
@@ -1735,7 +1877,7 @@ html::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  box-shadow: 0 0 0 10px var(--color-surface), 0 5px 20px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 10px var(--color-surface), 0 5px 20px rgba(0, 0, 0, 0.5);
   z-index: 20;
 }
 
@@ -1752,9 +1894,10 @@ html::-webkit-scrollbar-thumb:hover {
     /* En móvil, volvemos a una sola columna */
     grid-template-columns: 1fr;
   }
+
   .team-center-logo {
     /* Ocultamos el logo central en móvil para no sobrecargar el diseño */
-    display: none; 
+    display: none;
   }
 }
 
@@ -1779,7 +1922,7 @@ html::-webkit-scrollbar-thumb:hover {
   position: sticky;
   top: 1rem;
   z-index: 100;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
 }
 
 .search-wrapper {
@@ -1821,11 +1964,13 @@ html::-webkit-scrollbar-thumb:hover {
   transition: all 0.3s ease;
   font-weight: bold;
 }
+
 .filter-btn:hover {
   background-color: var(--color-secondary);
   border-color: var(--color-secondary);
   color: var(--color-on-secondary);
 }
+
 .filter-btn.active {
   background-color: var(--color-primary);
   border-color: var(--color-primary);
@@ -1833,18 +1978,19 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .event-card {
-    display: flex;
+  display: flex;
   flex-direction: column;
   background-color: var(--color-surface-variant);
   border-radius: 15px;
   overflow: hidden;
   height: 100%;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .event-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .event-card-image {
@@ -1871,7 +2017,8 @@ html::-webkit-scrollbar-thumb:hover {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Permite que este contenedor crezca para llenar el espacio */
+  flex-grow: 1;
+  /* Permite que este contenedor crezca para llenar el espacio */
 }
 
 .event-card-title {
@@ -1889,6 +2036,7 @@ html::-webkit-scrollbar-thumb:hover {
   color: var(--color-outline);
   margin-bottom: 1rem;
 }
+
 .event-card-details span {
   display: flex;
   align-items: center;
@@ -1901,7 +2049,8 @@ html::-webkit-scrollbar-thumb:hover {
   opacity: 0.8;
   margin-bottom: 1.5rem;
   /* ¡ELIMINADO! Quitamos la altura fija y el overflow */
-  flex-grow: 1; /* Hace que este párrafo ocupe todo el espacio disponible, empujando el link hacia abajo */
+  flex-grow: 1;
+  /* Hace que este párrafo ocupe todo el espacio disponible, empujando el link hacia abajo */
 }
 
 
@@ -1911,6 +2060,7 @@ html::-webkit-scrollbar-thumb:hover {
   text-decoration: none;
   transition: color 0.3s ease;
 }
+
 .event-card-link:hover {
   color: var(--color-secondary);
 }
@@ -1920,9 +2070,11 @@ html::-webkit-scrollbar-thumb:hover {
   padding: 4rem 1rem;
   color: var(--color-outline);
 }
+
 .no-results-message.hidden {
   display: none;
 }
+
 .no-results-message i {
   width: 60px;
   height: 60px;

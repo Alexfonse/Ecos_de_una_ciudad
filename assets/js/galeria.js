@@ -21,11 +21,11 @@ const circularGalleryData = [
     year: '1860-1945'
   },
   {
-    src: 'https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=800&h=1200&fit=crop',
-    title: 'Modernidad Urbana',
-    description: 'El contraste entre lo tradicional y lo contemporáneo.',
-    location: 'Zona Rosa',
-    year: '2023'
+    src: '/assets/img/silva.png',
+    title: 'José Asunción Silva',
+    description: 'José Asunción Silva, figura central del modernismo literario en Colombia, fue un poeta cuya obra se caracteriza por una profunda sensibilidad, introspección y melancolía. Títulos como "Nocturno" y "De sobremesa" son referentes de su genio. Su legado poético sigue vivo en Bogotá, donde su antigua casa es hoy la Casa de Poesía Silva, un importante museo literario.',
+    location: 'Bogotá (Casa de Poesía Silva)',
+    year: '1865-1896'
   },
   {
     src: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=1200&fit=crop',
@@ -75,13 +75,13 @@ class EnhancedGallery {
     setTimeout(() => this.animateItemsIn(), 500);
   }
 
-  createItems() {
+createItems() {
     circularGalleryData.forEach((data, index) => {
       const item = document.createElement('div');
       item.className = 'gallery-item';
       item.innerHTML = `
-        <img src="${data.src}" alt="${data.title}" loading="lazy">
-        <div class="image-info">
+        <img src="${data.src}" alt="${data.title}" loading="lazy" class="gallery-main-image">
+        <div class="gallery-info-panel">
           <h3 class="image-title">${data.title}</h3>
           <p class="image-description">${data.description}</p>
           <div class="image-details">
@@ -89,7 +89,7 @@ class EnhancedGallery {
             <span>📅 ${data.year}</span>
           </div>
         </div>
-      `;
+      `; // <<--- ESTE ES EL NUEVO CONTENIDO DE item.innerHTML
       item.addEventListener('click', () => this.selectItem(index));
       this.gallery.appendChild(item);
       this.items.push(item);
