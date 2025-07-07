@@ -1282,9 +1282,8 @@ p {
 
   /* Hacemos que la imagen no ocupe necesariamente el 100% del alto/ancho,
      sino que se ajuste manteniendo su proporción. */
-  width: auto;
-  height: auto;
   max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.0001);
 }
 
 /* Tenemos que ajustar también la imagen de la máscara para que siga la misma lógica */
@@ -1324,7 +1323,6 @@ p {
 .character-item .scroll-item-image {
   /* Borde blanco hueso, más grueso en la parte de abajo */
   padding: 15px 15px 70px 15px;
-  background-color: #f0f0e0;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   transform: rotate(-2.5deg);
   /* Le damos una ligera rotación */
