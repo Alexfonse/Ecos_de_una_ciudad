@@ -143,7 +143,9 @@ p,
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; 
+  /* AÑADIDO: Centra la imagen para que lo importante esté visible */
+  object-position: center center; 
   top: 0;
   left: 0;
   z-index: 1;
@@ -1313,7 +1315,7 @@ p {
 }
 
 .section-title-container p {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   color: var(--color-on-surface);
   opacity: 0.8;
 }
