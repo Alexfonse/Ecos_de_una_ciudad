@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Cinemateca de Bogotá",
             date: "2025-07-20",
             description: "Un recorrido por las joyas del cine nacional, desde clásicos hasta las producciones más recientes.",
-            image: "/assets/img/CicloCine-Colombiano-program.jpg"
+            image: "assets/img/CicloCine-Colombiano-program.jpg"
         },
         {
             title: "Orquesta Filarmónica de Bogotá",
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Movistar Arena",
             date: "2025-09-20",
             description: "El cantautor colombiano presenta su más reciente trabajo en una noche llena de romanticismo y sus grandes éxitos.",
-            image: "https://movistararena.co/wp-content/uploads/2023/11/ANDRES-CEPEDA-TENGO-GANAS-TOUR-1200x600-1.jpg"
+            image: "assets/img/andres_cepeda.jpg"
         },
         {
             title: "Woyzeck, un lamento",
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Teatro Colón",
             date: "2025-09-01",
             description: "Una adaptación moderna del clásico de Georg Büchner que explora la locura y la opresión social.",
-            image: "https://www.teatrocolon.gov.co/sites/default/files/2023-08/Woyzeck%20un%20lamento%20%281%29.jpg"
+            image: "assets/img/Woyzeck (1).jpg"
         }
     ];
 
