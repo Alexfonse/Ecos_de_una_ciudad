@@ -1,19 +1,17 @@
 // ==================================================================
-// ARCHIVO: public/chat.js (VERSIÓN COMPLETA Y ACTUALIZADA)
+// ARCHIVO: public/chat.js (VERSIÓN FINAL CON PODCASTS INTEGRADOS)
 // ==================================================================
 
 // Variables globales
 let respuestas;
 const chatContainer = document.getElementById('chat-container');
-const AVATAR_GAITALOMA = '../assets/img/prueba_2.png'; // Ruta al avatar
+const AVATAR_GAITALOMA = '../assets/img/gaita_sola.png'; // Ruta al avatar
 let categoriaActual = null;
 let indicePaso = 0;
 
-
 /**
- * MODIFICADO: La función ahora acepta un objeto de mensaje además de texto simple.
- * Esto nos permite pasar tanto el texto como la URL de una imagen.
- * @param {string|object} mensaje - El texto a mostrar o un objeto {texto, imagenURL}.
+ * MODIFICADO: La función ahora acepta un objeto de mensaje con texto, imagen y/o audio.
+ * @param {string|object} mensaje - El texto a mostrar o un objeto {texto, imagenURL, audioURL}.
  * @param {string} clase - 'bot' o 'user'.
  */
 function agregarMensaje(mensaje, clase = 'bot') {
@@ -21,43 +19,52 @@ function agregarMensaje(mensaje, clase = 'bot') {
     filaMensaje.className = `mensaje-fila ${clase}`;
 
     let contenidoHTML = '';
-    let textoParaHablar = ''; // NUEVO: Variable para la síntesis de voz.
+    let textoParaHablar = '';
 
     if (clase === 'bot') {
         contenidoHTML += `<img src="${AVATAR_GAITALOMA}" alt="Avatar Don Gaitaloma" class="avatar-chat">`;
     }
 
-    // NUEVO: Contenedor para la burbuja de mensaje para agrupar texto e imagen.
     const burbujaContenido = document.createElement('div');
     burbujaContenido.className = `mensaje ${clase}`;
 
-    // MODIFICADO: Comprobamos si el mensaje es un objeto (con texto/imagen) o solo texto.
     if (typeof mensaje === 'object' && mensaje !== null) {
-        textoParaHablar = mensaje.texto; // Usamos el texto del objeto para la voz.
+        textoParaHablar = mensaje.texto;
+        
+        // Añadir texto si existe
         if (mensaje.texto) {
             const parrafo = document.createElement('p');
             parrafo.textContent = mensaje.texto;
             burbujaContenido.appendChild(parrafo);
         }
+        
+        // Añadir imagen si existe
         if (mensaje.imagenURL) {
             const imagen = document.createElement('img');
             imagen.src = mensaje.imagenURL;
             imagen.alt = "Imagen enviada por Don Gaitaloma";
-            imagen.className = "chat-image"; // Clase para darle estilo CSS
+            imagen.className = "chat-image";
             burbujaContenido.appendChild(imagen);
         }
+
+        // ¡NUEVO! Añadir reproductor de audio si existe
+        if (mensaje.audioURL) {
+            const audioPlayer = document.createElement('audio');
+            audioPlayer.src = mensaje.audioURL;
+            audioPlayer.controls = true;
+            audioPlayer.className = "chat-audio"; // Clase para darle estilo
+            burbujaContenido.appendChild(audioPlayer);
+        }
+
     } else {
-        // Si es solo texto, funciona como antes.
         textoParaHablar = mensaje;
         burbujaContenido.textContent = mensaje;
     }
 
-    // Unimos todo
     filaMensaje.innerHTML = contenidoHTML;
     filaMensaje.appendChild(burbujaContenido);
     chatContainer.appendChild(filaMensaje);
 
-    // Animación y scroll (sin cambios)
     filaMensaje.style.opacity = 0;
     filaMensaje.style.transform = 'translateY(10px)';
     setTimeout(() => {
@@ -66,21 +73,13 @@ function agregarMensaje(mensaje, clase = 'bot') {
     }, 100);
     chatContainer.scrollTop = chatContainer.scrollHeight;
 
-    // MODIFICADO: Usamos la variable textoParaHablar para la síntesis de voz.
-    if (clase === 'bot') {
+    if (clase === 'bot' && textoParaHablar) {
         setTimeout(() => {
             voz.sonido('paloma');
-            // Solo hablamos si hay texto que decir.
-            if (textoParaHablar) {
-                voz.hablar(textoParaHablar);
-            }
+            voz.hablar(textoParaHablar);
         }, 400);
     }
 }
-
-
-// El resto del archivo JavaScript sigue la misma lógica de antes,
-// solo que ahora `agregarMensaje` es más potente.
 
 function agregarOpciones(opciones) {
     const divBtns = document.createElement('div');
@@ -140,9 +139,7 @@ function seleccionarCategoria(nombreCat) {
     if (datosCat.intro) {
         agregarMensaje(datosCat.intro, 'bot');
     }
-    // MODIFICADO: Se ajusta la lógica para que siempre espere objetos en la lista de items.
     if (datosCat.items && datosCat.items.length > 0) {
-        // Comprobamos si los items tienen un 'title', lo que indica un submenú.
         if (datosCat.items[0].title) {
             const subOpciones = datosCat.items.map(item => ({
                 texto: item.title,
@@ -151,18 +148,21 @@ function seleccionarCategoria(nombreCat) {
             subOpciones.push({ texto: '↩ Volver al menú', funcion: mostrarMenuPrincipal });
             agregarOpciones(subOpciones);
         } else {
-            // Si no hay 'title', es una conversación secuencial.
             mostrarPasoSecuencial();
         }
     }
 }
 
-
+/**
+ * MODIFICADO: Ahora pasa el objeto completo, que puede incluir
+ * texto, imagen y/o audio a la función `agregarMensaje`.
+ */
 function mostrarSubItem(item) {
-    // MODIFICADO: Pasamos el objeto entero {text, imagenURL} a agregarMensaje
-    // para que pueda mostrar tanto el texto como la imagen si existe.
-    // Usamos 'item.text' en lugar de 'item' para el mensaje.
-    agregarMensaje({ texto: item.text, imagenURL: item.imagenURL }, 'bot');
+    agregarMensaje({
+        texto: item.text,
+        imagenURL: item.imagenURL,
+        audioURL: item.audioURL // ¡NUEVO! Pasamos la URL del audio
+    }, 'bot');
     
     const opciones = [
         { texto: `🔄 Ver otro de "${categoriaActual}"`, funcion: () => seleccionarCategoria(categoriaActual) },
@@ -171,12 +171,9 @@ function mostrarSubItem(item) {
     agregarOpciones(opciones);
 }
 
-
 function mostrarPasoSecuencial() {
     const items = respuestas[categoriaActual].items;
     if (indicePaso < items.length) {
-        // MODIFICADO: Pasamos el objeto entero del array de items.
-        // agregarMensaje se encargará de mostrar el texto y la imagen.
         agregarMensaje(items[indicePaso], 'bot');
         indicePaso++;
 
@@ -189,16 +186,19 @@ function mostrarPasoSecuencial() {
     }
 }
 
-
-// --- LÓGICA DE INICIO Y MANEJO DE SONIDO (SIN CAMBIOS) ---
-
+// --- LÓGICA DE INICIO Y MANEJO DE SONIDO ---
 fetch('./respuestas.json')
     .then(response => response.json())
     .then(data => {
         respuestas = data;
+        const loader = document.getElementById('loader');
+        if(loader) loader.style.display = 'none'; // Ocultar el loader
+        
         chatContainer.innerHTML = '';
         mostrarMenuPrincipal();
-        lucide.createIcons();
+        if (typeof lucide !== 'undefined') {
+          lucide.createIcons();
+        }
     })
     .catch(error => {
         console.error("Error cargando respuestas.json:", error);
@@ -209,7 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const soundCheckbox = document.getElementById('sound-checkbox');
     if (soundCheckbox) {
         soundCheckbox.addEventListener('change', () => {
-            voz.controlarSonido();
+            if (typeof voz !== 'undefined') {
+              voz.controlarSonido();
+            }
         });
     }
+
+    // Ya no necesitas la lógica del modal de podcast, la hemos integrado.
+    // Puedes borrar el código relacionado a podcast-button, podcast-modal, etc.
 });

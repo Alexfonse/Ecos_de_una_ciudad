@@ -1417,7 +1417,7 @@ p {
   max-width: 800px;
   margin: 2rem auto;
   padding: 1.5rem;
-  background-image: url("/assets/img/gaita360.png");
+  background-image: url("../img/gaita360.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -2209,4 +2209,125 @@ html::-webkit-scrollbar-thumb:hover {
     border-radius: 8px;
     margin-top: 10px;
     display: block;
+}
+
+/* ARCHIVO: assets/css/style.css */
+
+/* ============================================= */
+/* === ESTILOS PARA EL MODAL DE PODCASTS === */
+/* ============================================= */
+
+/* El fondo oscuro de la ventana modal */
+.podcast-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(14, 26, 28, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0s 0.4s;
+}
+
+.podcast-modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease;
+}
+
+/* El contenido de la ventana */
+.podcast-modal-content {
+  position: relative;
+  background-color: var(--color-surface-variant);
+  color: var(--color-on-surface);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  transform: scale(0.95);
+  transition: transform 0.4s ease;
+}
+
+.podcast-modal-overlay.open .podcast-modal-content {
+  transform: scale(1);
+}
+
+.podcast-modal-content h3 {
+  font-family: var(--font-titulo);
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.podcast-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.podcast-modal-close:hover {
+  opacity: 1;
+  transform: rotate(90deg);
+}
+
+/* Contenedor de los reproductores */
+.podcast-player-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.podcast-item h4 {
+  font-family: var(--font-parrafo);
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-secondary);
+}
+
+/* Estilo para los reproductores de audio */
+audio {
+  width: 100%;
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: var(--color-tertiary-container);
+  border-radius: 8px;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-play-button:hover {
+  background-color: var(--color-secondary);
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-mute-button {
+  color: var(--color-on-tertiary-container);
+}
+
+audio::-webkit-media-controls-volume-slider {
+  background-color: #FFF;
+  border-radius: 25px;
+  padding: 0;
+  margin: 0 5px;
 }

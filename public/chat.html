@@ -6,18 +6,19 @@
   <title>Don Gaitaloma - Chat Histórico</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="icon" type="image/png" href="../assets/img/gaita_sola.png">  <link rel="icon" type="image/png" href="../assets/img/gaita_sola.png">
 </head>
 <body>
 
   <!-- HERO -->
   <header class="hero-header">
-    <img src="../assets/img/prueba_2.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
+    <img src="../assets/img/chisme.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
     <div class="hero-overlay">
       <div class="scroll-indicator">
         <div class="flecha-bajar"></div>
       </div>
-      <h1 class="titulo-hero">Ecos de una<br><span class="frase-impacto">ciudad</span></h1>
-      <p class="subtexto-hero">Explora cómo el pasado, el presente y el futuro se entrelazan en cada rincón de Bogotá.
+      <h1 class="titulo-hero">Échele Cuento,<br><span class="frase-impacto">Don Gaitaloma</span></h1>
+      <p class="subtexto-hero">¿Listo para desentrañar los chismes, historias y leyendas de la capital? Este palomo tiene más cuerda que un reloj. ¡A conversar se dijo!
       </p>
 
 
@@ -49,21 +50,49 @@
     </div>
 
 <div class="chat-input-bar">
-
-    <input type="text" id="user-input" placeholder="Escribe tu mensaje..." disabled>
-    <button id="send-button" disabled aria-label="Enviar mensaje">
+<div class="chat-input-bar">
+    <input type="text" id="user-input" placeholder="Pregúntale algo a Don Gaitaloma...">
+    
+    <button id="send-button" aria-label="Enviar mensaje">
         <i data-lucide="send"></i>
     </button>
-        <input type="text" id="mensaje" placeholder="Escribe tu mensaje aquí...">
     
-    <button id="mute-button" title="Silenciar">
-        <i data-lucide="volume-2"></i>
-    </button>
-    
-    <button id="enviar" title="Enviar mensaje">
-        <i data-lucide="send-horizontal"></i>
+    <button id="podcast-button" aria-label="Escuchar podcasts">
+        <i data-lucide="headphones"></i>
     </button>
 </div>
+</main>
+
+<div id="podcast-modal" class="podcast-modal-overlay">
+    <div class="podcast-modal-content">
+        <button id="podcast-close-btn" class="podcast-modal-close" aria-label="Cerrar">
+            <i data-lucide="x"></i>
+        </button>
+        
+        <h3>Ecos de una Ciudad: El Podcast</h3>
+        
+        <div class="podcast-player-container">
+            <div class="podcast-item">
+                <h4>Voces que dejaron huella en Bogotá</h4>
+                <audio controls src="../assets/audio/podcast1.mp3">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            
+            <div class="podcast-item">
+                <h4>Curiosidades de una Bogotá que ya no vemos</h4>
+                <audio controls src="../assets/audio/podcast2.mp3">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="./chat.js" defer></script>
+</body>
+</html>
 </main>
 
 
@@ -86,25 +115,27 @@
     </ul>
   </div>
 
-<footer class="footer">
-  <div class="footer-form-container">
-    <h4>¿Quieres recibir más ecos de la ciudad?</h4>
-    <p>Suscríbete para no perderte nuevas historias, galerías y eventos.</p>
-    <form id="footer-form" class="footer-subscribe-form">
-      <input type="email" id="footer-email" name="email" placeholder="Escribe tu correo electrónico aquí" required>
-      <button type="submit" class="boton-principal">Suscribirme</button>
-    </form>
-  </div>
-  <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
-  <div class="redes">
-    <a href="https://instagram.com/Focus_Bogota" target="_blank">Instagram</a> |
-    <a href="mailto:focus@gmail.com">Correo</a> |
-    <a href="https://tiktok.com/@Focus_Bogota" target="_blank">TikTok</a>
-  </div>
-  <div class="cirgaita">
-    <img src="assets/img/prueba_2.png" alt="Logo circular">
-  </div>
-</footer>
+  <footer class="footer">
+    <div class="footer-form-container">
+      <h4>¿Quieres recibir más ecos de la ciudad?</h4>
+      <p>Suscríbete para no perderte nuevas historias, galerías y eventos.</p>
+      <form id="footer-form" class="footer-subscribe-form">
+        <input type="email" id="footer-email" name="email" placeholder="Escribe tu correo electrónico aquí" required>
+        <button type="submit" class="boton-principal">Suscribirme</button>
+      </form>
+    </div>
+    <p>“Cada rincón guarda un susurro del pasado. Descúbrelo.”</p>
+    <div class="redes">
+      <a href="https://www.instagram.com/ecosdeunaciudad/ " target="_blank">Instagram</a> |
+      <a href="mailto:hello.focusnow@gmail.com">Correo</a> |
+      <a href="https://www.youtube.com/@FocusProductoraMultimedia" target="_blank">Youtube</a> |
+      <a href="https://wa.me/message/WV3QQ6XBN2W3H1 " target="_blank">WhatsApp</a>
+    </div>
+    <div class="cirgaita">
+      <img src="../assets/img/footer.png" alt="Logo circular">
+    </div>
+  </footer>
+
   <script></script>
   <script src="./chat.js" defer></script>
   <script src="./voz.js" defer></script>

@@ -44,15 +44,19 @@
     "items": [
       {
         "title": "La Puerta Falsa",
-        "text": "La Puerta Falsa es el restaurante más antiguo de Bogotá, fundado en 1816 nada menos. Ubicado junto a la Catedral, en la Calle 11 con Carrera 6, lleva más de 200 años sirviendo delicias tradicionales. Aquí, dicen que hasta Simón Bolívar se tomó una buena taza de chocolate con almojábana y tamal. Hoy es famoso por su chocolate santafereño, con queso, pan y tamalito - ¡plan dominguero por excelencia!. Es un sitio chiquito pero lleno de sabor e historia. Don Gaitaloma recomienda llegar con paciencia, porque siempre está lleno de parroquianos y turistas chupando chocolate."
+        "text": "La Puerta Falsa es el restaurante más antiguo de Bogotá, fundado en 1816 nada menos. Ubicado junto a la Catedral, en la Calle 11 con Carrera 6, lleva más de 200 años sirviendo delicias tradicionales. Aquí, dicen que hasta Simón Bolívar se tomó una buena taza de chocolate con almojábana y tamal. Hoy es famoso por su chocolate santafereño, con queso, pan y tamalito - ¡plan dominguero por excelencia!. Es un sitio chiquito pero lleno de sabor e historia. Don Gaitaloma recomienda llegar con paciencia, porque siempre está lleno de parroquianos y turistas chupando chocolate.",
+        "imagenURL": "../assets/img/puerta_falsa.jpg"
+
       },
       {
         "title": "Café Pasaje",
-        "text": "El Café Pasaje, fundado en 1936-1937, es uno de los cafés más tradicionales del centro. Queda en la Avenida Jiménez con Carrera 6, al ladito de la Plazoleta del Rosario. En los años 40 y 50 era punto de tertulias políticas y literarias. Cuentan que allí se refugiaban estudiantes del Rosario a discutir de todo, y hasta se jugó a fundar un equipo de fútbol (Independiente Santa Fe nació en un café cercano). El Pasaje ha sobrevividido a los cambios del centro; conserva sus mesas redondas de patas anchas y paredes llenas de fotos antiguas. Todavía se puede pedir un tinto clásico y sentir el ambiente bohemio de antaño. ¡Es como entrar a 1940 por un cafecito! Don Gaitaloma se echa sus plumas de vez en cuando por allí a escuchar chismes del pasado."
+        "text": "El Café Pasaje, fundado en 1936-1937, es uno de los cafés más tradicionales del centro. Queda en la Avenida Jiménez con Carrera 6, al ladito de la Plazoleta del Rosario. En los años 40 y 50 era punto de tertulias políticas y literarias. Cuentan que allí se refugiaban estudiantes del Rosario a discutir de todo, y hasta se jugó a fundar un equipo de fútbol (Independiente Santa Fe nació en un café cercano). El Pasaje ha sobrevividido a los cambios del centro; conserva sus mesas redondas de patas anchas y paredes llenas de fotos antiguas. Todavía se puede pedir un tinto clásico y sentir el ambiente bohemio de antaño. ¡Es como entrar a 1940 por un cafecito! Don Gaitaloma se echa sus plumas de vez en cuando por allí a escuchar chismes del pasado.",
+        "imagenURL": "../assets/img/cafe_pasaje.jpg"
       },
       {
         "title": "Pastelería La Florida",
-        "text": "Fundada en 1934, la Pastelería La Florida es la casa del chocolate bogotano. Ubicada en la Carrera 7 con Calle 21, en pleno centro, ha sido refugio de poetas, intelectuales y parejitas románticas desde hace décadas. Su especialidad es el chocolate santafereño con queso, tamal y changua, además de postres típicos deliciosos. Lo más lindo es que conserva su mobiliario art decó original; entrar allí es como viajar en el tiempo, con meseros de corbatín y todo. La Florida demuestra que lo tradicional nunca pasa de moda; sigue llena de vida entre tanto edificio moderno. Don Gaitaloma a veces se toma un merengón allí, recordando los viejos tiempos."
+        "text": "Fundada en 1934, la Pastelería La Florida es la casa del chocolate bogotano. Ubicada en la Carrera 7 con Calle 21, en pleno centro, ha sido refugio de poetas, intelectuales y parejitas románticas desde hace décadas. Su especialidad es el chocolate santafereño con queso, tamal y changua, además de postres típicos deliciosos. Lo más lindo es que conserva su mobiliario art decó original; entrar allí es como viajar en el tiempo, con meseros de corbatín y todo. La Florida demuestra que lo tradicional nunca pasa de moda; sigue llena de vida entre tanto edificio moderno. Don Gaitaloma a veces se toma un merengón allí, recordando los viejos tiempos.",
+        "imagenURL": "../assets/img/pasteleria_florida.avif"
       },
       {
         "title": "El Viejo Bochalema",
@@ -60,15 +64,18 @@
       },
       {
         "title": "Restaurante Las Margaritas",
-        "text": "Las Margaritas, fundado en 1902, es otro clásico chapineruno. Ocho generaciones de la familia lo han mantenido vivo, sirviendo los mejores tamales y empanadas de Bogotá. Este sitio aguantó de todo: el Bogotazo de 1948 (dicen que escondieron las ollas para que no se las rompieran los disturbios) y hasta la pandemia del 2020. En 2023 casi cierra por falta de heredero, ¡imagínese!, pero la ciudad entera suspiró aliviada cuando lograron mantenerlo. Entrar a Las Margaritas es ver fotos sepia en las paredes y sentir olor a chocolate y masato, como en casa de la abuela. Un verdadero tesoro culinario capitalino."
+        "text": "Las Margaritas, fundado en 1902, es otro clásico chapineruno. Ocho generaciones de la familia lo han mantenido vivo, sirviendo los mejores tamales y empanadas de Bogotá. Este sitio aguantó de todo: el Bogotazo de 1948 (dicen que escondieron las ollas para que no se las rompieran los disturbios) y hasta la pandemia del 2020. En 2023 casi cierra por falta de heredero, ¡imagínese!, pero la ciudad entera suspiró aliviada cuando lograron mantenerlo. Entrar a Las Margaritas es ver fotos sepia en las paredes y sentir olor a chocolate y masato, como en casa de la abuela. Un verdadero tesoro culinario capitalino.",
+        "imagenURL": "../assets/img/las_margaritas.jpeg"
       },
       {
         "title": "Teatro San Jorge",
-        "text": "El Teatro San Jorge es una joya art decó inaugurada en 1938. Queda en el barrio Los Mártires, cerca al centro. En sus épocas de gloria (años 40-50) fue de los teatros más importantes de Bogotá, con su enorme sala de tres pisos, balcón de herradura y salones elegantes. Luego el tiempo fue cruel y cayó en abandono, al punto que para los 2000 era una ruina polvorienta. Por fortuna, fue declarado Bien de Interés Cultural en 2001 y el Distrito lo compró en 2014 para salvarlo. Hoy está en plena restauración para reabrir sus puertas a las artes escénicas. Pronto volverá a lucir como aquel gigante dormido que despierta. Don Gaitaloma no ve la hora de aplaudir desde el balcón restaurado."
+        "text": "El Teatro San Jorge es una joya art decó inaugurada en 1938. Queda en el barrio Los Mártires, cerca al centro. En sus épocas de gloria (años 40-50) fue de los teatros más importantes de Bogotá, con su enorme sala de tres pisos, balcón de herradura y salones elegantes. Luego el tiempo fue cruel y cayó en abandono, al punto que para los 2000 era una ruina polvorienta. Por fortuna, fue declarado Bien de Interés Cultural en 2001 y el Distrito lo compró en 2014 para salvarlo. Hoy está en plena restauración para reabrir sus puertas a las artes escénicas. Pronto volverá a lucir como aquel gigante dormido que despierta. Don Gaitaloma no ve la hora de aplaudir desde el balcón restaurado.",
+        "imagenURL": "../assets/img/ejemplos-03.jpg"
       },
       {
         "title": "Plaza de Bolívar",
-        "text": "La Plaza de Bolívar es el corazón de Bogotá desde su fundación. Ha tenido múltiples nombres: Plaza Mayor en la colonia, Plaza de la Constitución tras la independencia, y desde 1846 Plaza de Bolívar. Aquí se ha visto de todo: mercados coloniales, corridas de toros, ejecuciones de próceres (en la época de la Reconquista), proclamaciones de virreyes y presidentes, y manifestaciones populares de toda índole. En 1880 se instaló en su centro la estatua de Simón Bolívar - primer monumento público de la ciudad - sustituyendo una vieja pila de agua. La Plaza ha sido testigo de funerales de Estado y también de la furia del Bogotazo en 1948, cuando ardieron tranvías a su alrededor. Hoy es escenario de protestas, conciertos, ferias y encuentro diario de bogotanos y palomas. Como dice Don Gaitaloma, esta plaza tiene más historia que palomas."
+        "text": "La Plaza de Bolívar es el corazón de Bogotá desde su fundación. Ha tenido múltiples nombres: Plaza Mayor en la colonia, Plaza de la Constitución tras la independencia, y desde 1846 Plaza de Bolívar. Aquí se ha visto de todo: mercados coloniales, corridas de toros, ejecuciones de próceres (en la época de la Reconquista), proclamaciones de virreyes y presidentes, y manifestaciones populares de toda índole. En 1880 se instaló en su centro la estatua de Simón Bolívar - primer monumento público de la ciudad - sustituyendo una vieja pila de agua. La Plaza ha sido testigo de funerales de Estado y también de la furia del Bogotazo en 1948, cuando ardieron tranvías a su alrededor. Hoy es escenario de protestas, conciertos, ferias y encuentro diario de bogotanos y palomas. Como dice Don Gaitaloma, esta plaza tiene más historia que palomas.",
+        "imagenURL": "../assets/img/plaza_de_bolivar_presente.jpg"
       },
       {
         "title": "Quinta de Bolívar",
@@ -76,11 +83,13 @@
       },
       {
         "title": "Observatorio Astronómico",
-        "text": "El Observatorio Astronómico Nacional, en pleno centro cerca de la Casa de Nariño, fue fundado en 1803 y es nada menos que el primer observatorio de América. Lo diseñó el sabio Mutis y allí trabajó el Sabio Caldas observando las estrellas. Es una torre blanca pequeña, fácil de pasar por alto, pero de enorme valor histórico. Actualmente sigue activo como centro de investigación de la Universidad Nacional, aunque poca gente lo conoce. Sería maravilloso transformarlo también en museo interactivo de ciencia para niños. Don Gaitaloma a veces vuela en círculos sobre su cúpula, saludando a Marte y Júpiter, orgulloso de este legado científico en la Sabana."
+        "text": "El Observatorio Astronómico Nacional, en pleno centro cerca de la Casa de Nariño, fue fundado en 1803 y es nada menos que el primer observatorio de América. Lo diseñó el sabio Mutis y allí trabajó el Sabio Caldas observando las estrellas. Es una torre blanca pequeña, fácil de pasar por alto, pero de enorme valor histórico. Actualmente sigue activo como centro de investigación de la Universidad Nacional, aunque poca gente lo conoce. Sería maravilloso transformarlo también en museo interactivo de ciencia para niños. Don Gaitaloma a veces vuela en círculos sobre su cúpula, saludando a Marte y Júpiter, orgulloso de este legado científico en la Sabana.",
+        "imagenURL": "../assets/img/observatorio_pasa.jpg"
       },
       {
         "title": "Estación de la Sabana",
-        "text": "La Estación de la Sabana, inaugurada en 1917, fue la gran estación de trenes de Bogotá. Desde allí partían los ferrocarriles que conectaban la capital con el norte, el sur y el occidente del país. En su época dorada, las locomotoras pitaban y el bullicio de pasajeros y maletas era señal de progreso. La estación tiene una arquitectura republicana hermosa, pero tras el ocaso del ferrocarril en los 1950s cayó en deterioro. Hoy, aunque ya no hay trenes de línea, aún funciona el Tren Turístico de la Sabana los fines de semana, que lleva visitantes hasta Zipaquirá entre música y nostalgia. Se sueña con que en el futuro la Sabana vuelva a recibir trenes de cercanías ecológicos. Don Gaitaloma oye el eco lejano del \"chucu chucu\" cada vez que sobrevuela sus rieles oxidados."
+        "text": "La Estación de la Sabana, inaugurada en 1917, fue la gran estación de trenes de Bogotá. Desde allí partían los ferrocarriles que conectaban la capital con el norte, el sur y el occidente del país. En su época dorada, las locomotoras pitaban y el bullicio de pasajeros y maletas era señal de progreso. La estación tiene una arquitectura republicana hermosa, pero tras el ocaso del ferrocarril en los 1950s cayó en deterioro. Hoy, aunque ya no hay trenes de línea, aún funciona el Tren Turístico de la Sabana los fines de semana, que lleva visitantes hasta Zipaquirá entre música y nostalgia. Se sueña con que en el futuro la Sabana vuelva a recibir trenes de cercanías ecológicos. Don Gaitaloma oye el eco lejano del \"chucu chucu\" cada vez que sobrevuela sus rieles oxidados.",
+        "imagenURL": "../assets/img/Estación_de_La_Sabana.JPG"
       }
     ]
   },
@@ -88,7 +97,9 @@
     "items": [
       "Bogotá sobre ruedas ha cambiado mucho, sumercé. A finales del siglo XIX llegó el tranvía a la ciudad: primero de tracción animal y luego el tranvía eléctrico desde 1910. ¡Imagínese esos tranvías rechinantes marcando el ritmo de la ciudad! El tranvía conectó barrios y jalonó la urbanización de Chapinero y otros sectores. Era el orgullo bogotano hasta que en 1948, durante El Bogotazo, varios fueron incendiados por la furia de la multitud (Don Gaitaloma recuerda con tristeza cómo ardía un tranvía frente al Capitolio ese 9 de abril). En 1951 el tranvía fue despedido para siempre tras un terrible accidente. Se acabó una era romántica sobre rieles.",
       "Después vinieron los buses y busetas, y a finales del siglo XX la ciudad pidió a gritos un sistema más organizado. Así nació TransMilenio en el año 2000, con sus buses rojos articulados que hoy recorren Bogotá de norte a sur. Es ruidoso, a veces lleno hasta las banderas, pero mueve millones de bogotanos cada día y se volvió símbolo de la ciudad moderna. Dicen las malas lenguas que en las noches frías se aparece el \"Bus fantasma\" ruta G66, un cuento de trasnochados que a más de uno ha asustado. Aún con sus dolores de cabeza, el TransMi (como le decimos de cariño o de reproche) nos recuerda que Bogotá sigue en movimiento.",
-      "¿Y el futuro? ¡El Metro de Bogotá, por fin! Tras décadas de sueños y promesas, por ahí se ven columnas y tuneladoras dando forma a la primera línea de metro. Será elevado en su mayor parte, con trenes eléctricos que cruzarán la ciudad. Se espera que esté listo a finales de la década de 2020. Será un cambio radical: menos trancón, menos humo, más velocidad (ojalá, ¿no?). Don Gaitaloma ya se imagina volando junto a los vagones futuristas y contándole a los viejos tranvías en el cielo que Bogotá por fin tiene su tren soñado. El pueblo siempre encuentra la manera de seguir su camino, asi sea sobre rieles o sobre ruedas."
+      "¿Y el futuro? ¡El Metro de Bogotá, por fin! Tras décadas de sueños y promesas, por ahí se ven columnas y tuneladoras dando forma a la primera línea de metro. Será elevado en su mayor parte, con trenes eléctricos que cruzarán la ciudad. Se espera que esté listo a finales de la década de 2020. Será un cambio radical: menos trancón, menos humo, más velocidad (ojalá, ¿no?). Don Gaitaloma ya se imagina volando junto a los vagones futuristas y contándole a los viejos tranvías en el cielo que Bogotá por fin tiene su tren soñado. El pueblo siempre encuentra la manera de seguir su camino, asi sea sobre rieles o sobre ruedas.",
+      "Y no olvidemos las bicicletas, que han vuelto con fuerza. Desde los años 70, Bogotá ha sido pionera en promover el uso de la bici con sus ciclovías y eventos como la Ciclovía dominical. Hoy, con más de 500 km de ciclorrutas, la bici es parte del paisaje urbano. Don Gaitaloma a veces se posa en el manubrio de una bicicleta antigua, recordando los tiempos en que pedalear era la única forma de moverse rápido por la ciudad.",
+      "Y así, sumercé, el transporte en Bogotá ha pasado de los tranvías de antaño a los buses rojos del TransMilenio, y ahora al esperado Metro. Cada época ha dejado su huella, y la ciudad sigue rodando hacia el futuro con su característico ritmo cachaco."
     ]
   },
   "Curiosidades graciosas": {
@@ -99,6 +110,26 @@
       "Los vendedores ambulantes de antaño eran pregoneros con voz de opera. Desde temprano se oía por las calles: “¡Leche fresca pa’ la señora!”, “¡Arepas calientitas!”. Cada quien tenía su grito distintivo, casi un canto. El del afilador con su silbato, el del mazamorrero con su canción, y así. Era el noticiero del barrio: todos se enteraban que había mazamorra, tinto o tamales sin necesidad de WhatsApp. Hoy quedan pocos pregoneros, pero si escucha un \"¡El gas!\" sabrá que esa tradición sigue viva (aunque ahora vendan cilindros de gas y no velas).",
       "El lenguaje cachaco tenía sus dichos y palabras raras. Por ejemplo, en antaño si alguien estaba muy perdido se decía: \"Más perdido que turco en la neblina\". Para rogar se decía \"pedir cacao\", y cuando alguien andaba de capa caída... pues se decía literalmente “estar de capa caída”. También se agradecía con un respetuoso \"Dios le pague\". Y el título de \"sumercé\" viene de \"Vuestra Merced\" de la colonia, por eso Don Gaitaloma así le habla a usté, con todo respeto. ¡El que habla cachaco entiende, sumercé!",
       "La moda de antaño tenía lo suyo: las damas bogotanas no mostraban ni el tobillo. Llevaban faldas largas, corsé y mantilla, muy recatadas. Eso sí, con el abanico enviaban mensajes de amor sin decir palabra: abanico abierto significaba interés, abanico cerrado era \"ni se le ocurra\". Los caballeros lucían levita, sombrero de copa, bastón y guantes de cabritilla. ¡Y ojo! Usaban pañuelos perfumados para taparse la nariz por los malos olores de la calle. Todo un desfile de elegancia. Don Gaitaloma a veces intenta ponerse guantes, pero con esas alas, ¡qué joda!"
+    ]
+  },
+  "Ecos Sonoros (Podcasts)": {
+    "entrenamientos": ["podcast", "podcasts", "audio", "escuchar", "ecos sonoros", "narraciones"],
+    "intro": {
+        "texto": "¡Qué buena idea! Póngase cómodo y prepare los oídos. Aquí le tengo dos relatos sonoros para que viaje en el tiempo sin moverse de la silla. ¿Cuál le provoca escuchar primero?",
+        "imagenURL": "../assets/img/podcas.png"
+    },
+    "items": [
+      {
+        "title": "Voces que dejaron huella en Bogotá",
+        "text": "Un viaje para conocer a los hombres y mujeres que, desde sus letras, pinceles y cálculos, dibujaron el alma de esta ciudad.",
+        "audioURL": "../assets/podcast/Ecos de una Ciudad_ Bogotá_2.wav"
+      },
+      {
+        "title": "Curiosidades de una Bogotá que ya no vemos",
+        "text": "Descubra las costumbres, dichos y datos curiosos de la Bogotá de antaño, cuando se gritaba '¡Aguas va!' desde las ventanas.",
+        "audioURL": "../assets/podcast/Ecos de una Ciudad_1.wav"
+        
+      }
     ]
   }
 }
