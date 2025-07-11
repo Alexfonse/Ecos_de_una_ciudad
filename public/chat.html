@@ -37,18 +37,36 @@
   </header>
 
   <main id="chat-container">
+      <div class="sound-toggle-wrapper">
+        <label class="sound-switch" for="sound-checkbox" title="Activar/desactivar sonido">
+            <input type="checkbox" id="sound-checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+    </div>
     <div id="loader">
       <div class="spinner"></div>
       <p>Despertando a Don Gaitaloma...</p>
     </div>
-    <div class="chat-input-bar">
-    <input type="text" placeholder="Escribe tu mensaje aquí..." disabled>
-    <button class="boton-enviar" disabled>
-      <i data-lucide="send-horizontal"></i>
+
+<div class="chat-input-bar">
+
+    <input type="text" id="user-input" placeholder="Escribe tu mensaje..." disabled>
+    <button id="send-button" disabled aria-label="Enviar mensaje">
+        <i data-lucide="send"></i>
     </button>
-  </div>
+        <input type="text" id="mensaje" placeholder="Escribe tu mensaje aquí...">
+    
+    <button id="mute-button" title="Silenciar">
+        <i data-lucide="volume-2"></i>
+    </button>
+    
+    <button id="enviar" title="Enviar mensaje">
+        <i data-lucide="send-horizontal"></i>
+    </button>
+</div>
 </main>
-  </main>
+
+
   
   <nav class="floating-navbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
@@ -87,7 +105,7 @@
     <img src="assets/img/prueba_2.png" alt="Logo circular">
   </div>
 </footer>
-
+  <script></script>
   <script src="./chat.js" defer></script>
   <script src="./voz.js" defer></script>
   <script src="../assets/js/main.js"></script>

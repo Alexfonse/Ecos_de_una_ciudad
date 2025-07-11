@@ -1041,9 +1041,9 @@ p {
   position: relative;
   /* Fondo con degradado difuminado similar a .gallery-container-unique */
   background: linear-gradient(180deg,
-      var(--color-tertiary) 0%,
-      #4b5d73 100%
-      ,#108bff 50%);
+      #243040 0%,          /* <--- Comienza donde el otro terminó */
+      var(--color-surface) 100%  /* <--- Termina en el color base de tu sitio */
+    );
 }
 
 .gallery-container-scroll::before {
@@ -1417,6 +1417,15 @@ p {
   max-width: 800px;
   margin: 2rem auto;
   padding: 1.5rem;
+  background-image: url("/assets/img/gaita360.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Fondo con imagen de Gaita 360 */
+  background-blend-mode: overlay;
+  /* Mezcla la imagen con el fondo */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo oscuro semitransparente */
   background-color: var(--color-surface-variant);
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
@@ -1528,7 +1537,7 @@ p {
 
 /* --- 5. Estilo de cada botón de opción --- */
 .opciones button {
-  background-color: transparent;
+  background-color: var(--color-on-secondary);
   color: var(--color-secondary);
   border: 2px solid var(--color-secondary);
   font-family: var(--font-parrafo);
@@ -2076,4 +2085,128 @@ html::-webkit-scrollbar-thumb:hover {
   height: 60px;
   stroke-width: 1.5px;
   margin-bottom: 1rem;
+}
+/* ======================================================================== */
+/* === ESTILOS RESPONSIVOS PARA LIBROS (SOBRE NOSOTROS) - v3.0 === */
+/* ======================================================================== */
+
+.book-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-color: var(--color-surface-variant);
+    border-top: 1px solid var(--color-outline-variant);
+}
+
+.book-section .section-title-container h2 {
+    color: var(--color-primary);
+}
+
+.book-section .section-title-container p {
+    color: var(--color-on-surface);
+    opacity: 0.8;
+}
+
+/* Contenedor principal del libro: ahora es flexible */
+.magazine-viewport {
+    width: 100%;
+    max-width: 922px; /* Mantiene el tamaño máximo en pantallas grandes */
+    margin: 3rem auto;
+    position: relative; /* Necesario para posicionar los botones */
+}
+
+/* El libro usará el 100% del ancho de su contenedor */
+.magazine-viewport .magazine {
+    width: 100%;
+    height: 100%;
+}
+
+.magazine .page img {
+    /* Esta es la propiedad clave */
+    object-fit: contain; 
+
+    /* Estas aseguran que la imagen intente ocupar el espacio disponible */
+    width: 100%;
+    height: 100%;
+
+    /* Un fondo sutil por si la imagen no ocupa todo el espacio */
+    background-color: var(--color-surface); 
+}s
+
+/* Botones de navegación */
+.magazine-viewport .next-button,
+.magazine-viewport .previous-button {
+    width: 40px; height: 40px; top: 50%; margin-top: -20px;
+    background-color: var(--color-tertiary);
+    border: 1px solid var(--color-outline);
+    border-radius: 50%; cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    z-index: 10;
+}
+
+.magazine-viewport .next-button::after,
+.magazine-viewport .previous-button::after {
+    content: '›'; font-family: 'Arial', sans-serif; font-size: 28px;
+    line-height: 40px; color: var(--color-on-tertiary);
+    display: block; text-align: center;
+}
+
+.magazine-viewport .previous-button::after { content: '‹'; }
+
+.magazine-viewport .next-button:hover,
+.magazine-viewport .previous-button:hover {
+    background-color: var(--color-secondary);
+    transform: scale(1.1);
+}
+
+.magazine-viewport .next-button { right: -50px; }
+.magazine-viewport .previous-button { left: -50px; }
+
+
+/* --- NUEVOS ESTILOS RESPONSIVOS --- */
+
+/* En tablets (menos de 992px) */
+@media (max-width: 992px) {
+    .magazine-viewport .next-button {
+        right: -20px; /* Acercamos los botones */
+    }
+    .magazine-viewport .previous-button {
+        left: -20px;
+    }
+}
+
+/* En móviles (menos de 576px) */
+@media (max-width: 576px) {
+    .magazine-viewport .next-button {
+        right: 5px; /* Los ponemos casi en el borde */
+    }
+    .magazine-viewport .previous-button {
+        left: 5px;
+    }
+    .book-section {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+}
+
+/* ARCHIVO: assets/css/style.css */
+
+/* Estilo para las imágenes dentro de los mensajes del chat */
+.chat-message .chat-image {
+    max-width: 20%; /* Asegura que la imagen no se salga de la burbuja */
+    border-radius: 8px; /* Bordes redondeados para que combine con el diseño */
+    margin-top: 10px; /* Un poco de espacio entre el texto y la imagen */
+    display: block; /* Asegura que ocupe su propia línea */
+}
+
+/* ARCHIVO: assets/css/style.css */
+
+/* Estilo para las imágenes dentro de los mensajes del chat */
+.chat-image {
+    max-width: 250px; /* NUEVO: Limita el ancho máximo a 250 píxeles */
+    width: 100%;      /* Hace que la imagen se ajuste si es más pequeña que 250px */
+    height: auto;     /* Mantiene la proporción de la imagen para que no se deforme */
+    border-radius: 8px;
+    margin-top: 10px;
+    display: block;
 }

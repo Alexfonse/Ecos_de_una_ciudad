@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Múltiples salas de Bogotá",
             date: "2025-07-18",
             description: "Descubre propuestas cinematográficas audaces y creativas de todo el mundo en uno de los festivales más importantes.",
-            image: "https://www.radionica.rocks/sites/default/files/styles/1366x768/public/2022-06/Peliculas-Indiebo-2022.jpg"
+            image: "assets/img/Cine_independiente.jpg"
         },
         {
             title: "Ciclo de Cine Colombiano",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Auditorio León de Greiff",
             date: "2025-07-25",
             description: "Disfruta de una noche mágica con interpretaciones de obras clásicas por la aclamada orquesta de la ciudad.",
-            image: "https://filarmonicabogota.gov.co/wp-content/uploads/2022/07/La-Filarmonica-de-Bogota-celebra-el-cumpleanos-de-la-ciudad-en-el-Teatro-Mayor-Julio-Mario-Santo-Domingo-prensa-credito-Alcaldia-Mayor.jpeg"
+            image: "assets/img/Filarmonica .jpeg"
         },
         {
             title: "Jardín Botánico de Noche",
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Jardín Botánico de Bogotá",
             date: "2025-07-26",
             description: "Un recorrido mágico y sensorial por las colecciones del jardín bajo la luz de la luna. Una experiencia única.",
-            image: "https://jbb.gov.co/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-29-at-12.03.48-PM.jpeg"
+            image: "assets/img/Jardin_botanico.jpg"
         },
         {
             title: "Baum Festival",
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Corferias",
             date: "2025-07-27",
             description: "La cita obligada para los amantes de la música electrónica. Un lineup de DJs de talla mundial en el corazón de Bogotá.",
-            image: "https://www.billboard.com/wp-content/uploads/2023/05/Baum-Festival-2023-billboard-1548.jpg"
+            image: "assets/img/Baum_festival.jpg"
         },
         {
             title: "Noche de Museos",
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Varios Museos del Centro",
             date: "2025-07-28",
             description: "Explora las exposiciones del Museo del Oro, Museo Botero y más, con entrada libre y horarios extendidos.",
-            image: "https://www.infobae.com/new-resizer/O0vBfG98X4o3nJ0QY9B2p9G8q3o=/1200x900/filters:format(webp):quality(85)//cloudfront-us-east-1.images.arcpublishing.com/infobae/4W4YJ6Z7B5E2LMXE2355YTCVPE.jpg"
+            image: "assets/img/Museo_noctruno.jpg"
         },
         {
             title: "Bogotá Food Fest",
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Parque El Virrey",
             date: "2025-08-02",
             description: "Un festival gastronómico que reúne los mejores restaurantes y food trucks de la ciudad. ¡Un paraíso para los amantes de la comida!",
-            image: "https://revistadc.com/wp-content/uploads/2023/11/DC_MOSAICO_ALIMENTARTE.jpg"
+            image: "assets/img/Food_festival.jpg"
         },
         {
             title: "Aterciopelados en Concierto",
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Movistar Arena",
             date: "2025-08-05",
             description: "La icónica banda bogotana regresa a los escenarios con sus grandes éxitos y nuevo material. ¡Una noche de rock inolvidable!",
-            image: "https://www.radionica.rocks/sites/default/files/styles/1366x768/public/2023-03/Aterciopelados%20en%20el%20estadio%20el%20campin.jpg"
+            image: "assets/img/Aterciopelados.jpg"
         },
         {
             title: "El Método",
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Teatro Libre de Chapinero",
             date: "2025-08-10",
             description: "Un thriller psicológico que explora la crueldad de los procesos de selección laboral. Una obra intensa y reflexiva.",
-            image: "https://files.lapatria.com/s3fs-public/styles/620x/public/obrasubal290124.jpg?itok=8L10mN7f"
+            image: "assets/img/el_metodo.jpg"
         },
         {
             title: "Retrospectiva Alfred Hitchcock",
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Cinemateca de Bogotá",
             date: "2025-08-15",
             description: "Un ciclo imperdible con las obras maestras del maestro del suspenso. Vértigo, Psicosis y más en pantalla grande.",
-            image: "https://cloudfront-us-east-1.images.arcpublishing.com/semana/N6YTY344R5B27I227O653CJD5A.jpg"
+            image: "assets/img/Maestro_del_suspenso .jpeg"
         },
         {
             title: "Feria Internacional del Libro (FILBo)",
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Corferias",
             date: "2025-08-18",
             description: "El evento literario y cultural más importante de Colombia. Encuentros con autores, lanzamientos y una inmensa oferta editorial.",
-            image: "https://imagenes.eltiempo.com/files/image_1200_600/uploads/2023/04/18/643f211756475.jpeg"
+            image: "/assets/img/Filbo.png"
         },
         {
             title: "Exposición de Arte Urbano",
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Galería La Cometa",
             date: "2025-08-20",
             description: "Una muestra que celebra el talento de los artistas del graffiti y el street art de Bogotá y el mundo.",
-            image: "https://revistadiners.com.co/wp-content/uploads/2018/09/calle_800x669.jpg"
+            image: "/assets/img/Arte_urbano.jpg"
         },
         {
             title: "El Coronel No Tiene Quien le Escriba",
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Teatro Colón",
             date: "2025-08-22",
             description: "Magistral adaptación teatral de la aclamada novela de Gabriel García Márquez. Una joya de la dramaturgia colombiana.",
-            image: "https://www.teatrocolon.gov.co/sites/default/files/2021-10/El%20coronel%20no%20tiene%20quien%20le%20escriba%20%2815%29.jpg"
+            image: "/assets/img/El_coronel.jpg"
         },
         {
             title: "Alimentarte Food Festival",
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Parque El Country",
             date: "2025-08-25",
             description: "El festival gastronómico con causa social. Disfruta de lo mejor de la cocina local e internacional y apoya una buena causa.",
-            image: "https://www.semana.com/resizer/l9jU4lM2t2d1m-i_Y-X8n8r6G5o=/1200x675/filters:format(jpg):quality(50)//cloudfront-us-east-1.images.arcpublishing.com/semana/S2G4AWP7YRG5VODG7AWV336YLA.jpg"
+            image: "assets/img/festival_alimentartejpg.jpg"
         },
         {
             title: "Festival de Jazz al Parque",
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Parque Metropolitano El Country",
             date: "2025-09-14",
             description: "Artistas nacionales e internacionales se reúnen para dos días de improvisación y virtuosismo en este evento gratuito.",
-            image: "https://canaltrece.com.co/uploads/ckeditor/pictures/33232/content_jazz_al_parque_2023.jpg"
+            image: "/assets/img/festival_de_jazz.png"
         },
         {
             title: "Andrés Cepeda: Gira 'Tengo Ganas'",
