@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Auditorio León de Greiff",
             date: "2025-07-25",
             description: "Disfruta de una noche mágica con interpretaciones de obras clásicas por la aclamada orquesta de la ciudad.",
-            image: "assets/img/Filarmonica .jpeg"
+            image: "assets/img/Filarmonica.jpeg"
         },
         {
             title: "Jardín Botánico de Noche",
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Corferias",
             date: "2025-08-18",
             description: "El evento literario y cultural más importante de Colombia. Encuentros con autores, lanzamientos y una inmensa oferta editorial.",
-            image: "/assets/img/Filbo.png"
+            image: "assets/img/Filbo.png"
         },
         {
             title: "Exposición de Arte Urbano",
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Galería La Cometa",
             date: "2025-08-20",
             description: "Una muestra que celebra el talento de los artistas del graffiti y el street art de Bogotá y el mundo.",
-            image: "/assets/img/Arte_urbano.jpg"
+            image: "assets/img/Arte_urbano.jpg"
         },
         {
             title: "El Coronel No Tiene Quien le Escriba",
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Teatro Colón",
             date: "2025-08-22",
             description: "Magistral adaptación teatral de la aclamada novela de Gabriel García Márquez. Una joya de la dramaturgia colombiana.",
-            image: "/assets/img/El_coronel.jpg"
+            image: "assets/img/El_coronel.jpg"
         },
         {
             title: "Alimentarte Food Festival",
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location: "Parque Metropolitano El Country",
             date: "2025-09-14",
             description: "Artistas nacionales e internacionales se reúnen para dos días de improvisación y virtuosismo en este evento gratuito.",
-            image: "/assets/img/festival_de_jazz.png"
+            image: "assets/img/festival_de_jazz.png"
         },
         {
             title: "Andrés Cepeda: Gira 'Tengo Ganas'",
