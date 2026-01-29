@@ -7,8 +7,8 @@
   <title>Blog - Ecos de una Ciudad</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="blog.css">
-  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" type="image/png" href="../assets/img/gaita_sola.png">  <link rel="icon" type="image/png" href="../assets/img/gaita_sola.png">
 </head>
 
@@ -61,7 +61,7 @@
         <article class="blog-card" data-post-id="post-tranvia">
           <a href="#" class="card-link">
             <div class="blog-card-image-wrapper">
-              <img src="https://altera.com.co/storage/2019/04/Bogotazo.jpg" alt="Tranvía de Bogotá">
+              <img src="../assets/img/trenvia.jpg" alt="Tranvía de Bogotá">
             </div>
             <div class="blog-card-content">
               <span class="blog-card-category">Urbanismo</span>
@@ -495,8 +495,14 @@
 
   
 
-  <script src="../assets/js/main.js" defer></script>
-  <script src="blog.js" defer></script>
+  <script type="module">
+    import '../assets/js/main.js';
+    import { initBlogInteractions } from '../assets/js/modules/blog-interactions.js';
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initBlogInteractions();
+    });
+  </script>
 </body>
 
 </html>

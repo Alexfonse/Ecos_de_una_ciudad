@@ -4,24 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Don Gaitaloma - Chat Histórico</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="icon" type="image/png" href="../assets/img/gaita_sola.png">  <link rel="icon" type="image/png" href="../assets/img/gaita_sola.png">
+  <link rel="icon" type="image/png" href="assets/img/gaita_sola.png">
 </head>
 <body>
 
   <!-- HERO -->
   <header class="hero-header">
-    <img src="../assets/img/chisme.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
+    <img src="assets/img/chisme.png" alt="Fondo Hero" class="hero-bg" loading="lazy" />
     <div class="hero-overlay">
       <div class="scroll-indicator">
         <div class="flecha-bajar"></div>
       </div>
       <h1 class="titulo-hero">Échele Cuento,<br><span class="frase-impacto">Don Gaitaloma</span></h1>
-      <p class="subtexto-hero">¿Listo para desentrañar los chismes, historias y leyendas de la capital? Este palomo tiene más cuerda que un reloj. ¡A conversar se dijo!
-      </p>
-
-
+      <p class="subtexto-hero">¿Listo para desentrañar los chismes, historias y leyendas de la capital? Este palomo tiene más cuerda que un reloj. ¡A conversar se dijo!</p>
     </div>
     <div class="onda-inferior">
       <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -33,7 +30,6 @@
           <use xlink:href="#wavePath" class="wave-fill-secondary" />
         </g>
       </svg>
-
     </div>
   </header>
 
@@ -44,59 +40,23 @@
             <span class="slider round"></span>
         </label>
     </div>
+    
+    <!-- Loader is handled by JS, but keeping structure if needed for CSS transitions -->
     <div id="loader">
       <div class="spinner"></div>
       <p>Despertando a Don Gaitaloma...</p>
     </div>
 
-<div class="chat-input-bar">
-<div class="chat-input-bar">
-    <input type="text" id="user-input" placeholder="Pregúntale algo a Don Gaitaloma...">
-    
-    <button id="send-button" aria-label="Enviar mensaje">
-        <i data-lucide="send"></i>
-    </button>
-    
-    <button id="podcast-button" aria-label="Escuchar podcasts">
-        <i data-lucide="headphones"></i>
-    </button>
-</div>
-</main>
-
-<div id="podcast-modal" class="podcast-modal-overlay">
-    <div class="podcast-modal-content">
-        <button id="podcast-close-btn" class="podcast-modal-close" aria-label="Cerrar">
-            <i data-lucide="x"></i>
-        </button>
-        
-        <h3>Ecos de una Ciudad: El Podcast</h3>
-        
-        <div class="podcast-player-container">
-            <div class="podcast-item">
-                <h4>Voces que dejaron huella en Bogotá</h4>
-                <audio controls src="../assets/audio/podcast1.mp3">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </div>
-            
-            <div class="podcast-item">
-                <h4>Curiosidades de una Bogotá que ya no vemos</h4>
-                <audio controls src="../assets/audio/podcast2.mp3">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<script src="./chat.js" defer></script>
-</body>
-</html>
-</main>
-
-
+    <!-- Chat Output Area -->
+  </main>
   
+  <div class="chat-input-container">
+    <div class="chat-input-bar">
+        <input type="text" id="user-input" placeholder="Pregúntale algo a Don Gaitaloma...">
+        <button id="send-button" aria-label="Enviar mensaje"><i data-lucide="send"></i></button>
+    </div>
+  </div>
+
   <nav class="floating-navbar">
     <button class="hamburger" id="hamburger-btn" aria-label="Abrir menú">
       <span></span><span></span><span></span>
@@ -105,13 +65,13 @@
 
   <div class="menu-fullscreen" id="menu-fullscreen">
     <ul class="menu-items">
-      <li><a href="../index.html">Inicio</a></li>
-      <li><a href="../galeria.html">Galería</a></li>
-      <li><a href="../galeria3d.html">Galería 3D</a></li>
-      <li><a href="../public/chat.html">Don gaitaloma</a></li>
-      <li><a href="../blog/blog.html">Blog</a></li>
-      <li><a href="../eventos.html">Eventos</a></li>
-      <li><a href="../sobre.html">Sobre nosotros</a></li>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="galeria-3d.html">Galería 3D</a></li>
+      <li><a href="chat.html">Don gaitaloma</a></li>
+      <li><a href="blog/blog.html">Blog</a></li>
+      <li><a href="eventos.html">Eventos</a></li>
+      <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
     </ul>
   </div>
 
@@ -132,13 +92,12 @@
       <a href="https://wa.me/message/WV3QQ6XBN2W3H1 " target="_blank">WhatsApp</a>
     </div>
     <div class="cirgaita">
-      <img src="../assets/img/footer.png" alt="Logo circular">
+      <img src="assets/img/footer.png" alt="Logo circular">
     </div>
   </footer>
 
-  <script></script>
-  <script src="./chat.js" defer></script>
-  <script src="./voz.js" defer></script>
-  <script src="../assets/js/main.js"></script>
+  <!-- Scripts -->
+  <script type="module" src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/modules/chat.js"></script>
 </body>
 </html>

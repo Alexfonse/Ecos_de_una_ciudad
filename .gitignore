@@ -1,0 +1,19 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment variables
+.env
+
+# Editor directories
+.vscode/
+.idea/
+
+# Agent & Brain files (Exclude from repo)
+.agent/
+.gemini/
